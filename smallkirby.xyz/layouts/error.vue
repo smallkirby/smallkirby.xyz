@@ -28,8 +28,9 @@
           [   32.303021]  ? ksys_read+0x3e/0xb0<br>
           [   32.303103]  ? do_syscall_64+0x42/0x120<br>
           [   32.303195]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9<br>
-          [   32.303200]  ? <a href ="/index.html">index</a><br>
-          [   32.303201]  ? <a href="/about.html">about</a><br>
+          [   32.303200]  ? <a href ="/">index</a><br>
+          [   32.303201]  ? <a href="/about">about</a><br>
+          [   32.303201]  ? <a href="/likes">likes</a><br>
           [   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a><br>
           [   32.303371] Modules linked in: dockerd(O)<br>
           [   32.304008] ---[ end trace 9699fdcf83e9fabe ]---<br>
