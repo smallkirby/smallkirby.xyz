@@ -87,6 +87,7 @@ body {
   font-family: "Ubuntu Mono", monospace;
   background-color: #32302f;
   color: #ebdbb2;
+  white-space: nowrap;
 }
 
 div.main-window {
