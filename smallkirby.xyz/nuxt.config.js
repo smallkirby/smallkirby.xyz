@@ -1,6 +1,13 @@
 export default {
+  mode: 'universal',
+  router: {
+    base: '/'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    base: {
+      href: 'router.base'
+    },
     title: 'smallkirby.xyz',
     htmlAttrs: {
       lang: 'en'

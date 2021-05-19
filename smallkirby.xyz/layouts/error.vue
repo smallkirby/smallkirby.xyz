@@ -56,7 +56,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'index',
   data() {
     return {
       commName: "bash",
@@ -90,6 +89,7 @@ body {
 }
 
 div.main-window {
+  font-family: "Ubuntu Mono", monospace;
   padding-top: 1.2em;
   padding-left: 0.3em;
 }
