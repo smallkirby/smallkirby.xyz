@@ -48,7 +48,6 @@
           [   32.306287] Kernel panic - not syncing: Fatal exception<br>
           [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)<br>
           [   32.306918] Rebooting in 1 seconds..<br>
-          test
         </div>
       </div>
     </div>
