@@ -75,7 +75,7 @@ app.post('/hooks/github', async (req, res) => {
         }));
       })
 
-      console.log(output);
+      console.log(output.toString());
     }
 
     return;
