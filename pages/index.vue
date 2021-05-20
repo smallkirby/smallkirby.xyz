@@ -3,7 +3,7 @@
     <layout-header title="index"/>
     <div>
       <div class="main-window">
-        <div class="title"><p>{{titleMsg}}</p></div>
+        <div class="title"><print-char-by-layout :reqmsg="titleMsg" @finish-print-char-by="hoge"/></div>
         <div class="main-sentences">
           <div>
             <p v-for="(p,index) in dumpMsg1" :key=index>
@@ -38,6 +38,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import {stripIndent} from 'common-tags';
+import PrintCharByLayout from '~/components/PrintCharByLayout.vue';
 
 const _dumpMsg1: string = stripIndent`
           [   32.299320] general protection fault: 0000 [#1]
@@ -70,7 +71,7 @@ export default Vue.extend({
   data() {
     return {
       commName: "bash",
-      titleMsg: "_",
+      titleMsg: "MAYBE, YOU ATTEMPT EXPLOIT...?",
       dumpMsg1: [] as string[], 
       cpuno: 0,
     }
@@ -78,24 +79,10 @@ export default Vue.extend({
   async created() {
     this.cpuno = Math.floor(Math.random() * 5);
   },
-  async mounted() {
-    await this.printCharBy("titleMsg", "MAYBE, YOU ATTEMPT EXPLOIT...?");
-    await this.printLineCharBy("dumpMsg1", _dumpMsg1, 0.1);
-  },
   methods: {
-     printCharBy(data: string, msg: string, interval=100): Promise<void> {
-       return new Promise((resolve, reject) => {
-          const subPrintCharBy = (curMsg: string) => {
-            if(curMsg.length <= 0){
-              resolve();
-              return;
-            }
-            const current = this.$data[data];
-            this.$data[data] = current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (curMsg.length == 1 ? "" : "_");
-            setTimeout(() => subPrintCharBy(curMsg.slice(1)), interval);
-          };
-          subPrintCharBy(msg);
-       })
+     hoge(): void {
+        console.log("OKKKKKKKKKKKk");
+        this.printLineCharBy("dumpMsg1", _dumpMsg1, 0.1);
      },
      printLineCharBy(dataname: string, msg: string, interval=1): Promise<void> {
        return new Promise((resolve, reject) => {
@@ -110,7 +97,6 @@ export default Vue.extend({
             const nextIsNewline = (curMsg.length === 1) || (curMsg.length > 1 && curMsg.charAt(1) == "\n") ? true : false;
             const curix = this.$data[dataname].length - 1;
             const current = this.$data[dataname][curix];
-            console.log(current);
             this.$set(this.$data[dataname], curix, current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (nextIsNewline ? "" : "_"));
             setTimeout(() => subPrintCharBy(curMsg.slice(1)), interval);
           };
