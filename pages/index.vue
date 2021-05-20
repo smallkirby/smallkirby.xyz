@@ -3,13 +3,9 @@
     <layout-header title="index"/>
     <div>
       <div class="main-window">
-        <div class="title"><print-char-by-layout :reqmsg="titleMsg" @finish-print-char-by="hoge"/></div>
-        <div class="main-sentences">
-          <div>
-            <p v-for="(p,index) in dumpMsg1" :key=index>
-              <span v-for="(c,index2) in p" :key=index2>{{c}}</span>
-            </p>
-          </div>
+        <div class="title"><layout-print-char-by :reqmsg="titleMsg" @finish-print-char-by="hoge"/></div>
+        <div v-if="flagDumpMsg1" class="main-sentences">
+          <layout-print-line-by ref="refDumpMsg1" :reqmsg="dumpMsg1" />
           <p>[   32.303200]  ? <a href ="/">index</a><br></p>
           <p>[   32.303201]  ? <a href="/about">about</a><br></p>
           <p>[   32.303201]  ? <a href="/likes">likes</a><br></p>
@@ -38,7 +34,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import {stripIndent} from 'common-tags';
-import PrintCharByLayout from '~/components/PrintCharByLayout.vue';
 
 const _dumpMsg1: string = stripIndent`
           [   32.299320] general protection fault: 0000 [#1]
@@ -72,7 +67,8 @@ export default Vue.extend({
     return {
       commName: "bash",
       titleMsg: "MAYBE, YOU ATTEMPT EXPLOIT...?",
-      dumpMsg1: [] as string[], 
+      dumpMsg1: _dumpMsg1,
+      flagDumpMsg1: false,
       cpuno: 0,
     }
   },
@@ -81,8 +77,7 @@ export default Vue.extend({
   },
   methods: {
      hoge(): void {
-        console.log("OKKKKKKKKKKKk");
-        this.printLineCharBy("dumpMsg1", _dumpMsg1, 0.1);
+        this.flagDumpMsg1 = true;
      },
      printLineCharBy(dataname: string, msg: string, interval=1): Promise<void> {
        return new Promise((resolve, reject) => {

@@ -6,7 +6,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'PrintCharByLayout',
+  name: 'LayoutPrintCharBy',
   props: {
     reqmsg: {
       type: String,
@@ -24,7 +24,6 @@ export default Vue.extend({
   },
   async mounted() {
     await this.printCharBy("msg", this.reqmsg, this.interval);
-    console.log("emitting...");
     this.$emit('finish-print-char-by');
   },
   methods: {
