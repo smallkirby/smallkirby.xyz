@@ -24,6 +24,9 @@ app.post('/hooks/github', async (req, res) => {
     return 'pong';
   }
   if (event === 'push') {
+    console.log(get(req.headers, ["X-Hub-Signature-256"]));
+    console.log("***");
+    console.log(get(req.headers, "X-Hub-Signature-256"));
     const xsig = Buffer.from(get(req.headers, ["X-Hub-Signature-256"]) as string, 'utf8');
     const hmac = crypto.createHmac('sha256', process.env.GITHUB_SECRET as string);
     const digest = Buffer.from('sha256=' + hmac.update(req.body).digest('hex'), 'utf8');
