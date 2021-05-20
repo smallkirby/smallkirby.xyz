@@ -17,7 +17,8 @@ const commands = [
   ['git', 'checkout', '--force', 'origin/master'],
   ['npm', 'install'],
   ['npm', 'run', 'build'],
-  ['pm2', 'restart', 'smallkirby.xyz'],
+  ['npx', 'pm2', 'start', 'ecosystem.config.js'],
+  ['npx', 'pm2', 'restart', 'smallkirby.xyz'],
 ];
 
 app.post('/hooks/github', async (req, res) => {
