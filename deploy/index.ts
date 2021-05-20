@@ -35,7 +35,7 @@ app.post('/hooks/github', async (req, res) => {
       return;
     }
     if(get)
-    if (get(req.body, ['repository', 'id']) !== 386909618) {
+    if (get(req.body, ['repository', 'id']) !== 368909618) {
       res.status(404);
       res.send('repository ID is invalid.');
       return;
