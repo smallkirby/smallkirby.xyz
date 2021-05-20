@@ -107,7 +107,7 @@ export default Vue.extend({
             if(curMsg.charAt(0) === '\n'){
               this.$data[dataname].push('_');
             }
-            const nextIsNewline = curMsg.length >= 1 && curMsg.charAt(1) == "\n" ? true : false;
+            const nextIsNewline = (curMsg.length === 1) || (curMsg.length > 1 && curMsg.charAt(1) == "\n") ? true : false;
             const curix = this.$data[dataname].length - 1;
             const current = this.$data[dataname][curix];
             console.log(current);
