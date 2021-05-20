@@ -5,14 +5,6 @@
       <div class="main-window">
         <div class="title"><p>{{titleMsg}}</p></div>
         <div class="main-sentences">
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
-          waiwai <br>
           [   32.299320] general protection fault: 0000 [#1]<br>
           [   32.299676] CPU: 0 PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3<br>
           [   32.299681] Name: smallkirby.xyz<br>
@@ -56,7 +48,6 @@
           [   32.306287] Kernel panic - not syncing: Fatal exception<br>
           [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)<br>
           [   32.306918] Rebooting in 1 seconds..<br>
-          waiwai
         </div>
       </div>
     </div>
