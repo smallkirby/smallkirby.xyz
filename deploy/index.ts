@@ -24,8 +24,7 @@ app.post('/hooks/github', async (req, res) => {
     return 'pong';
   }
   if (event === 'push') {
-    console.log(get(req.headers, ["x-hub-signature-256"]));
-    const xsig = Buffer.from(get(req.headers, ["x-hub-Signature-256"]) as string, 'utf8');
+    const xsig = Buffer.from(get(req.headers, ["x-hub-signature-256"]) as string, 'utf8');
     const hmac = crypto.createHmac('sha256', process.env.GITHUB_SECRET as string);
     const digest = Buffer.from('sha256=' + hmac.update(req.body).digest('hex'), 'utf8');
     if (!crypto.timingSafeEqual(digest, xsig)) {
@@ -33,15 +32,18 @@ app.post('/hooks/github', async (req, res) => {
       console.log(xsig);
       res.status(404);
       res.send('secret verification error.');
+      return;
     }
     if(get)
     if (get(req.body, ['repository', 'id']) !== 386909618) {
       res.status(404);
       res.send('repository ID is invalid.');
+      return;
     }
     if (get(req.body, ['ref']) !== 'refs/heads/master') {
       res.status(404);
       res.send('invalid refs.');
+      return;
     }
   }
   res.status(501);
