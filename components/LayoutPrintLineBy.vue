@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <p v-for="(p,index) in msg" :key=index>
-      <span v-for="(c,index2) in p" :key=index2>{{c}}</span>
-    </p>
-  </div>
+    <div>
+      <p v-for="(p,index) in msg" :key=index>
+        <span v-for="(c,index2) in p" :key=index2>{{c}}</span>
+      </p>
+    </div>
 </template> 
 
 <script lang='ts'>
@@ -39,11 +39,22 @@ export default Vue.extend({
               resolve();
               return;
             }
-            this.$data[data].push(lines[curix]);
+            this.$data[data].push((lines[curix]));
             setTimeout(() => subPrintLineBy(curix+1), interval);
           };
           subPrintLineBy(0);
        })
+     },
+     escapeHtml(text: string) {
+       const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+       };
+       //@ts-ignore
+       return text.replace(/[&<>"']/g, (m: string) => { return map[m]; });
      },
   },
 });
