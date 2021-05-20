@@ -6,6 +6,13 @@
         <div class="title"><p>{{titleMsg}}</p></div>
         <div class="main-sentences">
           waiwai <br>
+          waiwai <br>
+          waiwai <br>
+          waiwai <br>
+          waiwai <br>
+          waiwai <br>
+          waiwai <br>
+          waiwai <br>
           [   32.299320] general protection fault: 0000 [#1]<br>
           [   32.299676] CPU: 0 PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3<br>
           [   32.299681] Name: smallkirby.xyz<br>
