@@ -80,7 +80,7 @@ export default Vue.extend({
   },
   async mounted() {
     await this.printCharBy("titleMsg", "MAYBE, YOU ATTEMPT EXPLOIT...?");
-    await this.printLineCharBy("dumpMsg1", _dumpMsg1, 1);
+    await this.printLineCharBy("dumpMsg1", _dumpMsg1, 0.1);
   },
   methods: {
      printCharBy(data: string, msg: string, interval=100): Promise<void> {
@@ -107,10 +107,11 @@ export default Vue.extend({
             if(curMsg.charAt(0) === '\n'){
               this.$data[dataname].push('_');
             }
+            const nextIsNewline = curMsg.length >= 1 && curMsg.charAt(1) == "\n" ? true : false;
             const curix = this.$data[dataname].length - 1;
             const current = this.$data[dataname][curix];
             console.log(current);
-            this.$set(this.$data[dataname], curix, current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (curMsg.length == 1 ? "" : "_"));
+            this.$set(this.$data[dataname], curix, current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (nextIsNewline ? "" : "_"));
             setTimeout(() => subPrintCharBy(curMsg.slice(1)), interval);
           };
           this.$data[dataname].push("_");
