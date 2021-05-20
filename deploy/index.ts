@@ -1,5 +1,7 @@
 import fastify from 'fastify';
+import dotenv from 'dotenv';
 
+dotenv.config();
 export const app = fastify();
 
 const commands = [
