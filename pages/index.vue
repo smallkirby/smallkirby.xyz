@@ -112,6 +112,7 @@ div.title > p{
 
 div.main-sentences {
   line-height: 1.2em;
+  margin-bottom: 0.5em;
 }
 
 </style>
