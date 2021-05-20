@@ -24,6 +24,7 @@ app.post('/hooks/github', async (req, res) => {
     return 'pong';
   }
   if (event === 'push') {
+    console.log(req.headers);
     console.log(get(req.headers, ["X-Hub-Signature-256"]));
     console.log("***");
     console.log(get(req.headers, "X-Hub-Signature-256"));
