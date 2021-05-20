@@ -15,7 +15,7 @@ app.use('/hooks/github', express.raw({ type: 'application/json' }));
 const commands = [
   ['git', 'fetch', '--all'],
   ['git', 'checkout', '--force', 'origin/master'],
-  ['npm', 'install', '--production'],
+  ['npm', 'install'],
   ['npm', 'run', 'build'],
   ['pm2', 'restart', 'smallkirby.xyz'],
 ];
