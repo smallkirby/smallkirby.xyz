@@ -34,13 +34,15 @@ app.post('/hooks/github', async (req, res) => {
       res.send('secret verification error.');
       return;
     }
-    if(get)
-    if (get(req.body, ['repository', 'id']) !== 368909618) {
+
+    const preq = JSON.parse(req.toString());
+    console.log(preq);
+    if (get(preq, ['repository', 'id']) !== 368909618) {
       res.status(404);
       res.send('repository ID is invalid.');
       return;
     }
-    if (get(req.body, ['ref']) !== 'refs/heads/master') {
+    if (get(preq, ['ref']) !== 'refs/heads/master') {
       res.status(404);
       res.send('invalid refs.');
       return;
