@@ -31,15 +31,12 @@ app.post('/hooks/github', async (req, res) => {
     const hmac = crypto.createHmac('sha256', process.env.GITHUB_SECRET as string);
     const digest = Buffer.from('sha256=' + hmac.update(req.body).digest('hex'), 'utf8');
     if (!crypto.timingSafeEqual(digest, xsig)) {
-      console.log(digest);
-      console.log(xsig);
       res.status(404);
       res.send('secret verification error.');
       return;
     }
 
     const preq = JSON.parse(req.body.toString('utf-8'));
-    console.log(preq);
     if (get(preq, ['repository', 'id']) !== 368909618) {
       res.status(404);
       res.send('repository ID is invalid.');
@@ -58,6 +55,7 @@ app.post('/hooks/github', async (req, res) => {
 
     // deploy
     for (const [command, ...args] of commands) {
+      console.log(command, args);
       const proc = spawn(command, args, { cwd: process.cwd() });
       const muxed = new PassThrough();
 
