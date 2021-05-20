@@ -6,7 +6,7 @@
         <div class="title"><p>{{titleMsg}}</p></div>
         <div class="main-sentences">
           [   32.299320] general protection fault: 0000 [#1]<br>
-          [   32.299676] CPU: 0 PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3<br>
+          [   32.299676] CPU: {{this.cpuno}} PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3<br>
           [   32.299681] Name: smallkirby.xyz<br>
           [   32.299682] Status: found(smallkirby.xyz)<br>
           [   32.299896] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu3.9 11/09/2032<br>
@@ -63,10 +63,12 @@ export default Vue.extend({
     return {
       commName: "bash",
       titleMsg: "_",
+      cpuno: 0,
     }
   },
   created() {
     this.printCharBy("titleMsg", "MAYBE, YOU ATTEMPT EXPLOIT...?");
+    this.cpuno = Math.floor(Math.random() * 10);
   },
   methods: {
      printCharBy(data: string, msg: string): void {
