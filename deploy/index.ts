@@ -52,3 +52,4 @@ app.post('/hooks/github', async (req, res) => {
 });
 
 app.listen(3001);
+console.log("waiting @3001");
