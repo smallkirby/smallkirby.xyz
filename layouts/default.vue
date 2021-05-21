@@ -64,6 +64,6 @@ html {
 }
 
 #body-wrapper {
-  padding-bottom: 1.5em;
+  padding-bottom: 4.0em;
 }
 </style>

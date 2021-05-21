@@ -1,5 +1,8 @@
 <template>
   <footer>
+    <div id="rights">
+      <p>smallkirby no rights received</p>
+    </div>
     <div id="footer-status">
       <div id="left-status"><p>NORMAL</p></div>
       <div id="branch"><p>master*</p></div>
@@ -7,6 +10,17 @@
       <div id="encoding"><p>utf-8[unix] LF</p></div>
       <div></div>
     </div>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197610910-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-197610910-1');
+    </script>
+
   </footer>
 </template> 
 
@@ -23,21 +37,25 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-footer {
+div#rights {
   text-align: center;
-  position: fixed;
   width: 100%;
-  background-color: #32302f;
-  border-top: #22201f;
-  color: #ebdbb2;
-  height: 1.3em;
-  z-index: 99;
-  bottom: 0;
+  position: fixed;
+  padding-top: 10em;
+  bottom: 1.3em;
 }
 
 div#footer-status {
   border-top: solid 0.1em;
   border-top-color: #42403f;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  background-color: #32302f;
+  color: #ebdbb2;
+  height: 1.3em;
+  z-index: 99;
+  bottom: 0;
 }
 
 div#left-status {
