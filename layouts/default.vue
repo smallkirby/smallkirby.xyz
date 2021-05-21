@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Nuxt />
+    <div id="body-wrapper">
+      <Nuxt />
+    </div>
+    <layout-footer />
   </div>
 </template>
 
@@ -58,5 +61,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+#body-wrapper {
+  padding-bottom: 1.5em;
 }
 </style>
