@@ -21,6 +21,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue';
+import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue';
 
 const _challengeMsg = `
 #define<stdio.h>
@@ -36,6 +38,7 @@ int main(int argc, char *argv){
 `;
 
 export default Vue.extend({
+  components: { LayoutPrintCharBy, LayoutPrintLineBy },
   name: 'sos',
   data() {
     return {
@@ -75,7 +78,6 @@ export default Vue.extend({
     },
     hoge6(): void {
       this.msg6Flag = true;
-      console.log(this.challengeMsg.split('\n'));
     },
   },
 })

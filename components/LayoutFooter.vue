@@ -4,7 +4,7 @@
       <div id="left-status"><p>NORMAL</p></div>
       <div id="branch"><p>master*</p></div>
       <div id="linenums"><p>0% 1/152 ln:1</p></div>
-      <div id="encoding"><p>utf-8[unix]</p></div>
+      <div id="encoding"><p>utf-8[unix] LF</p></div>
       <div></div>
     </div>
   </footer>
