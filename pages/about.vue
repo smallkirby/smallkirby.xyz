@@ -6,7 +6,10 @@
       <div class="main-window">
         <layout-print-char-by :reqmsg="titleMsg" :interval=100 :finwait=50 @finish-print-char-by="finTitleMsg"/>
         <div v-if="flagTitleMsg" class="center-normal">
-          <img id="kirby-pict" src="/img/simple-transparent.png" width="500" height="500">
+          <img id="kirby-pict" src="/img/simple-transparent.png" width="300" height="300">
+          <p>student of University of Tokyo</p>
+          <p>interested in <em>undefined</em></p>
+          <br>
           <p>blog: <a href="https://smallkirby.hatenablog.com">newbieからバイナリアンへ</a></p>
           <p>github: <a href="https://github.com/smallkirby">smallkirby</a></p>
           <p>twitter: <a href="https://twitter.com/smallkirby_">@smallkirby_</a></p>
@@ -23,7 +26,7 @@ export default Vue.extend({
   name: 'about',
   data() {
     return {
-      titleMsg: "$ cat ./about",
+      titleMsg: "$ cat./about",
       flagTitleMsg: false,
     }
   },
