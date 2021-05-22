@@ -1,11 +1,9 @@
 <template>
   <footer>
-    <div id="rights">
-      <p>smallkirby no rights received</p>
-    </div>
     <div id="footer-status">
       <div id="left-status"><p>NORMAL</p></div>
       <div id="branch"><p>master*</p></div>
+      <div id="rights"><p>smallkirby no rights received</p></div>
       <div id="linenums"><p>0% 1/152 ln:1</p></div>
       <div id="encoding"><p>utf-8[unix] LF</p></div>
       <div></div>
@@ -37,14 +35,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-div#rights {
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  padding-top: 10em;
-  bottom: 1.3em;
-}
-
 div#footer-status {
   border-top: solid 0.1em;
   border-top-color: #42403f;
@@ -65,6 +55,7 @@ div#left-status {
   padding: 0;
   margin: 0;
   max-width: 7em;
+  overflow: hidden;
 }
 
 div#branch {
@@ -74,6 +65,17 @@ div#branch {
   padding: 0;
   margin: 0;
   max-width: 7em;
+  overflow: hidden;
+}
+
+div#rights {
+  width: 48%;
+  float: left;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
 }
 
 div#linenums{
@@ -83,6 +85,7 @@ div#linenums{
   padding: 0;
   margin: 0;
   max-width: 13em;
+  overflow: hidden;
 }
 
 div#encoding{
@@ -92,6 +95,7 @@ div#encoding{
   padding: 0;
   margin: 0;
   max-width: 13em;
+  overflow: hidden;
 }
 
 img {
