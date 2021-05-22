@@ -23,7 +23,7 @@ export default Vue.extend({
   name: 'about',
   data() {
     return {
-      titleMsg: "$ echo ./about",
+      titleMsg: "$ cat ./about",
       flagTitleMsg: false,
     }
   },
