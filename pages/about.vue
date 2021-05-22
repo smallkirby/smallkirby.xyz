@@ -8,6 +8,7 @@
         <div v-if="flagTitleMsg" class="center-normal">
           <img id="kirby-pict" src="/img/simple-transparent.png" width="300" height="300">
           <p>student of University of Tokyo</p>
+          <p>major on electronics and photonics</p>
           <p>interested in <em>undefined</em></p>
           <br>
           <p>blog: <a href="https://smallkirby.hatenablog.com">newbieからバイナリアンへ</a></p>
