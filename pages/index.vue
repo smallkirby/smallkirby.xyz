@@ -4,9 +4,9 @@
 
     <div>
       <div class="main-window">
-        <div class="title"><layout-print-char-by :reqmsg="titleMsg" @finish-print-char-by="hoge"/></div>
+        <div class="title"><layout-print-char-by :reqmsg="titleMsg" :interval=150 :finwait=500 @finish-print-char-by="hoge"/></div>
         <div class="main-sentences">
-          <layout-print-line-by  v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" @finish-print-line-by="hoge2" />
+          <layout-print-line-by  v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval=50 @finish-print-line-by="hoge2" />
           <div v-if="flagDumpMsg2">
             <p>[   32.303200]  ? <a href ="/">index</a></p>
             <p>[   32.303201]  ? <a href="/about">about</a></p>
@@ -31,7 +31,7 @@ import LayoutFooter from '~/components/LayoutFooter.vue';
 
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
-  [   32.299676] CPU: {{cpuno}} PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3
+  [   32.299676] CPU: 2 PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3
   [   32.299681] Name: smallkirby.xyz
   [   32.299682] Status: found(smallkirby.xyz)
   [   32.299896] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu3.9 11/09/2032
@@ -97,59 +97,9 @@ export default Vue.extend({
      hoge2(): void {
         this.flagDumpMsg2 = true;
      },
-     printLineCharBy(dataname: string, msg: string, interval=1): Promise<void> {
-       return new Promise((resolve, reject) => {
-          const subPrintCharBy = (curMsg: string) => {
-            if(curMsg.length <= 0){
-              resolve();
-              return;
-            }
-            if(curMsg.charAt(0) === '\n'){
-              this.$data[dataname].push('_');
-            }
-            const nextIsNewline = (curMsg.length === 1) || (curMsg.length > 1 && curMsg.charAt(1) == "\n") ? true : false;
-            const curix = this.$data[dataname].length - 1;
-            const current = this.$data[dataname][curix];
-            this.$set(this.$data[dataname], curix, current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (nextIsNewline ? "" : "_"));
-            setTimeout(() => subPrintCharBy(curMsg.slice(1)), interval);
-          };
-          this.$data[dataname].push("_");
-          subPrintCharBy(msg);
-       });
-     },
   },
 })
 </script>
 
 <style>
-body {
-  font-family: "Ubuntu Mono", monospace;
-  background-color: #32302f;
-  color: #ebdbb2;
-  white-space: nowrap;
-}
-
-div.main-window {
-  padding-top: 1.2em;
-  padding-left: 0.3em;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-div.title {
-  margin: 0.1em;
-}
-
-div.title > p{
-  size: 2000%;
-}
-
-div.main-sentences {
-  line-height: 1.2em;
-  margin-bottom: 0.5em;
-}
-
 </style>

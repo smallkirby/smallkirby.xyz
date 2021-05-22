@@ -4,10 +4,9 @@
     <layout-header title="likes" />
     <div>
       <div class="main-window">
-        <p>{{titleMsg}}</p><br>
+        <layout-print-char-by :reqmsg="titleMsg" :interval=50 :finwait=50 @finish-print-char-by="finTitleMsg"/>
         <div class="center-normal">
-          <p>犬</p>
-          <p>スマブラ</p>
+          <layout-print-line-by  v-if="flagTitleMsg" :reqmsg="mylikes" interval="100" @finish-print-line-by="finMyLikes" />
         </div>
       </div>
     </div>
@@ -15,63 +14,38 @@
 </template>
 
 <script lang="ts">
+import { stripIndent } from 'common-tags';
 import Vue from 'vue'
+
+const _mylikes = stripIndent`
+  犬
+  スマブラ
+`;
 
 export default Vue.extend({
   name: 'about',
   data() {
     return {
-      titleMsg: "_",
+      titleMsg: "$ find $SMALLKIRBY -type f | xargs grep like | grep -v lazy",
+      mylikes: _mylikes,
+      flagTitleMsg: false,
     }
   },
-  created() {
-    this.printCharBy("titleMsg", "$ find $SMALLKIRBY -type f | xargs grep like | grep -v lazy");
-  },
   methods: {
-     printCharBy(data: string, msg: string): void {
-       const subPrintCharBy = (curMsg: string) => {
-         if(curMsg.length <= 0){
-           return;
-         }
-         const current = this.$data[data];
-         this.$data[data] = current.slice(0, current.length-1) + curMsg.slice(0,1)[0] + (curMsg.length == 1 ? "" : "_");
-         setTimeout(() => subPrintCharBy(curMsg.slice(1)), 100);
-       };
-       subPrintCharBy(msg);
-     },
+    finTitleMsg(): void{
+      this.flagTitleMsg = true;
+    },
+    finMyLikes(): void{
+    },
   },
 })
 </script>
 
 <style>
-body {
-  font-family: "Ubuntu Mono", monospace;
-  background-color: #32302f;
-  color: #ebdbb2;
-}
-
 div.main-window {
   padding-top: 1.2em;
   padding-left: 0.3em;
 }
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-div.title {
-  margin: 0.1em;
-}
-
-div.title > p{
-  size: 2000%;
-}
-
-div.main-sentences {
-  line-height: 1.2em;
-}
-
 div.center-normal {
   text-align: center;
 }

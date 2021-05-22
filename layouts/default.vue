@@ -63,7 +63,39 @@ html {
   background-color: #35495e;
 }
 
+/* custom */
 #body-wrapper {
   padding-bottom: 4.0em;
 }
+
+body {
+  font-family: "Ubuntu Mono", monospace;
+  background-color: #32302f;
+  color: #ebdbb2;
+  white-space: nowrap;
+}
+
+div.main-window {
+  padding-top: 1.2em;
+  padding-left: 0.3em;
+}
+
+a {
+  text-decoration: none;
+  color: #84A87F;
+}
+
+div.title {
+  margin: 0.1em;
+}
+
+div.title > p{
+  size: 2000%;
+}
+
+div.main-sentences {
+  line-height: 1.2em;
+  margin-bottom: 0.5em;
+}
+
 </style>

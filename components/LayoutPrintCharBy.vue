@@ -17,6 +17,10 @@ export default Vue.extend({
     interval: {
       type: Number,
       default: 100, 
+    },
+    finwait: {
+      type: Number,
+      default: 1,
     }
   },
   data() {
@@ -25,15 +29,15 @@ export default Vue.extend({
     }
   },
   async mounted() {
-    await this.printCharBy("msg", this.reqmsg, this.interval);
+    await this.printCharBy("msg", this.reqmsg, this.interval, this.finwait);
     this.$emit('finish-print-char-by');
   },
   methods: {
-     printCharBy(data: string, msg: string, interval=100): Promise<void> {
+     printCharBy(data: string, msg: string, interval=100, finwait=1): Promise<void> {
        return new Promise((resolve, reject) => {
           const subPrintCharBy = (curMsg: string) => {
             if(curMsg.length <= 0){
-              resolve();
+              setTimeout(() => resolve(), finwait);
               return;
             }
             const current = this.$data[data];
