@@ -1,9 +1,11 @@
 <template>
   <layout-wrapper>
-    <layout-header title="about" />
+    <layout-header title="mug" />
     <div>
       <div class="main-window">
-        <p>c|_|</p>
+        <div id="shmug">
+          <p>c|_|</p>
+        </div>
       </div>
     </div>
   </layout-wrapper>
@@ -35,6 +37,16 @@ div.center-normal {
 
 img#kirby-pict {
   margin: 0 auto;
+}
+
+div#shmug {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+div#shmug > p {
+  font-size: 20em;
 }
 
 </style>
