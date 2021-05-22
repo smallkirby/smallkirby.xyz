@@ -48,18 +48,26 @@ div#footer-status {
   bottom: 0;
 }
 
-div#branch {
-  width: 15%;
+div#left-status {
+  width: 10%;
   float: left;
   display: inline;
   padding: 0;
   margin: 0;
-  max-width: 7em;
+  overflow: hidden;
+}
+
+div#branch {
+  width: 10%;
+  float: left;
+  display: inline;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
 }
 
 div#rights {
-  width: 48%;
+  width: 60%;
   float: left;
   display: inline;
   padding: 0;
@@ -69,26 +77,21 @@ div#rights {
 }
 
 div#linenums{
-  width: 11%;
+  width: 10%;
   float: right;
   display: inline;
   padding: 0;
   margin: 0;
-  max-width: 13em;
   overflow: hidden;
 }
 
 div#encoding{
-  width: 11%;
+  width: 10%;
   float: right;
   display: inline;
   padding: 0;
   margin: 0;
-  max-width: 13em;
   overflow: hidden;
-}
-
-@media only screen and (min-width: 500px) {
 }
 
 @media only screen and (max-width: 699px) {
@@ -98,11 +101,11 @@ div#encoding{
   div#left-status {
     display: none;
   }
+  div#branch {
+    width: 25%;
+  }
   div#linenums {
     display: none;
-  }
-  div#left-status {
-    width: 25%;
   }
   div#rights{
     width: 50%;
