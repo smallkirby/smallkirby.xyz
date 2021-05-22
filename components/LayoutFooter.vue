@@ -48,16 +48,6 @@ div#footer-status {
   bottom: 0;
 }
 
-div#left-status {
-  width: 15%;
-  float: left;
-  display: inline;
-  padding: 0;
-  margin: 0;
-  max-width: 7em;
-  overflow: hidden;
-}
-
 div#branch {
   width: 15%;
   float: left;
@@ -98,10 +88,28 @@ div#encoding{
   overflow: hidden;
 }
 
-img {
-  height: auto;
-  width: auto;
-  max-height: 100%;
+@media only screen and (min-width: 500px) {
+}
+
+@media only screen and (max-width: 699px) {
+  footer {
+    font-size: 0.7em;
+  }
+  div#left-status {
+    display: none;
+  }
+  div#linenums {
+    display: none;
+  }
+  div#left-status {
+    width: 25%;
+  }
+  div#rights{
+    width: 50%;
+  }
+  div#encoding{
+    width: 25%;
+  }
 }
 
 </style>
