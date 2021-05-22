@@ -27,7 +27,7 @@ export default Vue.extend({
   name: 'about',
   data() {
     return {
-      titleMsg: "$ cat./about",
+      titleMsg: "$ cat ./about.txt",
       flagTitleMsg: false,
     }
   },
