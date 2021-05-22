@@ -14,8 +14,36 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Make Nirugiri Greater...'
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name', content:'smallkirby.xyz'
+      },
+      {
+        hid: 'og:type',
+        property: 'og:site_name', content:'website'
+      },
+      {
+        hid: 'og:url',
+        property: 'og:site_name', content:'https://smallkirby.xyz'
+      },
+      {
+        hid: 'og:title',
+        property: 'og:site_name', content:'smallkirby.xyz'
+      },
+      {
+        hid: 'og:description',
+        property: 'og:site_name', content:'Make Nirugiri Greater...'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:site_name', content:'https://smallkirby.xyz/image/simple-transparent.png'
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

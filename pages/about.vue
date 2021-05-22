@@ -6,7 +6,7 @@
       <div class="main-window">
         <p>{{titleMsg}}</p><br>
         <div class="center-normal">
-          <img id="kirby-pict" src="~/assets/img/simple-transparent.png" width="500" height="500">
+          <img id="kirby-pict" src="/img/simple-transparent.png" width="500" height="500">
           <p>blog: <a href="https://smallkirby.hatenablog.com">newbieからバイナリアンへ</a></p>
           <p>github: <a href="https://github.com/smallkirby">smallkirby</a></p>
           <p>twitter: <a href="https://twitter.com/smallkirby_">@smallkirby_</a></p>

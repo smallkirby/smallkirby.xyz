@@ -75,4 +75,22 @@ header > div#time-status {
   width: 33%;
 }
 
+@media only screen and (max-width: 699px) {
+  header {
+    font-size: 0.7em;
+  }
+  div#session-id {
+    width: 20%;
+    overflow: none;
+  }
+  div#comm {
+    width: 50%;
+    overflow: none;
+  }
+  div#time-status {
+    width: 30%;
+    overflow: none;
+  }
+}
+
 </style>
