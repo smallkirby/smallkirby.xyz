@@ -12,7 +12,10 @@
         </div>
         <div>
           <layout-print-char-by :reqmsg="msg6" @finish-print-char-by="hoge6" v-if="msg5Flag"/>
-          <layout-print-line-by :reqmsg="challengeMsg" v-if="msg6Flag" />
+          <layout-print-line-by-code :reqmsg="challengeMsg" v-if="msg6Flag" />
+        </div>
+          <layout-print-char-by :reqmsg="msg7" :interval=30 @finish-print-char-by="hoge7" v-if="msg7Flag"/>
+        <div>
         </div>
       </div>
     </div>
@@ -32,7 +35,7 @@ int main(int argc, char *argv){
     unsigned int secret; 
   } a = {.buf={0}, .secret=0xdeadbeef};
   scanf("%s", a.buf);
-  if(strncmp((char*)&a.secret, "skb", 3) == 0)
+  if(a.secret == "0x626b73")
     system("sos-kirby");
 }
 `;
@@ -49,6 +52,7 @@ export default Vue.extend({
       msg4: '   - waiwai',
       msg5: '   - fugafuga',
       msg6: '$ cat ./challenge.c',
+      msg7: '$ ',
       challengeMsg: _challengeMsg,
       msg1Flag: false,
       msg2Flag: false,
@@ -56,6 +60,7 @@ export default Vue.extend({
       msg4Flag: false,
       msg5Flag: false,
       msg6Flag: false,
+      msg7Flag: false,
     }
   },
   created() {
@@ -78,6 +83,9 @@ export default Vue.extend({
     },
     hoge6(): void {
       this.msg6Flag = true;
+    },
+    hoge7(): void {
+      this.msg7Flag = true;
     },
   },
 })
