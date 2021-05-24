@@ -1,6 +1,6 @@
 <template>
-  <pre><div class="code-wrapper"><code>{{msg}}</code></div></pre>
-</template> 
+  <pre><div class="code-wrapper"><code>{{ msg }}</code></div></pre>
+</template>
 
 <script lang='ts'>
 import Vue from 'vue'
@@ -10,45 +10,45 @@ export default Vue.extend({
   props: {
     reqmsg: {
       type: String,
-      default: "",
+      default: ''
     },
     interval: {
       type: Number,
-      default: 100, 
+      default: 100
     }
   },
-  data() {
+  data () {
     return {
-      msg: "",
+      msg: ''
     }
   },
-  async mounted() {
-    await this.printLineBy("msg", this.reqmsg, this.interval);
-    this.$emit('finish-print-line-by-code');
+  async mounted () {
+    await this.printLineBy('msg', this.reqmsg, this.interval)
+    this.$emit('finish-print-line-by-code')
   },
   methods: {
-     printLineBy(dataName: string, msg: string, interval=100): Promise<void> {
-       if(msg[0] === '\n'){
-         msg = msg.slice(1);
-       }
-       if(msg[msg.length-1] === '\n'){
-         msg = msg.slice(0, msg.length-1);
-       }
-       return new Promise((resolve, reject) => {
-          const lines = msg.split('\n');
-          const subPrintLineBy = (curix: number) => {
-            if(curix >= lines.length){
-              resolve();
-              return;
-            }
-            this.$set(this.$data, dataName, this.$data[dataName] + lines[curix] + "\n");
-            setTimeout(() => subPrintLineBy(curix+1), interval);
-          };
-          subPrintLineBy(0);
-       })
-     },
-  },
-});
+    printLineBy (dataName: string, msg: string, interval = 100): Promise<void> {
+      if (msg[0] === '\n') {
+        msg = msg.slice(1)
+      }
+      if (msg[msg.length - 1] === '\n') {
+        msg = msg.slice(0, msg.length - 1)
+      }
+      return new Promise((resolve, reject) => {
+        const lines = msg.split('\n')
+        const subPrintLineBy = (curix: number) => {
+          if (curix >= lines.length) {
+            resolve()
+            return
+          }
+          this.$set(this.$data, dataName, this.$data[dataName] + lines[curix] + '\n')
+          setTimeout(() => subPrintLineBy(curix + 1), interval)
+        }
+        subPrintLineBy(0)
+      })
+    }
+  }
+})
 </script>
 
 <style scoped>
@@ -72,4 +72,4 @@ div.code-wrapper {
   padding-top: 0em;
   height: fit-content;
 }
-</style>  
+</style>

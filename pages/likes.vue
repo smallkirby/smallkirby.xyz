@@ -4,9 +4,9 @@
     <layout-header title="likes" />
     <div>
       <div class="main-window">
-        <layout-print-char-by :reqmsg="titleMsg" :interval=50 :finwait=50 @finish-print-char-by="finTitleMsg"/>
+        <layout-print-char-by :reqmsg="titleMsg" :interval="50" :finwait="50" @finish-print-char-by="finTitleMsg" />
         <div class="center-normal">
-          <layout-print-line-by  v-if="flagTitleMsg" :reqmsg="mylikes" interval="100" @finish-print-line-by="finMyLikes" />
+          <layout-print-line-by v-if="flagTitleMsg" :reqmsg="mylikes" interval="100" @finish-print-line-by="finMyLikes" />
         </div>
       </div>
     </div>
@@ -14,30 +14,30 @@
 </template>
 
 <script lang="ts">
-import { stripIndent } from 'common-tags';
+import { stripIndent } from 'common-tags'
 import Vue from 'vue'
 
 const _mylikes = stripIndent`
   犬
   スマブラ
-`;
+`
 
 export default Vue.extend({
-  name: 'about',
-  data() {
+  name: 'About',
+  data () {
     return {
-      titleMsg: "$ find $SMALLKIRBY -type f | xargs grep like | grep -v lazy",
+      titleMsg: '$ find $SMALLKIRBY -type f | xargs grep like | grep -v lazy',
       mylikes: _mylikes,
-      flagTitleMsg: false,
+      flagTitleMsg: false
     }
   },
   methods: {
-    finTitleMsg(): void{
-      this.flagTitleMsg = true;
+    finTitleMsg (): void {
+      this.flagTitleMsg = true
     },
-    finMyLikes(): void{
-    },
-  },
+    finMyLikes (): void {
+    }
+  }
 })
 </script>
 

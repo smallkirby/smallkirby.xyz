@@ -1,39 +1,45 @@
 <template>
   <header>
-    <div id="session-id"><p>Session: 38 <span style="color:#ffff00;">1</span> <span style="#248a9e">1</span></p></div>
-    <div id="com"><p>1:{{title}}*</p></div>
-    <div id="time-status"><p>{{timeStatus}}</p></div>
+    <div id="session-id">
+      <p>Session: 38 <span style="color:#ffff00;">1</span> <span style="#248a9e">1</span></p>
+    </div>
+    <div id="com">
+      <p>1:{{ title }}*</p>
+    </div>
+    <div id="time-status">
+      <p>{{ timeStatus }}</p>
+    </div>
   </header>
-</template> 
+</template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import moment from 'moment';
+import moment from 'moment'
 
 export default Vue.extend({
   name: 'LayoutHeader',
   props: {
     title: {
       type: String,
-      default: "",
-    },
-  },
-  data() {
-    return {
-      timeStatus: "",
-      commName: "bash",
+      default: ''
     }
   },
-  created() {
-    this.updateTime();
-    setInterval(() => this.updateTime(), 1000);
+  data () {
+    return {
+      timeStatus: '',
+      commName: 'bash'
+    }
+  },
+  created () {
+    this.updateTime()
+    setInterval(() => this.updateTime(), 1000)
   },
   methods: {
-    updateTime(): void {
-      this.timeStatus = moment().format("YYYY-MM-DD(ddd) HH:mm");
-    },
-  },
-});
+    updateTime (): void {
+      this.timeStatus = moment().format('YYYY-MM-DD(ddd) HH:mm')
+    }
+  }
+})
 </script>
 
 <style scoped>

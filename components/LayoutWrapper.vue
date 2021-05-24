@@ -1,6 +1,6 @@
 <template>
   <div>
-      <slot />
+    <slot />
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'LayoutWrapper',
+  name: 'LayoutWrapper'
 })
 </script>

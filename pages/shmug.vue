@@ -15,18 +15,18 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'shmug',
-  data() {
+  name: 'Shmug',
+  data () {
     return {
-      titleMsg: "$ cat ./about.txt",
-      flagTitleMsg: false,
+      titleMsg: '$ cat ./about.txt',
+      flagTitleMsg: false
     }
   },
   methods: {
-    finTitleMsg(): void{
-      this.flagTitleMsg = true;
+    finTitleMsg (): void {
+      this.flagTitleMsg = true
     }
-  },
+  }
 })
 </script>
 

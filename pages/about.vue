@@ -4,7 +4,7 @@
     <layout-header title="about" />
     <div>
       <div class="main-window">
-        <layout-print-char-by :reqmsg="titleMsg" :interval=100 :finwait=50 @finish-print-char-by="finTitleMsg"/>
+        <layout-print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
         <div v-if="flagTitleMsg" class="center-normal">
           <img id="kirby-pict" src="/img/simple-transparent.png" width="300" height="300">
           <p>student of University of Tokyo</p>
@@ -24,18 +24,18 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'about',
-  data() {
+  name: 'About',
+  data () {
     return {
-      titleMsg: "$ cat ./about.txt",
-      flagTitleMsg: false,
+      titleMsg: '$ cat ./about.txt',
+      flagTitleMsg: false
     }
   },
   methods: {
-    finTitleMsg(): void{
-      this.flagTitleMsg = true;
+    finTitleMsg (): void {
+      this.flagTitleMsg = true
     }
-  },
+  }
 })
 </script>
 

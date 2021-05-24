@@ -1,16 +1,26 @@
 <template>
   <footer>
     <div id="footer-status">
-      <div id="left-status"><p>NORMAL</p></div>
-      <div id="branch"><p>master*</p></div>
-      <div id="rights"><p>smallkirby no rights received</p></div>
-      <div id="linenums"><p>0% 1/152 ln:1</p></div>
-      <div id="encoding"><p>utf-8[unix] LF</p></div>
-      <div></div>
+      <div id="left-status">
+        <p>NORMAL</p>
+      </div>
+      <div id="branch">
+        <p>master*</p>
+      </div>
+      <div id="rights">
+        <p>smallkirby no rights received</p>
+      </div>
+      <div id="linenums">
+        <p>0% 1/152 ln:1</p>
+      </div>
+      <div id="encoding">
+        <p>utf-8[unix] LF</p>
+      </div>
+      <div />
     </div>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197610910-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197610910-1" />
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -18,20 +28,19 @@
 
       gtag('config', 'UA-197610910-1');
     </script>
-
   </footer>
-</template> 
+</template>
 
 <script lang='ts'>
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'LayoutFooter',
-  data() {
+  data () {
     return {
     }
-  },
-});
+  }
+})
 </script>
 
 <style scoped>

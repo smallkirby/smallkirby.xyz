@@ -1,14 +1,16 @@
 <template>
   <layout-wrapper>
-    <layout-header title="index"/>
+    <layout-header title="index" />
 
     <div>
       <div class="main-window">
-        <div class="title"><layout-print-char-by :reqmsg="titleMsg" :interval=150 :finwait=500 @finish-print-char-by="hoge"/></div>
+        <div class="title">
+          <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
+        </div>
         <div class="main-sentences">
-          <layout-print-line-by  v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval=50 @finish-print-line-by="hoge2" />
+          <layout-print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
           <div v-if="flagDumpMsg2">
-            <p>[   32.303200]  ? <a href ="/">index</a></p>
+            <p>[   32.303200]  ? <a href="/">index</a></p>
             <p>[   32.303201]  ? <a href="/about">about</a></p>
             <p>[   32.303201]  ? <a href="/likes">likes</a></p>
             <p>[   32.303201]  ? <a href="/sos">sos</a></p>
@@ -18,16 +20,15 @@
         </div>
       </div>
     </div>
-
   </layout-wrapper>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import {stripIndent} from 'common-tags';
-import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue';
-import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue';
-import LayoutFooter from '~/components/LayoutFooter.vue';
+import Vue from 'vue'
+import { stripIndent } from 'common-tags'
+import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue'
+import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue'
+import LayoutFooter from '~/components/LayoutFooter.vue'
 
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
@@ -53,7 +54,7 @@ const _dumpMsg1: string = stripIndent`
   [   32.303021]  ? ksys_read+0x3e/0xb0
   [   32.303103]  ? do_syscall_64+0x42/0x120
   [   32.303195]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
-`;
+`
 const _dumpMsg2 = stripIndent`
   [   32.303371] Modules linked in: dockerd(O)
   [   32.304008] ---[ end trace 9699fdcf83e9fabe ]---
@@ -71,33 +72,33 @@ const _dumpMsg2 = stripIndent`
   [   32.306287] Kernel panic - not syncing: Fatal exception
   [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)
   [   32.306918] Rebooting in 1 seconds..
-`;
+`
 
 export default Vue.extend({
+  name: 'Index',
   components: { LayoutPrintCharBy, LayoutPrintLineBy, LayoutFooter },
-  name: 'index',
-  data() {
+  data () {
     return {
-      commName: "bash",
-      titleMsg: "MAYBE, YOU ATTEMPT EXPLOIT...?",
+      commName: 'bash',
+      titleMsg: 'MAYBE, YOU ATTEMPT EXPLOIT...?',
       dumpMsg1: _dumpMsg1,
       dumpMsg2: _dumpMsg2,
       flagDumpMsg1: false,
       flagDumpMsg2: false,
-      cpuno: 0,
+      cpuno: 0
     }
   },
-  async created() {
-    this.cpuno = Math.floor(Math.random() * 5);
+  async created () {
+    this.cpuno = Math.floor(Math.random() * 5)
   },
   methods: {
-     hoge(): void {
-        this.flagDumpMsg1 = true;
-     },
-     hoge2(): void {
-        this.flagDumpMsg2 = true;
-     },
-  },
+    hoge (): void {
+      this.flagDumpMsg1 = true
+    },
+    hoge2 (): void {
+      this.flagDumpMsg2 = true
+    }
+  }
 })
 </script>
 

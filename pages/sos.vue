@@ -4,19 +4,18 @@
     <div>
       <div class="main-window">
         <div>
-          <layout-print-char-by :reqmsg="msg1" @finish-print-char-by="hoge"/>
-          <layout-print-char-by :reqmsg="msg2" :interval=30 @finish-print-char-by="hoge2" v-if="msg1Flag"/>
-          <layout-print-char-by :reqmsg="msg3" :interval=30 @finish-print-char-by="hoge3" v-if="msg2Flag"/>
-          <layout-print-char-by :reqmsg="msg4" :interval=30 @finish-print-char-by="hoge4" v-if="msg3Flag"/>
-          <layout-print-char-by :reqmsg="msg5" :interval=30 @finish-print-char-by="hoge5" v-if="msg4Flag"/>
+          <layout-print-char-by :reqmsg="msg1" @finish-print-char-by="hoge" />
+          <layout-print-char-by v-if="msg1Flag" :reqmsg="msg2" :interval="30" @finish-print-char-by="hoge2" />
+          <layout-print-char-by v-if="msg2Flag" :reqmsg="msg3" :interval="30" @finish-print-char-by="hoge3" />
+          <layout-print-char-by v-if="msg3Flag" :reqmsg="msg4" :interval="30" @finish-print-char-by="hoge4" />
+          <layout-print-char-by v-if="msg4Flag" :reqmsg="msg5" :interval="30" @finish-print-char-by="hoge5" />
         </div>
         <div>
-          <layout-print-char-by :reqmsg="msg6" @finish-print-char-by="hoge6" v-if="msg5Flag"/>
-          <layout-print-line-by-code :reqmsg="challengeMsg" v-if="msg6Flag" />
+          <layout-print-char-by v-if="msg5Flag" :reqmsg="msg6" @finish-print-char-by="hoge6" />
+          <layout-print-line-by-code v-if="msg6Flag" :reqmsg="challengeMsg" />
         </div>
-          <layout-print-char-by :reqmsg="msg7" :interval=30 @finish-print-char-by="hoge7" v-if="msg7Flag"/>
-        <div>
-        </div>
+        <layout-print-char-by v-if="msg7Flag" :reqmsg="msg7" :interval="30" @finish-print-char-by="hoge7" />
+        <div />
       </div>
     </div>
   </layout-wrapper>
@@ -24,8 +23,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue';
-import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue';
+import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue'
+import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue'
 
 const _challengeMsg = `
 #define<stdio.h>
@@ -38,12 +37,12 @@ int main(int argc, char *argv){
   if(a.secret == "0x626b73")
     system("sos-kirby");
 }
-`;
+`
 
 export default Vue.extend({
+  name: 'Sos',
   components: { LayoutPrintCharBy, LayoutPrintLineBy },
-  name: 'sos',
-  data() {
+  data () {
     return {
       title: 'sos',
       msg1: '$ cat ./description.txt',
@@ -60,34 +59,34 @@ export default Vue.extend({
       msg4Flag: false,
       msg5Flag: false,
       msg6Flag: false,
-      msg7Flag: false,
+      msg7Flag: false
     }
   },
-  created() {
+  created () {
   },
   methods: {
-    hoge(): void {
-      this.msg1Flag = true;
+    hoge (): void {
+      this.msg1Flag = true
     },
-    hoge2(): void {
-      this.msg2Flag = true;
+    hoge2 (): void {
+      this.msg2Flag = true
     },
-    hoge3(): void {
-      this.msg3Flag = true;
+    hoge3 (): void {
+      this.msg3Flag = true
     },
-    hoge4(): void {
-      this.msg4Flag = true;
+    hoge4 (): void {
+      this.msg4Flag = true
     },
-    hoge5(): void {
-      this.msg5Flag = true;
+    hoge5 (): void {
+      this.msg5Flag = true
     },
-    hoge6(): void {
-      this.msg6Flag = true;
+    hoge6 (): void {
+      this.msg6Flag = true
     },
-    hoge7(): void {
-      this.msg7Flag = true;
-    },
-  },
+    hoge7 (): void {
+      this.msg7Flag = true
+    }
+  }
 })
 </script>
 
