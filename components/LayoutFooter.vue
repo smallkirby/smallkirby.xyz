@@ -102,16 +102,16 @@ div#encoding{
     display: none;
   }
   div#branch {
-    width: 25%;
+    display: none;
   }
   div#linenums {
     display: none;
   }
   div#rights{
-    width: 50%;
+    width: 80%;
   }
   div#encoding{
-    width: 25%;
+    display: none;
   }
 }
 
