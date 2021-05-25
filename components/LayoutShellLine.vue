@@ -2,27 +2,38 @@
   <div>
     <div class="ps1">
       <p>
-        <span class="username">{{username}}@</span>
-        <span class="hostname">{{hostname}}</span> 
+        <span class="username">{{ username }}@</span>
+        <span class="hostname">{{ hostname }}</span>
         <span class="ps1-elem">:</span>
-        <span class="cwd">{{cwd}}</span>  
+        <span class="cwd">{{ cwd }}</span>
         <span class="ps1-elem">:</span>
-        <span class="curtime">{{curtime}}</span>  
+        <span class="curtime">{{ curtime }}</span>
         <br>
       </p>
     </div>
 
     <div class="prompt">
-      <span class="dollar">$ </span> 
-      <textarea v-if='!flagInputLocked' v-on:keyup.enter="submitInput" v-model.trim='userinput' class="shellinput" type="text" autofocus spellcheck="false" ref="userinput"></textarea>
-      <p v-if='flagInputLocked'>{{userinput}}</p> 
-    </div>  
-  </div>  
+      <span class="dollar">$ </span>
+      <textarea
+        v-if="!flagInputLocked"
+        v-model.trim="userinput"
+        class="shellinput"
+        type="text"
+        autofocus
+        @keyup.enter="submitInput"
+        spellcheck="false"
+        ref="userinput"
+      />
+      <p v-if="flagInputLocked">
+        {{ userinput }}
+      </p>
+    </div>
+  </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import moment from 'moment';
+import moment from 'moment'
 
 export default Vue.extend({
   name: 'LayoutShellLine',
@@ -38,15 +49,15 @@ export default Vue.extend({
       flagInputLocked: false,
     }
   },
-  mounted (){
-    this.curtime = moment().format('HH:mm:ss ddd MMM DD');
-    //@ts-ignore
-    this.$refs.userinput.focus();
+  mounted () {
+    this.curtime = moment().format('HH:mm:ss ddd MMM DD')
+    // @ts-ignore
+    this.$refs.userinput.focus()
   },
   methods: {
-    submitInput(){
-      this.flagInputLocked = true;
-      this.$emit('shell-line-submitted', this.userinput);
+    submitInput () {
+      this.flagInputLocked = true
+      this.$emit('shell-line-submitted', this.userinput)
     },
   },
 })

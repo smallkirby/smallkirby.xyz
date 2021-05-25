@@ -39,7 +39,7 @@ export default Vue.extend({
   data () {
     return {
     }
-  }
+  },
 })
 </script>
 

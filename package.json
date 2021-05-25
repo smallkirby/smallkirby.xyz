@@ -7,8 +7,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore . --fix",
+    "lint:ts": "eslint --ext \".ts\" --ignore-path .gitignore . --fix",
+    "lint": "npm run lint:js && npm run lint:ts",
     "waithook": "ts-node deploy/index.ts"
   },
   "dependencies": {

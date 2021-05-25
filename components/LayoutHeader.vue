@@ -21,13 +21,13 @@ export default Vue.extend({
   props: {
     title: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data () {
     return {
       timeStatus: '',
-      commName: 'bash'
+      commName: 'bash',
     }
   },
   created () {
@@ -37,8 +37,8 @@ export default Vue.extend({
   methods: {
     updateTime (): void {
       this.timeStatus = moment().format('YYYY-MM-DD(ddd) HH:mm')
-    }
-  }
+    },
+  },
 })
 </script>
 

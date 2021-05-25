@@ -12,20 +12,20 @@ export default Vue.extend({
   props: {
     reqmsg: {
       type: String,
-      default: ''
+      default: '',
     },
     interval: {
       type: Number,
-      default: 100
+      default: 100,
     },
     finwait: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data () {
     return {
-      msg: '_'
+      msg: '_',
     }
   },
   async mounted () {
@@ -46,7 +46,7 @@ export default Vue.extend({
         }
         subPrintCharBy(msg)
       })
-    }
-  }
+    },
+  },
 })
 </script>

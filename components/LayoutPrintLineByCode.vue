@@ -10,16 +10,16 @@ export default Vue.extend({
   props: {
     reqmsg: {
       type: String,
-      default: ''
+      default: '',
     },
     interval: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data () {
     return {
-      msg: ''
+      msg: '',
     }
   },
   async mounted () {
@@ -46,8 +46,8 @@ export default Vue.extend({
         }
         subPrintLineBy(0)
       })
-    }
-  }
+    },
+  },
 })
 </script>
 

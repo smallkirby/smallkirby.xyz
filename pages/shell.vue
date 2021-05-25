@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-//@ts-ignore
+// @ts-ignore
 import LayoutShellLine from '~/components/LayoutShellLine.vue'
 
 interface CommandResult{

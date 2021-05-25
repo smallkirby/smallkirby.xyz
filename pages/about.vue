@@ -27,14 +27,14 @@ export default Vue.extend({
   data () {
     return {
       titleMsg: '$ cat ./about.txt',
-      flagTitleMsg: false
+      flagTitleMsg: false,
     }
   },
   methods: {
     finTitleMsg (): void {
       this.flagTitleMsg = true
-    }
-  }
+    },
+  },
 })
 </script>
 

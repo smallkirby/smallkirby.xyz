@@ -28,7 +28,7 @@ export default Vue.extend({
     return {
       titleMsg: '$ find $SMALLKIRBY -type f | xargs grep like | grep -v lazy',
       mylikes: _mylikes,
-      flagTitleMsg: false
+      flagTitleMsg: false,
     }
   },
   methods: {
@@ -36,8 +36,8 @@ export default Vue.extend({
       this.flagTitleMsg = true
     },
     finMyLikes (): void {
-    }
-  }
+    },
+  },
 })
 </script>
 

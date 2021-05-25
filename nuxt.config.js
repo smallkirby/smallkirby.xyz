@@ -1,16 +1,16 @@
 export default {
   mode: 'universal',
   router: {
-    base: '/'
+    base: '/',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     base: {
-      href: 'router.base'
+      href: 'router.base',
     },
     title: 'smallkirby.xyz',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
@@ -18,36 +18,42 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Make Nirugiri Greater...'
+        content: 'Make Nirugiri Greater...',
       },
       {
         hid: 'og:site_name',
-        property: 'og:site_name', content:'smallkirby.xyz'
+        property: 'og:site_name',
+        content: 'smallkirby.xyz',
       },
       {
         hid: 'og:type',
-        property: 'og:site_name', content:'website'
+        property: 'og:site_name',
+        content: 'website',
       },
       {
         hid: 'og:url',
-        property: 'og:site_name', content:'https://smallkirby.xyz'
+        property: 'og:site_name',
+        content: 'https://smallkirby.xyz',
       },
       {
         hid: 'og:title',
-        property: 'og:site_name', content:'smallkirby.xyz'
+        property: 'og:site_name',
+        content: 'smallkirby.xyz',
       },
       {
         hid: 'og:description',
-        property: 'og:site_name', content:'Make Nirugiri Greater...'
+        property: 'og:site_name',
+        content: 'Make Nirugiri Greater...',
       },
       {
         hid: 'og:image',
-        property: 'og:site_name', content:'https://smallkirby.xyz/image/simple-transparent.png'
+        property: 'og:site_name',
+        content: 'https://smallkirby.xyz/image/simple-transparent.png',
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -66,7 +72,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -75,5 +81,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
 }

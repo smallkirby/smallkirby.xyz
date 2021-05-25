@@ -14,16 +14,16 @@ export default Vue.extend({
   props: {
     reqmsg: {
       type: String,
-      default: ''
+      default: '',
     },
     interval: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data () {
     return {
-      msg: [] as string[]
+      msg: [] as string[],
     }
   },
   async mounted () {
@@ -51,11 +51,11 @@ export default Vue.extend({
         '<': '&lt;',
         '>': '&gt;',
         '"': '&quot;',
-        "'": '&#039;'
+        "'": '&#039;',
       }
       // @ts-ignore
       return text.replace(/[&<>"']/g, (m: string) => { return map[m] })
-    }
-  }
+    },
+  },
 })
 </script>

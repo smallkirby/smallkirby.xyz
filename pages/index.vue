@@ -86,7 +86,7 @@ export default Vue.extend({
       dumpMsg2: _dumpMsg2,
       flagDumpMsg1: false,
       flagDumpMsg2: false,
-      cpuno: 0
+      cpuno: 0,
     }
   },
   async created () {
@@ -98,8 +98,8 @@ export default Vue.extend({
     },
     hoge2 (): void {
       this.flagDumpMsg2 = true
-    }
-  }
+    },
+  },
 })
 </script>
 

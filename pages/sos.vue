@@ -59,7 +59,7 @@ export default Vue.extend({
       msg4Flag: false,
       msg5Flag: false,
       msg6Flag: false,
-      msg7Flag: false
+      msg7Flag: false,
     }
   },
   created () {
@@ -85,8 +85,8 @@ export default Vue.extend({
     },
     hoge7 (): void {
       this.msg7Flag = true
-    }
-  }
+    },
+  },
 })
 </script>
 
