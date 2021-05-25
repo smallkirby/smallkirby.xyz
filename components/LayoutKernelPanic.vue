@@ -8,7 +8,7 @@
       <div v-if="flagDumpMsg2">
         <p>[   32.303200]  ? <a href="/">index</a></p>
         <p>[   32.303201]  ? <a href="/about">about</a></p>
-        <p>[   32.303201]  ? <a href="/shell">shell</a></p>
+        <p>[   32.303201]  ? <a href="/">shell</a></p>
         <p>[   32.303201]  ? <a href="/likes">likes</a></p>
         <p>[   32.303201]  ? <a href="/sos">sos</a></p>
         <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>

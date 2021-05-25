@@ -1,10 +1,15 @@
 <template>
   <layout-wrapper>
-    <layout-header title="panic" />
-
+    <layout-header title="bash" />
     <div>
       <div class="main-window">
-        <layout-kernel-panic />
+        <div v-for="(h,index) in history" :key="index">
+          <layout-shell-line @shell-line-submitted="processCommand" />
+          <p v-for="(p,pindex) in h.result" :key="pindex">
+            {{ p }}
+          </p>
+        </div>
+        <layout-kernel-panic v-if="flagPanicing" />
       </div>
     </div>
   </layout-wrapper>
@@ -12,25 +17,88 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { stripIndent } from 'common-tags'
-import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue'
-import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue'
-import LayoutFooter from '~/components/LayoutFooter.vue'
-import LayoutKernelPanic from '~/components/LayoutKernelPanic.vue'
+import axios from 'axios'
+// @ts-ignore
+import LayoutShellLine from '~/components/LayoutShellLine.vue'
+
+const commandsBlacklist = [
+  'rm',
+  'reboot',
+  'shutdown',
+  'chroot',
+  'mv',
+  'vim',
+  'exploit',
+]
+
+interface CommandResult{
+  command: string,
+  result: string[],
+};
+
+interface Entry{
+  pagename: string,
+  perms: string,
+  url: string,
+  user: string,
+  group: string,
+  modified: string,
+};
 
 export default Vue.extend({
-  name: 'Index',
-  components: { LayoutPrintCharBy, LayoutPrintLineBy, LayoutFooter, LayoutKernelPanic },
+  name: 'Shell',
   data () {
     return {
-      commName: 'bash',
+      titleMsg: '$ /bin/bash',
+      history: [] as CommandResult[],
+      flagPanicing: false,
     }
   },
+  created () {
+    this.history.push({ command: '', result: [] })
+  },
   methods: {
+    async processCommand (command: string) {
+      this.$set(this.history, this.history.length - 1, {
+        command,
+        result: await this.execCommand(command),
+      })
+      if (!this.flagPanicing) {
+        this.history.push({ command: '', result: [] })
+      }
+    },
+    async execCommand (command: string) {
+      const cmds = command.split(' ')
+      if (commandsBlacklist.includes(cmds[0])) {
+        // this.$router.push('/index')
+        this.flagPanicing = true
+        return
+      }
+      if (cmds[0] === 'shmug') {
+        return ['c|_|']
+      } else if (cmds[0] === 'ls') {
+        const { data } = await axios.get('https://smallkirby.xyz/ls.json')
+        const entries = data as Entry[]
+        return entries.map(e =>
+          `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
+        )
+      } else if (cmds[0] === 'cd') {
+        return ['Bloom where God has planted you...']
+      } else {
+        return [`${cmds[0]}: command not found`]
+      }
+    },
   },
 })
 </script>
 
-<style lang='scss'>
-@import '~/static/css/default.scss';
+<style>
+div.center-normal {
+  text-align: center;
+}
+
+img#kirby-pict {
+  margin: 0 auto;
+}
+
 </style>

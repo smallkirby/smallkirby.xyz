@@ -55,7 +55,6 @@ export default Vue.extend({
   cursor: pointer;
 }
 
-
 .toggle-label {
   width: 40px;
   height: 12px;
