@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "npm run genls && nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore . --fix",
     "lint:ts": "eslint --ext \".ts\" --ignore-path .gitignore . --fix",
     "lint": "npm run lint:js && npm run lint:ts",
-    "waithook": "ts-node deploy/index.ts"
+    "waithook": "ts-node deploy/index.ts",
+    "genls": "ts-node plugins/generateLs.ts"
   },
   "dependencies": {
     "@types/common-tags": "^1.8.0",
