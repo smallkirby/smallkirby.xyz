@@ -14,7 +14,7 @@
 
     <div class="prompt">
       <span class="dollar">$ </span> 
-      <textarea v-if='!flagInputLocked' v-on:keyup.enter="submitInput" v-model.trim='userinput' class="shellinput" type="text" autofocusspellcheck="false"></textarea>
+      <textarea v-if='!flagInputLocked' v-on:keyup.enter="submitInput" v-model.trim='userinput' class="shellinput" type="text" autofocus spellcheck="false" ref="userinput"></textarea>
       <p v-if='flagInputLocked'>{{userinput}}</p> 
     </div>  
   </div>  
@@ -40,11 +40,13 @@ export default Vue.extend({
   },
   mounted (){
     this.curtime = moment().format('HH:mm:ss ddd MMM DD');
+    //@ts-ignore
+    this.$refs.userinput.focus();
   },
   methods: {
     submitInput(){
-      console.log(this.userinput); // XXX
       this.flagInputLocked = true;
+      this.$emit('shell-line-submitted', this.userinput);
     },
   },
 })

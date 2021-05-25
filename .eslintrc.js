@@ -11,5 +11,8 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "semi": "always"
+  }
 }
