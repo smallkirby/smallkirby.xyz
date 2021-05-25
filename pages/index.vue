@@ -103,5 +103,6 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang='scss'>
+@import '~/static/css/default.scss';
 </style>
