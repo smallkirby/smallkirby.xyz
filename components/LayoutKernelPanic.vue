@@ -1,5 +1,5 @@
 <template>
-  <div class="kernel-panic-sentences">
+  <div id="kernel-panic-sentences">
     <div class="title">
       <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
     </div>
@@ -92,6 +92,12 @@ export default Vue.extend({
     },
     hoge2 (): void {
       this.flagDumpMsg2 = true
+      const elem = this.$el.querySelector('#kernel-panic-sentences')
+      console.log(elem)
+      if (elem === null) {
+        return
+      }
+      elem.scrollTop = elem?.scrollHeight
     },
   },
 })

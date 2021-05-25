@@ -77,13 +77,26 @@ export default Vue.extend({
       if (cmds[0] === 'shmug') {
         return ['c|_|']
       } else if (cmds[0] === 'ls') {
-        const { data } = await axios.get('https://smallkirby.xyz/ls.json')
+        const { data } = await axios.get('/ls.json')
         const entries = data as Entry[]
         return entries.map(e =>
           `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
         )
       } else if (cmds[0] === 'cd') {
         return ['Bloom where God has planted you...']
+      } else if (cmds[0] === 'cat') {
+        if (cmds.length !== 2) {
+          return ['usage: cat <file>']
+        }
+        const { data } = await axios.get('/ls.json')
+        const entries = data as Entry[]
+        const candidate = entries.filter(e => e.pagename === cmds[1])
+        if (candidate.length >= 1) {
+          window.open(this.$router.resolve('/' + candidate[0].pagename).href, '_blank')
+          return ['']
+        } else {
+          return [`ls: cannot access '${cmds[1]}': No such file or directory`]
+        }
       } else {
         return [`${cmds[0]}: command not found`]
       }
