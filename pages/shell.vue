@@ -5,7 +5,9 @@
       <div class="main-window">
         <div v-for="(h,index) in history" :key="index">
           <layout-shell-line @shell-line-submitted="processCommand" />
-          <p v-for="(p,pindex) in h.result" :key="pindex">{{ p }}</p>
+          <p v-for="(p,pindex) in h.result" :key="pindex">
+            {{ p }}
+          </p>
         </div>
       </div>
     </div>
@@ -14,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios';
+import axios from 'axios'
 // @ts-ignore
 import LayoutShellLine from '~/components/LayoutShellLine.vue'
 
@@ -54,15 +56,15 @@ export default Vue.extend({
     async execCommand (command: string) {
       const cmds = command.split(' ')
       if (cmds[0] === 'shmug') {
-        return ['c|_|'];
-      }else if(cmds[0] === 'ls') {
-        const {data} = await axios.get('https://smallkirby.xyz/ls.json');
-        const entries = data as Entry[];
-        return entries.map((e) => 
-          `${e.perms} ${e.user} ${e.group} ${e.pagename}`
-        );
+        return ['c|_|']
+      } else if (cmds[0] === 'ls') {
+        const { data } = await axios.get('https://smallkirby.xyz/ls.json')
+        const entries = data as Entry[]
+        return entries.map(e =>
+          `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
+        )
       } else {
-        return [`${cmds[0]}: command not found`];
+        return [`${cmds[0]}: command not found`]
       }
     },
   },

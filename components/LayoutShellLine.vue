@@ -16,13 +16,13 @@
       <span class="dollar">$ </span>
       <textarea
         v-if="!flagInputLocked"
+        ref="userinput"
         v-model.trim="userinput"
         class="shellinput"
         type="text"
         autofocus
-        @keyup.enter="submitInput"
         spellcheck="false"
-        ref="userinput"
+        @keyup.enter="submitInput"
       />
       <p v-if="flagInputLocked">
         {{ userinput }}
