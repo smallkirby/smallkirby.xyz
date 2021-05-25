@@ -1,10 +1,13 @@
 <template>
   <div class="wrapper-wrapper-mode-switcher">
     <div v-if="isDarkMode" class="wrapper-mode-switcher">
-      <div id="deep-shadow" />
+      <div id="deep-shadow">
+        <div id="deep-shadow-message">
+          <p>Everything in deep dark...</p>
+        </div>
+      </div>
     </div>
     <div class="mode-switcher">
-      <p>switch to Dark-theme</p>
       <input id="mode-toggle" v-model="isDarkMode" class="toggle-input" type="checkbox" @change="changeMode">
       <label for="toggle" class="toggle-label" />
     </div>
@@ -33,13 +36,12 @@ export default Vue.extend({
 
 <style scoped lang='scss'>
 .mode-switcher {
-  position: fixed;
   display: block;
   z-index: 100;
   top: 4em;
   right: 7em;
   text-align: center;
-  padding: 0.2em;
+  float: left;
 }
 
 .toggle-input {
@@ -54,11 +56,11 @@ export default Vue.extend({
 }
 
 .toggle-label {
-  width: 70px;
-  height: 30px;
+  width: 40px;
+  height: 12px;
   background: black;
   border: solid 1px;
-  border-color: white;
+  border-color: #ebdbb2;
   position: relative;
   display: inline-block;
   border-radius: 46px;
@@ -68,13 +70,13 @@ export default Vue.extend({
   &:after {
     content: '';
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 12px;
+    height: 12px;
     border-radius: 100%;
     left: 0;
     top: 0;
     z-index: 2;
-    background: #fff;
+    background: #ebdbb2;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: 0.4s;
   }
@@ -83,7 +85,7 @@ export default Vue.extend({
   +.toggle-label{
     background-color: #4bd865;
     &:after{
-      left: 40px;
+      left: 27px;
     }
   }
 }
@@ -92,12 +94,23 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   background-color: black;
+  color: #151515;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#deep-shadow-message{
+  display: block;
+  padding-top: 20%;
 }
 
 .wrapper-mode-switcher{
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 1.2em;
+  position: absolute;
+  z-index: 80;
 }
 
 @media only screen and (max-width: 699px) {

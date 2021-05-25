@@ -6,6 +6,10 @@
     <div id="com">
       <p>1:{{ title }}*</p>
     </div>
+    <div id="wrapper-theme-switcher">
+      <layout-theme-switcher />
+      <p>Dark-theme</p>
+    </div>
     <div id="time-status">
       <p>{{ timeStatus }}</p>
     </div>
@@ -50,7 +54,7 @@ header {
   width: 100%;
   position: fixed;
   display: block;
-  z-index: 99;
+  z-index: 90;
 }
 
 header > div {
@@ -66,6 +70,13 @@ header > div#session-id {
   float: left;
   width: 33%;
 }
+
+header > div#wrapper-theme-switcher {
+  display: inline;
+  float: left;
+  width: 18%;
+}
+
 header > div#com {
   color: #ebdbb2;
   text-align: center;
@@ -78,7 +89,7 @@ header > div#time-status {
   text-align: right;
   display: inline;
   float: left;
-  width: 33%;
+  width: 15%;
 }
 
 @media only screen and (max-width: 699px) {
@@ -97,6 +108,11 @@ header > div#time-status {
     width: 30%;
     overflow: none;
   }
+}
+
+div#wrapper-theme-switcher > p {
+  margin-left: 3.5em;
+  font-size: 0.8em;
 }
 
 </style>

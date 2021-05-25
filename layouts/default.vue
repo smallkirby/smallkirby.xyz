@@ -1,6 +1,5 @@
 <template>
   <div>
-    <layout-theme-switcher />
     <div id="body-wrapper">
       <Nuxt />
     </div>
