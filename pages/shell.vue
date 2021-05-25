@@ -20,6 +20,16 @@ import axios from 'axios'
 // @ts-ignore
 import LayoutShellLine from '~/components/LayoutShellLine.vue'
 
+const commandsBlacklist = [
+  'rm',
+  'reboot',
+  'shutdown',
+  'chroot',
+  'mv',
+  'vim',
+  'exploit',
+]
+
 interface CommandResult{
   command: string,
   result: string[],
@@ -55,6 +65,10 @@ export default Vue.extend({
     },
     async execCommand (command: string) {
       const cmds = command.split(' ')
+      if (commandsBlacklist.includes(cmds[0])) {
+        this.$router.push('/index')
+        return
+      }
       if (cmds[0] === 'shmug') {
         return ['c|_|']
       } else if (cmds[0] === 'ls') {
