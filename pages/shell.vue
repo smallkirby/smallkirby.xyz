@@ -63,6 +63,8 @@ export default Vue.extend({
         return entries.map(e =>
           `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
         )
+      } else if (cmds[0] === 'cd') {
+        return ['Bloom where God has planted you...']
       } else {
         return [`${cmds[0]}: command not found`]
       }
