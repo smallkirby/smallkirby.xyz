@@ -12,7 +12,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
-    "semi": "always"
+    "comma-dangle": [2, "always-multiline"],
+    "semi": [2]
   }
 }
