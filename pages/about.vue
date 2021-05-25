@@ -1,4 +1,3 @@
-
 <template>
   <layout-wrapper>
     <layout-header title="about" />
