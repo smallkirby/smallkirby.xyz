@@ -19,7 +19,6 @@
 import Vue from 'vue'
 import axios from 'axios'
 // @ts-ignore
-import LayoutShellLine from '~/components/LayoutShellLine.vue'
 
 const commandsBlacklist = [
   'rm',

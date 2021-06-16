@@ -34,14 +34,14 @@ export default Vue.extend({
   },
   methods: {
     printCharBy (data: string, msg: string, interval = 100, finwait = 1): Promise<void> {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const subPrintCharBy = (curMsg: string) => {
           if (curMsg.length <= 0) {
             setTimeout(() => resolve(), finwait)
             return
           }
           const current = this.$data[data]
-          this.$set(this.$data, data, current.slice(0, current.length - 1) + curMsg.slice(0, 1)[0] + (curMsg.length == 1 ? '' : '_'))
+          this.$set(this.$data, data, current.slice(0, current.length - 1) + curMsg.slice(0, 1)[0] + (curMsg.length === 1 ? '' : '_'))
           setTimeout(() => subPrintCharBy(curMsg.slice(1)), interval)
         }
         subPrintCharBy(msg)

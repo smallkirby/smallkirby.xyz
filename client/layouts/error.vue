@@ -1,35 +1,38 @@
 <template>
-  <div id="kernel-panic-sentences">
-    <div class="title">
-      <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
-    </div>
-    <div class="main-sentences">
-      <layout-print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
-      <div v-if="flagDumpMsg2">
-        <p>[   32.303200]  ? <a href="/">index</a></p>
-        <p>[   32.303201]  ? <a href="/about">about</a></p>
-        <p>[   32.303201]  ? <a href="/">shell</a></p>
-        <p>[   32.303201]  ? <a href="/likes">likes</a></p>
-        <p>[   32.303201]  ? <a href="/sos">sos</a></p>
-        <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>
+  <layout-wrapper>
+    <layout-header title="notfound" />
+
+    <div>
+      <div class="main-window">
+        <div class="title">
+          <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
+        </div>
+        <div class="main-sentences">
+          <layout-print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
+          <div v-if="flagDumpMsg2">
+            <p>[   32.303200]  ? <a href="/">index</a></p>
+            <p>[   32.303201]  ? <a href="/about">about</a></p>
+            <p>[   32.303201]  ? <a href="/">shell</a></p>
+            <p>[   32.303201]  ? <a href="/likes">likes</a></p>
+            <p>[   32.303201]  ? <a href="/sos">sos</a></p>
+            <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>
+          </div>
+          <layout-print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
+        </div>
       </div>
-      <layout-print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
     </div>
-  </div>
+  </layout-wrapper>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { stripIndent } from 'common-tags'
-import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue'
-import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue'
-import LayoutFooter from '~/components/LayoutFooter.vue'
 
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
-  [   32.299676] CPU: 2 PID: 86 Comm: exploit Tainted: G           O      6.7.2 #3
+  [   32.299676] CPU: 3 PID: 97 Comm: exploit Tainted: G           O      6.7.2 #3
   [   32.299681] Name: smallkirby.xyz
-  [   32.299682] Status: found(smallkirby.xyz)
+  [   32.299682] Status: Not Found 
   [   32.299896] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu3.9 11/09/2032
   [   32.300307] RIP: 0010:0xDEADBEEFCAFEBABE
   [   32.300528] Code: Bad RIP value.
@@ -70,11 +73,10 @@ const _dumpMsg2 = stripIndent`
 `
 
 export default Vue.extend({
-  name: 'LayoutKernelPanic',
-  components: { LayoutPrintCharBy, LayoutPrintLineBy, LayoutFooter },
+  name: 'Error',
   data () {
     return {
-      commName: 'bash',
+      commName: 'notfound',
       titleMsg: 'MAYBE, YOU ATTEMPT EXPLOIT...?',
       dumpMsg1: _dumpMsg1,
       dumpMsg2: _dumpMsg2,
@@ -83,7 +85,7 @@ export default Vue.extend({
       cpuno: 0,
     }
   },
-  async created () {
+  created () {
     this.cpuno = Math.floor(Math.random() * 5)
   },
   methods: {
@@ -92,17 +94,10 @@ export default Vue.extend({
     },
     hoge2 (): void {
       this.flagDumpMsg2 = true
-      const elem = this.$el.querySelector('#kernel-panic-sentences')
-      console.log(elem)
-      if (elem === null) {
-        return
-      }
-      elem.scrollTop = elem?.scrollHeight
     },
   },
 })
 </script>
 
-<style lang='scss'>
-@import '~/static/css/default.scss';
+<style>
 </style>

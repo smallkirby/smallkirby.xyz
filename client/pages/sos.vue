@@ -23,8 +23,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LayoutPrintCharBy from '~/components/LayoutPrintCharBy.vue'
-import LayoutPrintLineBy from '~/components/LayoutPrintLineBy.vue'
 
 const _challengeMsg = `
 #define<stdio.h>
@@ -41,7 +39,6 @@ int main(int argc, char *argv){
 
 export default Vue.extend({
   name: 'Sos',
-  components: { LayoutPrintCharBy, LayoutPrintLineBy },
   data () {
     return {
       title: 'sos',

@@ -3,6 +3,7 @@ export default {
   router: {
     base: '/',
   },
+  srcDir: 'client/',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     base: {
@@ -83,6 +84,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    alias: {
+      '@': 'client',
+    },
   },
 
   axios: {
