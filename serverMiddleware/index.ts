@@ -19,7 +19,6 @@ const commands = [
   ['npx', 'pm2', 'save'],
   ['npm', 'install', 'pm2'],
   ['npx', 'pm2', 'update'],
-  ['npx', 'pm2', 'restart', 'smallkirby.xyz'],
 ]
 
 app.post('/github', async (req, res) => {
