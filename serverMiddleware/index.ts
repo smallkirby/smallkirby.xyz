@@ -9,7 +9,7 @@ import concat from 'concat-stream'
 dotenv.config()
 const app = express()
 
-app.use('/hooks/github', express.raw({ type: 'application/json' }))
+app.use('/github', express.raw({ type: 'application/json' }))
 
 const commands = [
   ['git', 'fetch', '--all'],
