@@ -5,6 +5,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { get } from 'lodash'
 import concat from 'concat-stream'
+import pm2 from 'pm2'
 
 dotenv.config()
 const app = express()
@@ -16,9 +17,6 @@ const commands = [
   ['git', 'checkout', '--force', 'origin/master'],
   ['npm', 'install'],
   ['npm', 'run', 'build'],
-  ['npx', 'pm2', 'save'],
-  ['npm', 'install', 'pm2'],
-  ['npx', 'pm2', 'update'],
 ]
 
 app.post('/github', async (req, res) => {
@@ -81,8 +79,31 @@ app.post('/github', async (req, res) => {
       console.log(output.toString())
     }
 
+    // restart
+    await new Promise<void>((resolve, reject) => {
+      pm2.connect((error) => {
+        if (error) {
+          reject(error)
+        } else {
+          resolve()
+        }
+      })
+    })
+
+    console.log('Restarting pm2...')
+    await new Promise<void>((resolve, reject) => {
+      pm2.restart('smallkirby.xyz', (error) => {
+        if (error) {
+          reject(error)
+        } else {
+          resolve()
+        }
+      })
+    })
+
     return
   }
+
   res.status(501)
   res.send('not found')
 })
