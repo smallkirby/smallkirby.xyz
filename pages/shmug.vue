@@ -22,6 +22,11 @@ export default Vue.extend({
       flagTitleMsg: false,
     }
   },
+  mounted () {
+    import('~/wasm/tetris/pkg').then((tetris) => {
+      tetris.greet('mug')
+    })
+  },
   methods: {
     finTitleMsg (): void {
       this.flagTitleMsg = true

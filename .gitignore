@@ -90,3 +90,8 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# wasm
+wasm/*/pkg/**
+wasm/*/target/**
+pkg/**

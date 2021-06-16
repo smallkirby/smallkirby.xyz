@@ -1,7 +1,11 @@
+import path from 'path'
+import WasmPackPlugin from '@wasm-tool/wasm-pack-plugin'
+
 export default {
   router: {
     base: '/',
   },
+  srcDir: '.',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     base: {
@@ -82,6 +86,31 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
+      ],
+    },
+    plugins: [
+      new WasmPackPlugin({
+        crateDirectory: path.resolve(__dirname, 'wasm/tetris'),
+        watchDirectories: [
+          path.resolve(__dirname, 'wasm/tetris'),
+        ],
+        args: '--log-level info',
+        outDir: 'pkg',
+        outName: 'index',
+      }),
+    ],
   },
 
   axios: {
