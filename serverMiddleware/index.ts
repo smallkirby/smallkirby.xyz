@@ -1,4 +1,3 @@
-// import fastify from 'fastify';
 import crypto from 'crypto'
 import { spawn } from 'child_process'
 import { PassThrough } from 'stream'
@@ -8,7 +7,7 @@ import { get } from 'lodash'
 import concat from 'concat-stream'
 
 dotenv.config()
-export const app = express()
+const app = express()
 
 app.use('/hooks/github', express.raw({ type: 'application/json' }))
 
@@ -18,12 +17,13 @@ const commands = [
   ['npm', 'install'],
   ['npm', 'run', 'build'],
   ['npx', 'pm2', 'start', 'ecosystem.config.js'],
-  ['npx', 'pm2', 'restart', 'smallkirby.xyz']
+  ['npx', 'pm2', 'restart', 'smallkirby.xyz'],
 ]
 
-app.post('/hooks/github', async (req, res) => {
+app.post('/github', async (req, res) => {
   const event = req.headers['x-github-event']
   if (event === 'ping') {
+    console.log('Received ping request.')
     return 'pong'
   }
   if (event === 'push') {
@@ -50,7 +50,7 @@ app.post('/hooks/github', async (req, res) => {
     }
 
     // send status
-    console.log('received valid hook')
+    console.log('Received valid hook')
     res.status(200)
     res.send('OK')
 
@@ -65,7 +65,7 @@ app.post('/hooks/github', async (req, res) => {
 
       Promise.all([
         new Promise<void>(resolve => proc.stdout.on('end', () => resolve())),
-        new Promise<void>(resolve => proc.stdout.on('end', () => resolve()))
+        new Promise<void>(resolve => proc.stdout.on('end', () => resolve())),
       ]).then(() => {
         muxed.end()
       })
@@ -85,5 +85,4 @@ app.post('/hooks/github', async (req, res) => {
   res.send('not found')
 })
 
-app.listen(3001)
-console.log('waiting @3001')
+module.exports = app

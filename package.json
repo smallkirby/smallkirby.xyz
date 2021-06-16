@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@types/body-parser": "^1.19.0",
     "@types/common-tags": "^1.8.0",
     "@types/concat-stream": "^1.6.0",
     "@types/lodash": "^4.14.170",
@@ -22,7 +23,6 @@
     "@types/sass-loader": "^8.0.1",
     "@vue/composition-api": "^1.0.0-rc.11",
     "body-parser": "^1.19.0",
-    "child_process": "^1.0.2",
     "common-tags": "^1.8.0",
     "concat-stream": "^2.0.0",
     "core-js": "^3.14.0",

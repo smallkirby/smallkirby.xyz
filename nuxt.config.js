@@ -1,9 +1,7 @@
 export default {
-  mode: 'universal',
   router: {
     base: '/',
   },
-  srcDir: 'client/',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     base: {
@@ -84,12 +82,16 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    alias: {
-      '@': 'client',
-    },
   },
 
   axios: {
     baseURL: (process.env.NODE_ENV === 'production' ? 'https://smallkirby.xyz' : 'http://localhost:3000'),
   },
+
+  serverMiddleware: [
+    {
+      path: '/hooks',
+      handle: '~/serverMiddleware/index.ts',
+    },
+  ],
 }
