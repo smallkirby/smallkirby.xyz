@@ -23,9 +23,11 @@ export default Vue.extend({
     }
   },
   mounted () {
-    import('~/wasm/tetris/pkg').then((tetris) => {
-      tetris.greet('mug')
-    })
+    if (process.client) {
+      import('~/wasm/tetris/pkg').then((tetris) => {
+        tetris.greet('mug')
+      })
+    }
   },
   methods: {
     finTitleMsg (): void {
