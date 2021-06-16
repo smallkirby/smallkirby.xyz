@@ -23,8 +23,9 @@ const commands = [
 
 app.post('/github', async (req, res) => {
   const event = req.headers['x-github-event']
+  console.log(`event: ${event}`)
+
   if (event === 'ping') {
-    console.log('Received ping request.')
     return 'pong'
   }
   if (event === 'push') {
