@@ -16,8 +16,9 @@ const commands = [
   ['git', 'checkout', '--force', 'origin/master'],
   ['npm', 'install'],
   ['npm', 'run', 'build'],
+  ['npx', 'pm2', 'save'],
+  ['npm', 'install', 'pm2'],
   ['npx', 'pm2', 'update'],
-  ['npx', 'pm2', 'start', 'ecosystem.config.js'],
   ['npx', 'pm2', 'restart', 'smallkirby.xyz'],
 ]
 
