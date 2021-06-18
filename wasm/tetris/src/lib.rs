@@ -61,33 +61,54 @@ pub struct Peace {
 }
 
 impl Peace {
+  fn new(width: u32) -> Self {
+    use Shape::*;
+    let center = width / 2;
+    let shape = Shape::random();
+    let position = match shape {
+      I => (center - 2, -1),
+      O => (center - 1, -2),
+      S => (center - 1, -2),
+      Z => (center - 1, -2),
+      J => (center - 1, -2),
+      L => (center - 1, -2),
+      T => (center - 1, -2),
+    };
+
+    Self {
+      shape,
+      position,
+      angle: Angle::North,
+    }
+  }
+
   fn to_position(&self) -> Vec<(u32, i32)> {
     match self.shape {
       Shape::I => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::O => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::O => vec![(0, 0), (0, 1), (1, 0), (1, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::S => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::S => vec![(1, 0), (2, 0), (0, 1), (1, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::Z => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::Z => vec![(0, 0), (1, 0), (1, 1), (2, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::J => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::J => vec![(0, 0), (0, 1), (1, 1), (2, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::L => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::L => vec![(2, 0), (0, 1), (1, 1), (2, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::T => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::T => vec![(1, 0), (0, 1), (1, 1), (2, 1)]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
@@ -115,7 +136,7 @@ impl fmt::Display for Board {
     for row in self.cells.as_slice().chunks(self.width as usize) {
       for &cell in row {
         let symbol = match cell {
-          Cell::Empty => ' ', // XXX
+          Cell::Empty => ' ',
           Cell::Filled => '■',
         };
         write!(f, "{}", symbol)?;
@@ -132,12 +153,10 @@ impl Board {
     let width = 10;
     let height = 20;
     let cells = vec![Cell::Empty; width * height];
-    let peace = Peace {
-      shape: Shape::random(),
-      position: (0, -3),
-      angle: Angle::North,
-    };
-    let nexts = vec![peace.clone(), peace.clone(), peace.clone()];
+    let peace = Peace::new(width as u32);
+    let nexts = (0..=2)
+      .map(|_| Peace::new(width as u32))
+      .collect::<Vec<_>>();
 
     Self {
       width: width as u32,
@@ -154,10 +173,34 @@ impl Board {
   }
 
   fn check_movable(&self, (x, y): (i32, i32)) -> bool {
-    if self.current.position.1 + y > self.height as i32 - 1 {
-      return false;
+    let current_position = self.current.to_position();
+    let next_position = current_position
+      .iter()
+      .map(|(px, py)| (*px as i32 + x, *py + y))
+      .collect::<Vec<_>>();
+    if next_position.iter().any(|p| {
+      let p = *p;
+      if p.0 < 0 || self.width as i32 <= p.0 || self.height as i32 <= p.1 {
+        true
+      } else if p.1 < 0
+        || current_position
+          .iter()
+          .any(|(_x, _y)| *_x as i32 == p.0 && *_y == p.1)
+      {
+        false
+      } else {
+        let index = self.get_index(p.0 as u32, p.1 as u32);
+        if self.cells[index] == Cell::Filled {
+          true
+        } else {
+          false
+        }
+      }
+    }) {
+      false
+    } else {
+      true
     }
-    true
   }
 
   fn delete_current(&mut self) {}
@@ -187,17 +230,33 @@ impl Board {
 
   pub fn tick(&mut self) {
     if !self.gameover {
-      log("tick tack"); // XXX
-      self.move_current((0, 1))
+      if self.check_movable((0, 1)) {
+        self.move_current((0, 1));
+      } else {
+        log("turn end");
+        self.process_turn_end();
+      }
     }
   }
 }
 
 impl Board {
+  fn process_turn_end(&mut self) {
+    // delete lines
+    // XXX
+
+    // get next peace
+    self.current = self.nexts[0];
+    self.nexts.remove(0);
+    self.nexts.push(Peace::new(self.width));
+  }
+
   fn get_index(&self, col: u32, row: u32) -> usize {
     (row * self.width + col) as usize
   }
+
   fn delete_row(&mut self, row: u32) {}
+
   fn get_deleting_rows(&self) -> Vec<usize> {
     let mut res = vec![];
     for row in 0..self.height {
