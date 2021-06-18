@@ -16,10 +16,22 @@ pub enum Cell {
 #[wasm_bindgen]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Angle {
-  North,
-  East,
-  South,
-  West,
+  North = 0,
+  East = 1,
+  South = 2,
+  West = 3,
+}
+
+impl Angle {
+  fn from_u32(n: u32) -> Self {
+    match n % 4 {
+      0 => Self::North,
+      1 => Self::East,
+      2 => Self::South,
+      3 => Self::West,
+      _ => Self::North,
+    }
+  }
 }
 
 #[wasm_bindgen]
@@ -84,32 +96,77 @@ impl Peace {
   }
 
   fn to_position(&self) -> Vec<(u32, i32)> {
+    let Ip = vec![
+      [(0, 0), (1, 0), (2, 0), (3, 0)],
+      [(1, 0), (1, 1), (1, 2), (1, 3)],
+      [(0, 0), (1, 0), (2, 0), (3, 0)],
+      [(1, 0), (1, 1), (1, 2), (1, 3)],
+    ];
+    let Op = vec![
+      [(0, 0), (0, 1), (1, 0), (1, 1)],
+      [(0, 0), (0, 1), (1, 0), (1, 1)],
+      [(0, 0), (0, 1), (1, 0), (1, 1)],
+      [(0, 0), (0, 1), (1, 0), (1, 1)],
+    ];
+    let Sp = vec![
+      [(1, 0), (2, 0), (0, 1), (1, 1)],
+      [(0, 0), (0, 1), (1, 1), (1, 2)],
+      [(1, 0), (2, 0), (0, 1), (1, 1)],
+      [(0, 0), (0, 1), (1, 1), (1, 2)],
+    ];
+    let Zp = vec![
+      [(0, 0), (1, 0), (1, 1), (2, 1)],
+      [(1, 0), (0, 1), (1, 1), (0, 2)],
+      [(0, 0), (1, 0), (1, 1), (2, 1)],
+      [(1, 0), (0, 1), (1, 1), (0, 2)],
+    ];
+    let Jp = vec![
+      [(0, 0), (0, 1), (1, 1), (2, 1)],
+      [(0, 0), (1, 0), (0, 1), (0, 2)],
+      [(0, 0), (1, 0), (2, 0), (2, 1)],
+      [(0, 1), (1, 1), (0, 2), (1, 2)],
+    ];
+    let Lp = vec![
+      [(2, 0), (0, 1), (1, 1), (2, 1)],
+      [(0, 0), (0, 1), (1, 1), (1, 2)],
+      [(0, 0), (1, 0), (2, 0), (0, 1)],
+      [(0, 0), (1, 0), (1, 1), (1, 2)],
+    ];
+    let Tp = vec![
+      [(1, 0), (0, 1), (1, 1), (2, 1)],
+      [(0, 0), (0, 1), (1, 1), (0, 2)],
+      [(0, 0), (1, 0), (2, 0), (1, 1)],
+      [(1, 0), (0, 1), (1, 1), (1, 2)],
+    ];
+
+    let angle_ix = self.angle as usize;
+
     match self.shape {
-      Shape::I => vec![(0, 0), (1, 0), (2, 0), (3, 0)]
+      Shape::I => Ip[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::O => vec![(0, 0), (0, 1), (1, 0), (1, 1)]
+      Shape::O => Op[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::S => vec![(1, 0), (2, 0), (0, 1), (1, 1)]
+      Shape::S => Sp[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::Z => vec![(0, 0), (1, 0), (1, 1), (2, 1)]
+      Shape::Z => Zp[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::J => vec![(0, 0), (0, 1), (1, 1), (2, 1)]
+      Shape::J => Jp[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::L => vec![(2, 0), (0, 1), (1, 1), (2, 1)]
+      Shape::L => Lp[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
-      Shape::T => vec![(1, 0), (0, 1), (1, 1), (2, 1)]
+      Shape::T => Tp[angle_ix]
         .iter()
         .map(|p| (p.0 + self.position.0, p.1 + self.position.1))
         .collect::<Vec<_>>(),
@@ -199,12 +256,81 @@ impl Board {
       'j' => {
         self.move_current((0, 1));
       }
+      'k' => {
+        self.rotate_current();
+      }
       _ => return,
     }
   }
 }
 
 impl Board {
+  fn rotate_current(&mut self) {
+    if !self.check_rotatable(&self.current, true) {
+      return;
+    }
+    // erase current
+    let current_positions = self.current.to_position();
+    for (x, y) in current_positions {
+      if 0 <= x && x < self.width && 0 <= y && y < self.height as i32 {
+        let ix = self.get_index(x, y as u32);
+        self.cells[ix] = Cell::Empty;
+      }
+    }
+
+    let new_angle = self.get_rotate(&self.current, true);
+    self.current.angle = new_angle;
+
+    // redraw current
+    let current_positions = self.current.to_position();
+    for (x, y) in current_positions {
+      if 0 <= x && x < self.width && 0 <= y && y < self.height as i32 {
+        let ix = self.get_index(x, y as u32);
+        self.cells[ix] = Cell::Filled;
+      }
+    }
+
+    self.update_ghost();
+  }
+
+  fn check_rotatable(&self, peace: &Peace, right_rotate: bool) -> bool {
+    let current_position = peace.to_position();
+    let mut next_peace = peace.clone();
+    self.rotate(&mut next_peace, true);
+    let next_position = next_peace.to_position();
+    if next_position.iter().any(|p| {
+      let p = *p;
+      if p.0 < 0 || self.width <= p.0 || self.height as i32 <= p.1 {
+        true
+      } else if p.1 < 0
+        || current_position
+          .iter()
+          .any(|(_x, _y)| *_x == p.0 && *_y == p.1)
+      {
+        false
+      } else {
+        let index = self.get_index(p.0 as u32, p.1 as u32);
+        if self.cells[index] == Cell::Filled {
+          true
+        } else {
+          false
+        }
+      }
+    }) {
+      false
+    } else {
+      true
+    }
+  }
+
+  fn get_rotate(&self, peace: &Peace, right_rotate: bool) -> Angle {
+    Angle::from_u32((peace.angle as u32 + 1) % 4)
+  }
+
+  fn rotate(&self, peace: &mut Peace, right_rotate: bool) {
+    peace.angle = self.get_rotate(peace, right_rotate);
+  }
+
   fn update_ghost(&mut self) {
     // clear ghosts
     for i in 0..self.width * self.height {

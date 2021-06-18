@@ -5,6 +5,9 @@
       <div class="main-window">
         <div id="tetris">
           <pre id="board">{{board_str}}</pre>
+          <div id="tetris-description">
+            <p>k: rotate, hl: move, j: down</p>
+          </div>
         </div>
       </div>
     </div>
@@ -32,11 +35,14 @@ export default Vue.extend({
         board = tetris.Board.new()
 
         // set ticks
-        const repeater = () => {
-          this.board_str = board.render()
+        const tick_repeater = () => {
           board.tick()
         }
-        setInterval(repeater, 500)
+        const render_repeater = () => {
+          this.board_str = board.render()
+        }
+        setInterval(tick_repeater, 500)
+        setInterval(render_repeater, 10)
 
         window.addEventListener('keypress', (e) => {
           board.process_key_input(e.keyCode)
@@ -62,20 +68,25 @@ img#kirby-pict {
 }
 
 div#tetris {
-  margin: 30em;
-  padding: 30em;
+  margin: 2em;
+  padding: 2em;
   text-align: center;
 }
 
 pre#board {
+  display: inline-block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  top: 5em;
+  top: 2em;
   left: 5em;
   border: solid 0.1em;
-  position: absolute;
   line-height: 70%;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 </style>
