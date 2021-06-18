@@ -37,6 +37,10 @@ export default Vue.extend({
           board.tick()
         }
         setInterval(repeater, 500)
+
+        window.addEventListener('keypress', (e) => {
+          board.process_key_input(e.keyCode)
+        })
       })
     }
   },

@@ -10,6 +10,7 @@ use wasm_bindgen::prelude::*;
 pub enum Cell {
   Filled = 0,
   Empty = 1,
+  Ghost = 2,
 }
 
 #[wasm_bindgen]
@@ -138,6 +139,7 @@ impl fmt::Display for Board {
         let symbol = match cell {
           Cell::Empty => ' ',
           Cell::Filled => '■',
+          Cell::Ghost => '□',
         };
         write!(f, "{}", symbol)?;
       }
@@ -172,8 +174,69 @@ impl Board {
     self.to_string()
   }
 
-  fn check_movable(&self, (x, y): (i32, i32)) -> bool {
-    let current_position = self.current.to_position();
+  pub fn tick(&mut self) {
+    if !self.gameover {
+      if self.check_movable((0, 1)) {
+        self.move_current((0, 1));
+      } else {
+        self.process_turn_end();
+      }
+    }
+  }
+
+  pub fn process_key_input(&mut self, keycode: u32) {
+    let key = match std::char::from_u32(keycode) {
+      Some(c) => c,
+      None => return,
+    };
+    match key {
+      'l' => {
+        self.move_current((1, 0));
+      }
+      'h' => {
+        self.move_current((-1, 0));
+      }
+      'j' => {
+        self.move_current((0, 1));
+      }
+      _ => return,
+    }
+  }
+}
+
+impl Board {
+  fn update_ghost(&mut self) {
+    // clear ghosts
+    for i in 0..self.width * self.height {
+      if self.cells[i as usize] == Cell::Ghost {
+        self.cells[i as usize] = Cell::Empty;
+      }
+    }
+
+    // update
+    let mut ghost = self.current.clone();
+    loop {
+      if self._check_movable(&ghost, (0, 1)) {
+        ghost.move_delta(0, 1);
+      } else {
+        break;
+      }
+    }
+    for p in ghost.to_position() {
+      if p.0 < 0 || self.width as i32 <= p.0 as i32 || self.height as i32 <= p.1 {
+        continue;
+      }
+      let index = self.get_index(p.0 as u32, p.1 as u32);
+      match self.cells[index] {
+        Cell::Empty => self.cells[index] = Cell::Ghost,
+        Cell::Filled => {}
+        Cell::Ghost => self.cells[index] = Cell::Ghost,
+      }
+    }
+  }
+
+  fn _check_movable(&self, peace: &Peace, (x, y): (i32, i32)) -> bool {
+    let current_position = peace.to_position();
     let next_position = current_position
       .iter()
       .map(|(px, py)| (*px as i32 + x, *py + y))
@@ -203,6 +266,10 @@ impl Board {
     }
   }
 
+  fn check_movable(&self, (x, y): (i32, i32)) -> bool {
+    self._check_movable(&self.current, (x, y))
+  }
+
   fn delete_current(&mut self) {}
 
   fn move_current(&mut self, (x, y): (i32, i32)) {
@@ -226,21 +293,10 @@ impl Board {
         self.cells[ix] = Cell::Filled;
       }
     }
+
+    self.update_ghost();
   }
 
-  pub fn tick(&mut self) {
-    if !self.gameover {
-      if self.check_movable((0, 1)) {
-        self.move_current((0, 1));
-      } else {
-        log("turn end");
-        self.process_turn_end();
-      }
-    }
-  }
-}
-
-impl Board {
   fn process_turn_end(&mut self) {
     // delete lines
     // XXX
@@ -268,7 +324,7 @@ impl Board {
     for col in 0..self.width {
       match self.cells[(row * self.width + col) as usize] {
         Cell::Filled => continue,
-        Cell::Empty => return false,
+        Cell::Empty | Cell::Ghost => return false,
       }
     }
     true
