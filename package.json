@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@types/chart.js": "^2.9.32",
     "@types/common-tags": "^1.8.0",
     "@types/concat-stream": "^1.6.0",
     "@types/lodash": "^4.14.170",
@@ -25,6 +26,7 @@
     "@vue/composition-api": "^1.0.0-rc.11",
     "@wasm-tool/wasm-pack-plugin": "^1.4.0",
     "body-parser": "^1.19.0",
+    "chart.js": "^2.9.4",
     "child_process": "^1.0.2",
     "common-tags": "^1.8.0",
     "concat-stream": "^2.0.0",
@@ -46,7 +48,9 @@
     "sass-loader": "^10",
     "simple-git": "^2.40.0",
     "stream": "0.0.2",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
