@@ -10,8 +10,8 @@
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore . --fix",
     "lint:ts": "eslint --ext \".ts\" --ignore-path .gitignore . --fix",
     "lint": "npm run lint:js && npm run lint:ts",
-    "waithook": "ts-node deploy/index.ts",
-    "genls": "ts-node plugins/generateLs.ts"
+    "genls": "ts-node plugins/generateLs.ts",
+    "nirugiri": "ts-node plugins/nirugiri-graph.ts"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -20,6 +20,7 @@
     "@types/lodash": "^4.14.170",
     "@types/node-sass": "^4.11.1",
     "@types/sass-loader": "^8.0.1",
+    "@types/sharp": "^0.28.3",
     "@vue/composition-api": "^1.0.0-rc.11",
     "@wasm-tool/wasm-pack-plugin": "^1.4.0",
     "body-parser": "^1.19.0",
@@ -33,11 +34,15 @@
     "fastify": "^3.17.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "node-chartist": "^1.0.5",
     "node-sass": "^6.0.0",
+    "nodegit": "^0.27.0",
     "nuxt": "^2.15.7",
+    "parse-diff": "^0.8.1",
     "path": "^0.12.7",
     "pm2": "^5.1.0",
     "sass-loader": "^10",
+    "simple-git": "^2.40.0",
     "stream": "0.0.2",
     "ts-node": "^10.0.0"
   },

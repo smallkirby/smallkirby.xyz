@@ -95,3 +95,7 @@ sw.*
 wasm/*/pkg/**
 wasm/*/target/**
 pkg/**
+
+# nirugiri
+smallkirby
+static/nirugiri.json

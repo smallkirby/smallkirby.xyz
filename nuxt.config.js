@@ -1,5 +1,5 @@
-import path from 'path'
-import WasmPackPlugin from '@wasm-tool/wasm-pack-plugin'
+import path from 'path';
+import WasmPackPlugin from '@wasm-tool/wasm-pack-plugin';
 
 export default {
   router: {
@@ -123,4 +123,4 @@ export default {
       handle: '~/serverMiddleware/index.ts',
     },
   ],
-}
+};

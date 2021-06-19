@@ -20,14 +20,14 @@ const genEntry = (pagename: string): Entry => {
     group: 'skb',
     modified: moment(s.ctime).format('MMM DD hh:mm'),
   };
-}
+};
 
 fs.readdir('./pages', (err, files) => {
-  if (err) return;
+  if (err) { return; }
   const pagelist = files.filter((file) => {
     return fs.statSync('pages/' + file).isFile() && /.*\.vue$/.test(file);
-  })
+  });
 
-  const entries = pagelist.map((pagename) => genEntry(pagename));
+  const entries = pagelist.map(pagename => genEntry(pagename));
   fs.writeFileSync('static/ls.json', JSON.stringify(entries));
 });
