@@ -425,7 +425,10 @@ impl Board {
 
   fn process_turn_end(&mut self) {
     // delete lines
-    // XXX
+    let deliting_rows = self.get_deleting_rows();
+    for row in deliting_rows {
+      self.delete_row(row);
+    }
 
     // get next peace
     self.current = self.nexts[0];
@@ -437,15 +440,30 @@ impl Board {
     (row * self.width + col) as usize
   }
 
-  fn delete_row(&mut self, row: u32) {}
+  fn delete_row(&mut self, row: usize) {
+    for y in (1..=row).rev() {
+      for x in 0..self.width {
+        let i0 = self.get_index(x, y as u32);
+        let i1 = self.get_index(x, (y - 1) as u32);
+        self.cells[i0] = self.cells[i1];
+      }
+    }
+    for x in 0..self.width {
+      let index = self.get_index(x, 0);
+      self.cells[index] = Cell::Empty;
+    }
+  }
 
   fn get_deleting_rows(&self) -> Vec<usize> {
     let mut res = vec![];
     for row in 0..self.height {
-      res.push(row as usize);
+      if self.is_deleting(row) {
+        res.push(row as usize);
+      }
     }
     res
   }
+
   fn is_deleting(&self, row: u32) -> bool {
     for col in 0..self.width {
       match self.cells[(row * self.width + col) as usize] {
