@@ -110,7 +110,7 @@ app.post('/github', async (req, res) => {
   }
 
   res.status(501);
-  res.send('not found');
+  res.send('not found: github');
 });
 
 scheduleJob('0 0 * * *', async () => await updateDeploy());

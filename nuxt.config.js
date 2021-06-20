@@ -119,8 +119,12 @@ export default {
 
   serverMiddleware: [
     {
+      path: '/api',
+      handle: '~/serverMiddleware/sleeps/index.ts',
+    },
+    {
       path: '/hooks',
-      handle: '~/serverMiddleware/index.ts',
+      handle: '~/serverMiddleware/deploy/index.ts',
     },
   ],
 };

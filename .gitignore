@@ -100,3 +100,10 @@ pkg/**
 smallkirby
 static/nirugiri.json
 static/ls.json
+
+# test
+test.js
+
+# cred
+gcredential.json
+credential.json
