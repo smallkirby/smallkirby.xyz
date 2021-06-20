@@ -11,9 +11,9 @@
           <hooper
             :settings="hooperSettings"
           >
-            <slide v-for="(ent, ix) of pairs" :key="ent">
+            <slide v-for="(ent, ix) of pairs" :key="ix">
               <div class="slide-content">
-                <p v-for="(pair, jx) of ent" :key="pair">
+                <p v-for="(pair, jx) of ent" :key="jx">
                   {{pair[0]}}: {{pair[1]}}
                 </p>
               </div>
