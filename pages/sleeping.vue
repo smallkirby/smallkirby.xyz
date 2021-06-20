@@ -82,31 +82,24 @@ export default Vue.extend({
 });
 </script>
 
-<style local>
+<style>
 
-/*
 #sleeping {
-  text-align: center;
-  display: inline-block;
-  margin: auto 2em;
-  padding: auto 2em;
-  align-items: center;
-  justify-content: center;
+  height: 3000px;
+
 }
-*/
 
 .hooper {
-  height: 80vh;
+  height: 100vh !important;
 }
 
 .hooper-slide {
   margin: 1em auto;
   align-items: center;
   justify-content: center;
-  /*display: flex;*/
   text-align: center;
   vertical-align: middle;
-  height: 1200px;
+  height: 100%;
 }
 
 slide {
@@ -115,7 +108,6 @@ slide {
 
 .slide-content {
   margin: 1em;
-  height: 1200px;
 }
 
 #sleeping-header {
