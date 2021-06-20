@@ -28,8 +28,8 @@ export default Vue.extend({
     return {
       titleMsg: '$ cat ./about.txt',
       flagTitleMsg: false,
-      datacollection: null,
-      options: null,
+      datacollection: null as any,
+      options: null as any,
       chart_height: 200,
       chart_width: 350,
     }
