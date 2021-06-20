@@ -3,6 +3,10 @@
     <layout-header title="sleeping" />
     <div>
       <div class="main-window">
+        <div id="sleeping-header">
+          <p style="color:#248a9e;font-weight:bold;">{{title}}</p>
+          <p>Visit <a href="https://sleeping.smallkirby.xyz">https://sleeping.smallkirby.xyz</a></p>
+        </div>
         <div id="sleeping">
           <hooper
             :settings="hooperSettings"
@@ -96,8 +100,7 @@ export default Vue.extend({
 }
 
 .hooper-slide {
-  margin: 2em auto;
-  padding: 3em auto;
+  margin: 1em auto;
   align-items: center;
   justify-content: center;
   /*display: flex;*/
@@ -111,8 +114,17 @@ slide {
 }
 
 .slide-content {
-  margin: 2em;
+  margin: 1em;
   height: 1200px;
 }
 
+#sleeping-header {
+  text-align: center;
+  margin-top: 1em;
+  width: 100vw;
+}
+
+a {
+  color: #349E24;
+}
 </style>
