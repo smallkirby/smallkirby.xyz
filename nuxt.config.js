@@ -120,11 +120,11 @@ export default {
   serverMiddleware: [
     {
       path: '/api',
-      handle: '~/serverMiddleware/sleeps/index.ts',
+      handle: '~/serverMiddleware/api/sleeps.ts',
     },
     {
       path: '/hooks',
-      handle: '~/serverMiddleware/deploy/index.ts',
+      handle: '~/serverMiddleware/hooks/github.ts',
     },
   ],
 };
