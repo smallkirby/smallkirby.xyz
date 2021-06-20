@@ -38,6 +38,7 @@
     "google-auth-library": "^7.1.2",
     "google-spreadsheet": "^3.1.15",
     "googleapis": "^39.2.0",
+    "hooper": "^0.3.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "node-chartist": "^1.0.5",
