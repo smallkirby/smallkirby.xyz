@@ -4,7 +4,9 @@
     <div>
       <div class="main-window">
         <div id="sleeping-header">
-          <p style="color:#248a9e;font-weight:bold;">{{title}}</p>
+          <p style="font-weight:bold;">
+            {{ title }}
+          </p>
           <p>Visit <a href="https://sleeping.smallkirby.xyz">https://sleeping.smallkirby.xyz</a></p>
         </div>
         <div id="sleeping">
@@ -13,14 +15,23 @@
           >
             <slide v-for="(ent, ix) of pairs" :key="ix">
               <div class="slide-content">
-                <p v-for="(pair, jx) of ent" :key="jx">
-                  {{pair[0]}}: {{pair[1]}}
-                </p>
+                <table class="sleeping-table">
+                  <tbody>
+                    <tr  v-for="(pair, jx) of ent" :key="jx">
+                      <th class="sleeping-th">
+                        <div>{{ pair[0] }}</div>
+                      </th>
+                      <td class="sleeping-td">
+                        <div>{{ pair[1] }}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </slide>
 
-            <hooper-pagination slot="hooper-addons"></hooper-pagination>
-            <hooper-navigation slot="hooper-addons"></hooper-navigation>
+            <hooper-pagination slot="hooper-addons" />
+            <hooper-navigation slot="hooper-addons" />
           </hooper>
         </div>
       </div>
@@ -85,12 +96,15 @@ export default Vue.extend({
 <style>
 
 #sleeping {
-  height: 3000px;
-
+  height: 80vh;
+  width: 80vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hooper {
-  height: 100vh !important;
+  height: 80vh !important;
+  width: 100vh !important;
 }
 
 .hooper-slide {
@@ -99,7 +113,7 @@ export default Vue.extend({
   justify-content: center;
   text-align: center;
   vertical-align: middle;
-  height: 100%;
+  width: 50vh;
 }
 
 slide {
@@ -119,4 +133,48 @@ slide {
 a {
   color: #349E24;
 }
+
+.hooper-indicator.is-active {
+  background-color: #ebdbb2;
+}
+
+svg.icon.icon-arrowLeft {
+  fill: #ebdbb2;
+}
+
+svg.icon.icon-arrowRight {
+  fill: #ebdbb2;
+}
+
+table.sleeping-table {
+  border: 1px solid #ebdbb2;
+  width: 40vw;
+  table-layout: fixed;
+  word-break: break-all;
+}
+
+.sleeping-th {
+  border-right: 4px double #ebdbb2;
+  width: 27%;
+  text-align: right;
+  padding-right: 0.3em;
+  font-weight: normal;
+}
+
+.sleeping-td {
+  text-align: left;
+  padding-left: 0.5em;
+  width: 75%;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.sleeping-td > div {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 </style>
