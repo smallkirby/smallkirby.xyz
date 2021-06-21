@@ -16,16 +16,14 @@
             <slide v-for="(ent, ix) of pairs" :key="ix">
               <div class="slide-content">
                 <table class="sleeping-table">
-                  <tbody>
-                    <tr  v-for="(pair, jx) of ent" :key="jx">
-                      <th class="sleeping-th">
-                        <div>{{ pair[0] }}</div>
-                      </th>
-                      <td class="sleeping-td">
-                        <div>{{ pair[1] }}</div>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tr  v-for="(pair, jx) of ent" :key="jx">
+                    <th class="sleeping-th">
+                      <div>{{ pair[0] }}</div>
+                    </th>
+                    <td class="sleeping-td">
+                      <div class="kasu">{{ pair[1] }}</div>
+                    </td>
+                  </tr>
                 </table>
               </div>
             </slide>
@@ -139,18 +137,18 @@ a {
 }
 
 svg.icon.icon-arrowLeft {
-  fill: #ebdbb2;
+  fill: #ebdbb2 !important;
 }
 
 svg.icon.icon-arrowRight {
-  fill: #ebdbb2;
+  fill: #ebdbb2 !important;
 }
 
 table.sleeping-table {
   border: 1px solid #ebdbb2;
   width: 40vw;
   table-layout: fixed;
-  word-break: break-all;
+  word-break: break-all !important;
 }
 
 .sleeping-th {
@@ -165,16 +163,16 @@ table.sleeping-table {
   text-align: left;
   padding-left: 0.5em;
   width: 75%;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  word-wrap: break-word;
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+  word-wrap: break-word !important;
 }
 
-.sleeping-td > div {
+.kasu {
   width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  word-wrap: break-word;
+  word-break: break-all !important;
+  word-wrap: break-word !important;
+  height: 1em;
 }
 
 </style>
