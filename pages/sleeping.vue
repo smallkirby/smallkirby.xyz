@@ -16,12 +16,12 @@
             <slide v-for="(ent, ix) of pairs" :key="ix">
               <div class="slide-content">
                 <table class="sleeping-table">
-                  <tr  v-for="(pair, jx) of ent" :key="jx">
+                  <tr class="sleeping-row" v-for="(pair, jx) of ent" :key="jx">
                     <th class="sleeping-th">
                       <div>{{ pair[0] }}</div>
                     </th>
                     <td class="sleeping-td">
-                      <div class="kasu">{{ pair[1] }}</div>
+                      {{ pair[1] }}
                     </td>
                   </tr>
                 </table>
@@ -133,7 +133,7 @@ a {
 }
 
 .hooper-indicator.is-active {
-  background-color: #ebdbb2;
+  background-color: #ebdbb2 !important;
 }
 
 svg.icon.icon-arrowLeft {
@@ -147,32 +147,24 @@ svg.icon.icon-arrowRight {
 table.sleeping-table {
   border: 1px solid #ebdbb2;
   width: 40vw;
-  table-layout: fixed;
-  word-break: break-all !important;
 }
 
 .sleeping-th {
   border-right: 4px double #ebdbb2;
   width: 27%;
-  text-align: right;
+  text-align: right top;
   padding-right: 0.3em;
   font-weight: normal;
+  height: auto;
 }
 
 .sleeping-td {
   text-align: left;
   padding-left: 0.5em;
   width: 75%;
-  overflow-wrap: break-word !important;
-  word-break: break-all !important;
-  word-wrap: break-word !important;
-}
-
-.kasu {
-  width: 100%;
-  word-break: break-all !important;
-  word-wrap: break-word !important;
-  height: 1em;
+  overflow-wrap: break-word;
+  white-space: normal !important;
+  height: auto;
 }
 
 </style>
