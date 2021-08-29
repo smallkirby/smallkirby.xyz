@@ -262,7 +262,7 @@ const likes: Like[] = [
       },
       {
         name: 'Sata andagi',
-        descrition: '沖縄',
+        description: '沖縄',
       },
     ],
   },
