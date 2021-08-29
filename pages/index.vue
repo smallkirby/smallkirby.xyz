@@ -19,7 +19,9 @@
             </div>
           </div>
         </div>
+<!--
         <layout-kernel-panic v-if="flagPanicing" />
+-->
       </div>
     </div>
   </layout-wrapper>
