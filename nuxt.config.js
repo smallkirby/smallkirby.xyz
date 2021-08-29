@@ -82,7 +82,14 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    'nuxt-webfontloader',
   ],
+
+  webfontloader: {
+    google: {
+      families: ['Ubuntu Mono'],
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

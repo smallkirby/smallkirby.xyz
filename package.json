@@ -46,6 +46,7 @@
     "node-schedule": "^2.0.0",
     "nodegit": "^0.27.0",
     "nuxt": "^2.15.7",
+    "nuxt-webfontloader": "^1.1.0",
     "parse-diff": "^0.8.1",
     "path": "^0.12.7",
     "pm2": "^5.1.0",

@@ -1,4 +1,5 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"eslint.format.enable": true,
+	"restructuredtext.languageServer.disabled": true,
 }

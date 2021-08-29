@@ -14,7 +14,6 @@
             <p>[   32.303201]  ? <a href="/about">about</a></p>
             <p>[   32.303201]  ? <a href="/">shell</a></p>
             <p>[   32.303201]  ? <a href="/likes">likes</a></p>
-            <p>[   32.303201]  ? <a href="/sos">sos</a></p>
             <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>
           </div>
           <layout-print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
