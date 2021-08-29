@@ -38,6 +38,10 @@ import moment from 'moment'
 export default Vue.extend({
   name: 'LayoutShellLine',
   props: {
+    imm_command: {
+      type: String,
+      required: false,
+    },
   },
   data () {
     return {
@@ -53,6 +57,11 @@ export default Vue.extend({
     this.curtime = moment().format('HH:mm:ss ddd MMM DD')
     // @ts-ignore
     this.$refs.userinput.focus()
+
+    if(this.imm_command) {
+      this.userinput = this.imm_command
+      this.submitInput()
+    }
   },
   methods: {
     submitInput () {

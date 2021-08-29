@@ -1,49 +1,52 @@
 <template>
-  <header>
+  <header class="text-xl md:text-base">
     <div id="session-id">
-      <p>Session: 38 <span style="color:#ffff00;">1</span> <span style="#248a9e">1</span></p>
+      <p>
+        Session: 38 <span style="color:#ffff00;">1</span>
+        <span style="#248a9e">1</span>
+      </p>
     </div>
     <div id="com">
       <p>1:{{ title }}*</p>
     </div>
-    <div id="wrapper-theme-switcher">
+    <div class="invisible md:visible" id="wrapper-theme-switcher">
       <layout-theme-switcher />
       <p>Dark-theme</p>
     </div>
-    <div id="time-status">
+    <div class="invisible md:visible" id="time-status">
       <p>{{ timeStatus }}</p>
     </div>
   </header>
 </template>
 
-<script lang='ts'>
-import Vue from 'vue'
-import moment from 'moment'
+<script lang="ts">
+import Vue from "vue";
+import moment from "moment";
 
 export default Vue.extend({
-  name: 'LayoutHeader',
+  name: "LayoutHeader",
   props: {
     title: {
       type: String,
-      default: '',
-    },
-  },
-  data () {
-    return {
-      timeStatus: '',
-      commName: 'bash',
+      default: ""
     }
   },
-  created () {
-    this.updateTime()
-    setInterval(() => this.updateTime(), 1000)
+  data() {
+    return {
+      timeStatus: "",
+      commName: "bash"
+    };
+  },
+  created() {
+    this.updateTime();
+    setInterval(() => this.updateTime(), 1000);
   },
   methods: {
-    updateTime (): void {
-      this.timeStatus = moment().format('YYYY-MM-DD(ddd) HH:mm')
-    },
-  },
-})
+    updateTime(): void {
+      this.timeStatus = moment().format("YYYY-MM-DD(ddd) HH:mm");
+    }
+  }
+});
 </script>
 
 <style scoped>
@@ -64,7 +67,7 @@ header > div {
 }
 
 header > div#session-id {
-  color: #349E24;
+  color: #349e24;
   text-align: left;
   display: inline;
   float: left;
@@ -114,5 +117,4 @@ div#wrapper-theme-switcher > p {
   margin-left: 3.5em;
   font-size: 0.8em;
 }
-
 </style>

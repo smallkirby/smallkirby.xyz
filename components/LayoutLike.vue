@@ -1,18 +1,19 @@
 <template>
   <layout-wraper>
-    <div class="mx-4 mb-2">
+    <div class="mx-2 md:mx-4 mb-2">
       <div>
         <p class="font-bold text-xl mt-2">{{ like.title }}</p>
       </div>
-      <div class="ml-3 flex" v-for="(ent, index) in like.ents" :key="index">
-        <ul class="flex">
+      <div class="ml-1 md:ml-3 flex" v-for="(ent, index) in like.ents" :key="index">
+        <ul class="flex flex-col md:flex-row">
           <li>
             <p>
               - <a :href="ent.link">{{ ent.name }}</a>
             </p>
           </li>
           <li>
-            <p v-if="ent.description">: {{ ent.description }}</p>
+            <p class="md:block hidden" v-if="ent.description">: {{ ent.description }}</p>
+            <p class="md:hidden ml-8" v-if="ent.description"> {{ ent.description }}</p>
           </li>
         </ul>
       </div>
