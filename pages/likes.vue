@@ -299,11 +299,6 @@ const likes: Like[] = [
         description: "Kirin",
         link: "https://www.redbull.com/jp-ja/"
       },
-      {
-        name: "アイス宇治抹茶ラテ",
-        description: "Doutor Coffee",
-        link: "https://www.doutor.co.jp/dcs/menu/detail/20140116131706.html"
-      }
     ]
   },
   {
