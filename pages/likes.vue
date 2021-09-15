@@ -303,11 +303,6 @@ const likes: Like[] = [
         name: "ジンジャーエール",
         description: "Lotteria",
         link: "https://www.lotteria.jp/menu/002178/?c=drink"
-      },
-      {
-        name: "アイス宇治抹茶ラテ",
-        description: "Doutor Coffee",
-        link: "https://www.doutor.co.jp/dcs/menu/detail/20140116131706.html"
       }
     ]
   },
