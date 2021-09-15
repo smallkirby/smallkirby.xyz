@@ -291,8 +291,8 @@ const likes: Like[] = [
         description: "SapporoBeer"
       },
       {
-        name: "日本酒",
-        description: "南部美人",
+        name: "南部武人",
+        description: "株式会社南部美人",
         link: "https://www.nanbubijin.co.jp/"
       },
       {
