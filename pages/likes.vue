@@ -230,7 +230,11 @@ const likes: Like[] = [
       {
         name: "ひとにぎりの未来",
         description: "星新一,新潮社,1980"
-      }
+      },
+      {
+        name: "かぐや様は告らせたい",
+        description: "赤坂アカ"
+      },
     ]
   },
   {
