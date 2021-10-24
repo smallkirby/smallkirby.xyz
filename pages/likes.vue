@@ -166,7 +166,7 @@ const likes: Like[] = [
     ents: [
       {
         name: "gruvbox",
-        link: "https://www.gnu.org/software/bash/"
+        link: "https://github.com/morhetz/gruvbox"
       }
     ]
   },
