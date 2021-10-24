@@ -49,18 +49,18 @@ const dislikes: Dislike[] = [
         name: "keyboard of Macbook",
       },
       {
-        name: "Haskel",
+        name: "Haskell",
       },
       {
-        name: "Tex",
+        name: "TeX",
         description: "I don't know what you mean.",
       },
       {
         name: "thick book",
       },
       {
-        name: "Youtube Short",
-        description: "Youtube MUST NOT BE TIKTOK.",
+        name: "YouTube Short",
+        description: "YouTube MUST NOT BE TIKTOK.",
       },
       {
         name: "hot and humid climate",
