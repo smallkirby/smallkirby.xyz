@@ -46,7 +46,7 @@ const dislikes: Dislike[] = [
         description: "crowded train in Tokyo. I prefer to walking.",
       },
       {
-        name: "keyboard of Macbook",
+        name: "keyboard of MacBook",
       },
       {
         name: "Haskell",
