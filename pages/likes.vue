@@ -232,8 +232,9 @@ const likes: Like[] = [
         description: '星新一,新潮社,1980',
       },
       {
-        name: 'かぐや様は告らせたい',
+        name: 'かぐや様は告らせたい ～天才たちの恋愛頭脳戦～',
         description: '赤坂アカ',
+        link: 'https://kaguya.love/',
       },
     ],
   },
