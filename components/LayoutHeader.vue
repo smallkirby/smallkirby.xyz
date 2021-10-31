@@ -9,43 +9,43 @@
     <div id="com">
       <p>1:{{ title }}*</p>
     </div>
-    <div class="invisible md:visible" id="wrapper-theme-switcher">
+    <div id="wrapper-theme-switcher" class="invisible md:visible">
       <layout-theme-switcher />
       <p>Dark-theme</p>
     </div>
-    <div class="invisible md:visible" id="time-status">
+    <div id="time-status" class="invisible md:visible">
       <p>{{ timeStatus }}</p>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import moment from "moment";
+import Vue from 'vue';
+import moment from 'moment';
 
 export default Vue.extend({
-  name: "LayoutHeader",
+  name: 'LayoutHeader',
   props: {
     title: {
       type: String,
-      default: ""
-    }
+      default: '',
+    },
   },
-  data() {
+  data () {
     return {
-      timeStatus: "",
-      commName: "bash"
+      timeStatus: '',
+      commName: 'bash',
     };
   },
-  created() {
+  created () {
     this.updateTime();
     setInterval(() => this.updateTime(), 1000);
   },
   methods: {
-    updateTime(): void {
-      this.timeStatus = moment().format("YYYY-MM-DD(ddd) HH:mm");
-    }
-  }
+    updateTime (): void {
+      this.timeStatus = moment().format('YYYY-MM-DD(ddd) HH:mm');
+    },
+  },
 });
 </script>
 

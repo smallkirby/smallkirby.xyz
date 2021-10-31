@@ -4,7 +4,7 @@
     <div>
       <div class="main-window">
         <div id="tetris">
-          <pre id="board">{{board_str}}</pre>
+          <pre id="board">{{ board_str }}</pre>
           <div id="tetris-description">
             <p>k: rotate, hl: move, j: down</p>
           </div>
@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
-let board: any
+let board: any;
 
 export default Vue.extend({
   name: 'Tetris',
@@ -26,36 +26,36 @@ export default Vue.extend({
       titleMsg: '$ bash tetris.sh',
       flagTitleMsg: false,
       board_str: (' '.repeat(10) + '\n').repeat(20),
-    }
+    };
   },
   mounted () {
     if (process.client) {
       import('~/wasm/tetris/pkg/index').then((tetris) => {
         // init board
-        board = tetris.Board.new()
+        board = tetris.Board.new();
 
         // set ticks
         const tick_repeater = () => {
-          board.tick()
-        }
+          board.tick();
+        };
         const render_repeater = () => {
-          this.board_str = board.render()
-        }
-        setInterval(tick_repeater, 500)
-        setInterval(render_repeater, 10)
+          this.board_str = board.render();
+        };
+        setInterval(tick_repeater, 500);
+        setInterval(render_repeater, 10);
 
         window.addEventListener('keypress', (e) => {
-          board.process_key_input(e.keyCode)
-        })
-      })
+          board.process_key_input(e.keyCode);
+        });
+      });
     }
   },
   methods: {
     finTitleMsg (): void {
-      this.flagTitleMsg = true
+      this.flagTitleMsg = true;
     },
   },
-})
+});
 </script>
 
 <style>

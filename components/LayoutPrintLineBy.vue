@@ -7,7 +7,7 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'LayoutPrintLineBy',
@@ -24,26 +24,26 @@ export default Vue.extend({
   data () {
     return {
       msg: [] as string[],
-    }
+    };
   },
   async mounted () {
-    await this.printLineBy('msg', this.reqmsg, this.interval)
-    this.$emit('finish-print-line-by')
+    await this.printLineBy('msg', this.reqmsg, this.interval);
+    this.$emit('finish-print-line-by');
   },
   methods: {
     printLineBy (data: string, msg: string, interval = 100): Promise<void> {
       return new Promise((resolve, reject) => {
-        const lines = msg.split('\n')
+        const lines = msg.split('\n');
         const subPrintLineBy = (curix: number) => {
           if (curix >= lines.length) {
-            resolve()
-            return
+            resolve();
+            return;
           }
-          this.$data[data].push((lines[curix]))
-          setTimeout(() => subPrintLineBy(curix + 1), interval)
-        }
-        subPrintLineBy(0)
-      })
+          this.$data[data].push((lines[curix]));
+          setTimeout(() => subPrintLineBy(curix + 1), interval);
+        };
+        subPrintLineBy(0);
+      });
     },
     escapeHtml (text: string) {
       const map = {
@@ -52,10 +52,10 @@ export default Vue.extend({
         '>': '&gt;',
         '"': '&quot;',
         "'": '&#039;',
-      }
+      };
       // @ts-ignore
-      return text.replace(/[&<>"']/g, (m: string) => { return map[m] })
+      return text.replace(/[&<>"']/g, (m: string) => { return map[m]; });
     },
   },
-})
+});
 </script>

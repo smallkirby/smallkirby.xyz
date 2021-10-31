@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { stripIndent } from 'common-tags'
+import Vue from 'vue';
+import { stripIndent } from 'common-tags';
 
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
@@ -45,7 +45,7 @@ const _dumpMsg1: string = stripIndent`
   [   32.303021]  ? ksys_read+0x3e/0xb0
   [   32.303103]  ? do_syscall_64+0x42/0x120
   [   32.303195]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
-`
+`;
 const _dumpMsg2 = stripIndent`
   [   32.303371] Modules linked in: dockerd(O)
   [   32.304008] ---[ end trace 9699fdcf83e9fabe ]---
@@ -63,7 +63,7 @@ const _dumpMsg2 = stripIndent`
   [   32.306287] Kernel panic - not syncing: Fatal exception
   [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)
   [   32.306918] Rebooting in 1 seconds..
-`
+`;
 
 export default Vue.extend({
   name: 'LayoutKernelPanic',
@@ -76,26 +76,26 @@ export default Vue.extend({
       flagDumpMsg1: false,
       flagDumpMsg2: false,
       cpuno: 0,
-    }
+    };
   },
   created () {
-    this.cpuno = Math.floor(Math.random() * 5)
+    this.cpuno = Math.floor(Math.random() * 5);
   },
   methods: {
     hoge (): void {
-      this.flagDumpMsg1 = true
+      this.flagDumpMsg1 = true;
     },
     hoge2 (): void {
-      this.flagDumpMsg2 = true
-      const elem = this.$el.querySelector('#kernel-panic-sentences')
-      console.log(elem)
+      this.flagDumpMsg2 = true;
+      const elem = this.$el.querySelector('#kernel-panic-sentences');
+      console.log(elem);
       if (elem === null) {
-        return
+        return;
       }
-      elem.scrollTop = elem?.scrollHeight
+      elem.scrollTop = elem?.scrollHeight;
     },
   },
-})
+});
 </script>
 
 <style lang='scss'>

@@ -4,8 +4,8 @@
     <div>
       <div class="main-window">
         <div id="nirugiri">
-          <layout-line-chart 
-            :chart-data="datacollection" 
+          <layout-line-chart
+            :chart-data="datacollection"
             :height="chart_height"
             :width="chart_width"
             :options="options"
@@ -32,25 +32,20 @@ export default Vue.extend({
       options: null as any,
       chart_height: 200,
       chart_width: 350,
-    }
+    };
   },
-  methods: {
-    finTitleMsg (): void {
-      this.flagTitleMsg = true
-    },
-  },
-  async created() {
+  async created () {
     const { data } = await axios.get('/nirugiri.json');
     const counts: number[] = data.counts;
     const labels = range(0, counts.length).map(n => n.toString());
 
     this.datacollection = {
-      labels: labels,
+      labels,
       datasets: [{
-        label: "Total",
+        label: 'Total',
         data: counts,
-        borderColor: "#ebdbb2",
-        pointBackgroundColor: "ebdbb2",
+        borderColor: '#ebdbb2',
+        pointBackgroundColor: 'ebdbb2',
       }],
     };
 
@@ -60,7 +55,7 @@ export default Vue.extend({
         display: true,
         position: 'top',
         fontSize: 15,
-        fontColor: "#ebdbb2",
+        fontColor: '#ebdbb2',
         text: 'Nirugiri Counter',
       },
       legend: {
@@ -82,8 +77,13 @@ export default Vue.extend({
         }],
       },
     };
-  }
-})
+  },
+  methods: {
+    finTitleMsg (): void {
+      this.flagTitleMsg = true;
+    },
+  },
+});
 </script>
 
 <style>

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'About',
@@ -28,14 +28,14 @@ export default Vue.extend({
     return {
       titleMsg: '$ cat ./about.txt',
       flagTitleMsg: false,
-    }
+    };
   },
   methods: {
     finTitleMsg (): void {
-      this.flagTitleMsg = true
+      this.flagTitleMsg = true;
     },
   },
-})
+});
 </script>
 
 <style>

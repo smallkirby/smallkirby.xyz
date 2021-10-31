@@ -15,23 +15,23 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'LayoutThemeSwitcher',
   data () {
     return {
       isDarkMode: false,
-    }
+    };
   },
   methods: {
     changeMode () {
       if (this.isDarkMode) {
-        console.log('everything is in the deep shadow now...')
+        console.log('everything is in the deep shadow now...');
       }
     },
   },
-})
+});
 </script>
 
 <style scoped lang='scss'>

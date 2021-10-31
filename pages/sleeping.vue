@@ -16,7 +16,7 @@
             <slide v-for="(ent, ix) of pairs" :key="ix">
               <div class="slide-content">
                 <table class="sleeping-table">
-                  <tr class="sleeping-row" v-for="(pair, jx) of ent" :key="jx">
+                  <tr v-for="(pair, jx) of ent" :key="jx" class="sleeping-row">
                     <th class="sleeping-th">
                       <div>{{ pair[0] }}</div>
                     </th>

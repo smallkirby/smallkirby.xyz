@@ -32,8 +32,8 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-import moment from 'moment'
+import Vue from 'vue';
+import moment from 'moment';
 
 export default Vue.extend({
   name: 'LayoutShellLine',
@@ -51,25 +51,25 @@ export default Vue.extend({
       curtime: '',
       userinput: '',
       flagInputLocked: false,
-    }
+    };
   },
   mounted () {
-    this.curtime = moment().format('HH:mm:ss ddd MMM DD')
+    this.curtime = moment().format('HH:mm:ss ddd MMM DD');
     // @ts-ignore
-    this.$refs.userinput.focus()
+    this.$refs.userinput.focus();
 
-    if(this.imm_command) {
-      this.userinput = this.imm_command
-      this.submitInput()
+    if (this.imm_command) {
+      this.userinput = this.imm_command;
+      this.submitInput();
     }
   },
   methods: {
     submitInput () {
-      this.flagInputLocked = true
-      this.$emit('shell-line-submitted', this.userinput)
+      this.flagInputLocked = true;
+      this.$emit('shell-line-submitted', this.userinput);
     },
   },
-})
+});
 </script>
 
 <style scoped>

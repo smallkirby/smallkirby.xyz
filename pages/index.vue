@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-<!--
+        <!--
         <layout-kernel-panic v-if="flagPanicing" />
 -->
       </div>
@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import axios from "axios";
+import Vue from 'vue';
+import axios from 'axios';
 // @ts-ignore
 
 const commandsBlacklist = [
@@ -62,19 +62,19 @@ interface Entry {
 
 export default Vue.extend({
   name: 'Shell',
-  data() {
+  data () {
     return {
       titleMsg: '$ /bin/bash',
       history: [] as CommandResult[],
       flagPanicing: false,
     };
   },
-  mounted() {
+  mounted () {
     this.history.push({ command: 'ls', result: [], is_imm: true });
   },
   methods: {
-    async processCommand(command: string) {
-      const result = await this.execCommand(command)
+    async processCommand (command: string) {
+      const result = await this.execCommand(command);
       this.$set(this.history, this.history.length - 1, {
         command,
         result,
@@ -84,31 +84,31 @@ export default Vue.extend({
         this.history.push({ command: '', result: [], is_imm: false });
       }
     },
-    async execCommand(command: string) {
+    async execCommand (command: string) {
       const cmds = command.split(' ');
       if (commandsBlacklist.includes(cmds[0])) {
         // this.$router.push('/index')
         this.flagPanicing = true;
         return;
       }
-      if (cmds[0] === "shmug") {
-        return [{ent: "c|_|"}];
-      } else if (cmds[0] === "ls") {
-        const { data } = await axios.get("/ls.json");
+      if (cmds[0] === 'shmug') {
+        return [{ ent: 'c|_|' }];
+      } else if (cmds[0] === 'ls') {
+        const { data } = await axios.get('/ls.json');
         const entries = data as Entry[];
         return entries.map(
           (e) => {
             return {
               ent: `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
               link: e.pagename,
-            } 
-          }
+            };
+          },
         );
       } else if (cmds[0] === 'cd') {
-        return [{ent: 'Bloom where God has planted you...'}];
+        return [{ ent: 'Bloom where God has planted you...' }];
       } else if (cmds[0] === 'cat') {
         if (cmds.length !== 2) {
-          return [{ent: 'usage: cat <file>'}];
+          return [{ ent: 'usage: cat <file>' }];
         }
         const { data } = await axios.get('/ls.json');
         const entries = data as Entry[];
@@ -116,17 +116,17 @@ export default Vue.extend({
         if (candidate.length >= 1) {
           window.open(
             this.$router.resolve('/' + candidate[0].pagename).href,
-            '_blank'
+            '_blank',
           );
-          return [{ent: ""}];
+          return [{ ent: '' }];
         } else {
-          return [{ent: `ls: cannot access '${cmds[1]}': No such file or directory`}];
+          return [{ ent: `ls: cannot access '${cmds[1]}': No such file or directory` }];
         }
       } else {
-        return [{ent: `${cmds[0]}: command not found`}];
+        return [{ ent: `${cmds[0]}: command not found` }];
       }
-    }
-  }
+    },
+  },
 });
 </script>
 
