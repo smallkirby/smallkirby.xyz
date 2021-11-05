@@ -58,6 +58,12 @@ const likes: Like[] = [
           'DX(GC,2001), X(Wii,2008), Special(Switch,2018). [Kirby,Kamui,Mewtwo,Lucario]',
       },
       {
+        name: 'Fire Emblem: Three Houses',
+        link: 'https://www.nintendo.com/games/detail/fire-emblem-three-houses-switch/',
+        description:
+          'switch,2019',
+      },
+      {
         name: 'Doshin the Giant',
         link: 'https://www.nintendo.co.jp/ngc/gkdj/',
         description: 'GC,2002',
