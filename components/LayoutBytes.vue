@@ -23,7 +23,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-const PAGE_SHIFT = 12;
+const PAGE_SHIFT = 10; // PAGE???????
 const UNITS: {
   name: string
   ch: string
