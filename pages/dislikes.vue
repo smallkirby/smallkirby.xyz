@@ -42,6 +42,10 @@ const dislikes: Dislike[] = [
         description: 'long, boring, non-interactive, virtually no importance',
       },
       {
+        name: 'voice communication with more than three people',
+        description: 'I believe conversation is possible only with -le three.',
+      },
+      {
         name: 'train',
         description: 'crowded train in Tokyo. I prefer to walking.',
       },
