@@ -30,13 +30,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { GithubMixin } from '@/mixins/GithubMixin';
 import { RepositoryInfo, RepoBasicInfo } from '@/types/github/github';
 
-export default Vue.extend({
+export default GithubMixin.extend({
   name: 'LayoutTrash',
-  mixins: [GithubMixin],
   props: {
     trash: {
       type: Object,
@@ -45,7 +43,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      repo: null,
+      repo: null as RepositoryInfo | null,
     };
   },
   async created () {

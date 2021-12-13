@@ -1,7 +1,8 @@
+import Vue from 'vue';
 import { RepoBasicInfo, RepositoryInfo } from '@/types/github/github';
 import { Octokit } from 'octokit';
 
-export const GithubMixin = {
+export const GithubMixin = Vue.extend({
   methods: {
     url2info (url: string): RepoBasicInfo | null {
       const re = /https:\/\/github\.com\/([a-zA-Z0-9]*)\/([a-zA-Z0-9]*).*/;
@@ -18,7 +19,6 @@ export const GithubMixin = {
       const octokit = new Octokit();
       const result = await octokit.request('GET /repos/{owner}/{repo}', { owner, repo })
         .catch(() => Promise.resolve(null));
-      console.log(result.data)
       if (result === undefined || result === null) { return null; } else {
         const data = result.data;
         return {
@@ -30,4 +30,4 @@ export const GithubMixin = {
       }
     },
   },
-};
+});
