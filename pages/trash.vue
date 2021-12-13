@@ -22,8 +22,7 @@ export default Vue.extend({
   name: 'Trash',
   data () {
     return {
-      //titleMsg: '$ ls ~/.local/share/Trash/*',
-      titleMsg: '$ ls',
+      titleMsg: '$ ls ~/.local/share/Trash/*',
       flagTitleMsg: false,
       myTrashes: trashes,
     };
