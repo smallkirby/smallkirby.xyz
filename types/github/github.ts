@@ -4,7 +4,8 @@ export interface RepoBasicInfo {
 };
 
 export interface RepositoryInfo {
-  watchers_count: Number,
+  subscribers_count: Number,
+  forks: Number,
   updated_at: Date,
   stargazers_count: Number,
 };

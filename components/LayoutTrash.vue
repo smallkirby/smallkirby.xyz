@@ -12,8 +12,9 @@
         </div>
         <div class="w-1/2 text-left ml-4 mt-4">
           <div v-if="repo !== null">
-            <p>watcher: {{ repo.watchers_count }}</p>
             <p>star: {{ repo.stargazers_count }} </p>
+            <p>watcher: {{ repo.subscribers_count }}</p>
+            <p>forks: {{ repo.forks }} </p>
             <p>last update: {{ repo.updated_at }} </p>
           </div>
           <div v-else>

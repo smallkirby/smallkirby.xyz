@@ -18,12 +18,14 @@ export const GithubMixin = {
       const octokit = new Octokit();
       const result = await octokit.request('GET /repos/{owner}/{repo}', { owner, repo })
         .catch(() => Promise.resolve(null));
+      console.log(result.data)
       if (result === undefined || result === null) { return null; } else {
         const data = result.data;
         return {
-          watchers_count: data.watchers_count,
+          subscribers_count: data.subscribers_count,
           updated_at: new Date(data.updated_at),
           stargazers_count: data.stargazers_count,
+          forks: data.forks_count,
         };
       }
     },
