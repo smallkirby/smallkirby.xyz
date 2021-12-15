@@ -17,17 +17,22 @@ export const GithubMixin = Vue.extend({
 
     async getRepoInfo (owner: string, repo: string): Promise<RepositoryInfo | null> {
       const octokit = new Octokit();
-      const result = await octokit.request('GET /repos/{owner}/{repo}', { owner, repo })
+      const repoResult = await octokit.request('GET /repos/{owner}/{repo}', { owner, repo })
         .catch(() => Promise.resolve(null));
-      if (result === undefined || result === null) { return null; } else {
-        const data = result.data;
-        return {
-          subscribers_count: data.subscribers_count,
-          updated_at: new Date(data.updated_at),
-          stargazers_count: data.stargazers_count,
-          forks: data.forks_count,
-        };
-      }
+      const contributorsResult = await octokit.request('GET /repos/{owner}/{repo}/contributors', { owner, repo })
+        .catch(() => Promise.resolve(null));
+      if (repoResult === undefined || repoResult === null || contributorsResult === undefined || contributorsResult == null) { return null; }
+
+      const repoData = repoResult.data;
+      const contData = contributorsResult.data;
+      const total_commits = contData.reduce((s, contributor) => { return s + contributor.contributions; }, 0);
+      return {
+        subscribers_count: repoData.subscribers_count,
+        updated_at: new Date(repoData.updated_at),
+        stargazers_count: repoData.stargazers_count,
+        forks: repoData.forks_count,
+        total_commits,
+      };
     },
   },
 });

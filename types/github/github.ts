@@ -8,4 +8,5 @@ export interface RepositoryInfo {
   forks: Number,
   updated_at: Date,
   stargazers_count: Number,
+  total_commits: Number,
 };
