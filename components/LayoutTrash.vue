@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="content-center mt-4 flex justify-center">
-        <div class="w-1/2 mr-4">
+        <div class="w-1/2 mr-4 pl-4">
           <img :src="trash.image_path" class="h-64 float-right">
         </div>
         <div class="w-1/2 text-left ml-4 mt-4">

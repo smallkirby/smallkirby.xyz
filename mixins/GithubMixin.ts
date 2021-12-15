@@ -5,7 +5,7 @@ import { Octokit } from 'octokit';
 export const GithubMixin = Vue.extend({
   methods: {
     url2info (url: string): RepoBasicInfo | null {
-      const re = /https:\/\/github\.com\/([a-zA-Z0-9]*)\/([a-zA-Z0-9]*).*/;
+      const re = /https:\/\/github\.com\/([a-zA-Z0-9]*)\/([a-zA-Z0-9/-/.]*).*/;
       const found = url.match(re);
       if (!found || found.length !== 3) { return null; } else {
         return {
