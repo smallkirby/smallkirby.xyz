@@ -10,7 +10,7 @@
           <p>major in electronics and photonics</p>
           <p>interested in <em>undefined</em></p>
           <br>
-          <p>blog: <a href="https://smallkirby.hatenablog.com">newbieからバイナリアンへ</a></p>
+          <p>blog: <a href="https://smallkirby.hatenablog.com">newbie dive into binary</a></p>
           <p>github: <a href="https://github.com/smallkirby">smallkirby</a></p>
           <p>twitter: <a href="https://twitter.com/smallkirby">@smallkirby</a></p>
         </div>
