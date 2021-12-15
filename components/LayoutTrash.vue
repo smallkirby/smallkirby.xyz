@@ -1,52 +1,62 @@
 <template>
   <layout-wrapper>
-    <div class="mx-auto pb-4 mb-20 w-1/2 border-2 border-skblack-light rounded-lg">
+    <div class="mx-auto pb-4 mb-20 w-full md:w-1/2 border-2 border-skblack-light rounded-lg">
       <div class="pt-4">
         <a class="font-bold text-3xl mt-2" :href="trash.title_link">
           {{ trash.title }}
         </a>
       </div>
-      <div class="content-center mt-4 flex justify-center">
-        <div class="w-1/2 mr-4 pl-4">
-          <img :src="trash.image_path" class="h-64 float-right">
+      <div class="content-center mt-4 flex flex-col md:flex-row justify-center">
+        <div class="w-full md:w-1/2 mr-4 pl-4">
+          <img :src="trash.image_path" class="h-64 mx-auto md:float-right">
         </div>
-        <div class="w-1/2 text-left ml-4 mt-4">
-          <div v-if="repo !== null" class="flex justify-start">
-            <div class="mr-4">
-              <table>
-                <tr>
-                  <td>star</td>
-                  <td>: {{ repo.stargazers_count }} </td>
-                </tr>
-                <tr>
-                  <td>watcher</td>
-                  <td>: {{ repo.subscribers_count }}</td>
-                </tr>
-                <tr>
-                  <td>forks</td>
-                  <td>: {{ repo.forks }}</td>
-                </tr>
-                <tr>
-                  <td>commits</td>
-                  <td>: {{ repo.total_commits }} </td>
-                </tr>
-                <tr>
-                  <td>last update</td>
-                  <td>: {{ date2str(repo.updated_at) }} </td>
-                </tr>
-                <tr>
-                  <td>language</td>
-                  <td>: {{ langOccupationString }} </td>
-                </tr>
-              </table>
-            </div>
+        <div class="w-full md:w-1/2 text-left ml-4 mt-4 content-center">
+          <div v-if="repo !== null" class="mx-auto">
+            <table class="mx-auto md:float-left">
+              <tr>
+                <td>star</td>
+                <td class="pl-4">
+                  {{ repo.stargazers_count }}
+                </td>
+              </tr>
+              <tr>
+                <td>watcher</td>
+                <td class="pl-4">
+                  {{ repo.subscribers_count }}
+                </td>
+              </tr>
+              <tr>
+                <td>forks</td>
+                <td class="pl-4">
+                  {{ repo.forks }}
+                </td>
+              </tr>
+              <tr>
+                <td>commits</td>
+                <td class="pl-4">
+                  {{ repo.total_commits }}
+                </td>
+              </tr>
+              <tr>
+                <td>last update</td>
+                <td class="pl-4">
+                  {{ date2str(repo.updated_at) }}
+                </td>
+              </tr>
+              <tr>
+                <td>language</td>
+                <td class="pl-4">
+                  {{ langOccupationString }}
+                </td>
+              </tr>
+            </table>
           </div>
           <div v-else>
             <p>Repository information is not available</p>
           </div>
         </div>
       </div>
-      <div class="mt-5 text-center mx-auto w-5/6">
+      <div class="mt-5 pt-5 md:pt-0 text-center mx-auto w-5/6 border-t-2 md:border-t-0 border-skwhite-dark border-dotted">
         <pre class="whitespace-pre-wrap">{{ trash.description }}</pre>
       </div>
     </div>
