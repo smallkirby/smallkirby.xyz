@@ -1,5 +1,5 @@
 <template>
-  <layout-wraper>
+  <layout-wrapper>
     <div class="mx-auto pb-4 mb-20 w-1/2 border-2 border-skblack-light rounded-lg">
       <div class="pt-4">
         <a class="font-bold text-3xl mt-2" :href="trash.title_link">
@@ -13,18 +13,32 @@
         <div class="w-1/2 text-left ml-4 mt-4">
           <div v-if="repo !== null" class="flex justify-start">
             <div class="mr-4">
-              <p>star</p>
-              <p>watcher</p>
-              <p>forks</p>
-              <p>commits</p>
-              <p>last update</p>
-            </div>
-            <div>
-              <p>: {{ repo.stargazers_count }} </p>
-              <p>: {{ repo.subscribers_count }}</p>
-              <p>: {{ repo.forks }}</p>
-              <p>: {{ repo.total_commits }} </p>
-              <p>: {{ date2str(repo.updated_at) }} </p>
+              <table>
+                <tr>
+                  <td>star</td>
+                  <td>: {{ repo.stargazers_count }} </td>
+                </tr>
+                <tr>
+                  <td>watcher</td>
+                  <td>: {{ repo.subscribers_count }}</td>
+                </tr>
+                <tr>
+                  <td>forks</td>
+                  <td>: {{ repo.forks }}</td>
+                </tr>
+                <tr>
+                  <td>commits</td>
+                  <td>: {{ repo.total_commits }} </td>
+                </tr>
+                <tr>
+                  <td>last update</td>
+                  <td>: {{ date2str(repo.updated_at) }} </td>
+                </tr>
+                <tr>
+                  <td>language</td>
+                  <td>: {{ langOccupationString }} </td>
+                </tr>
+              </table>
             </div>
           </div>
           <div v-else>
@@ -36,12 +50,12 @@
         <pre class="whitespace-pre-wrap">{{ trash.description }}</pre>
       </div>
     </div>
-  </layout-wraper>
+  </layout-wrapper>
 </template>
 
 <script lang="ts">
 import { GithubMixin } from '@/mixins/GithubMixin';
-import { RepositoryInfo, RepoBasicInfo } from '@/types/github/github';
+import { RepositoryInfo, RepoBasicInfo, LanguageOccupation } from '@/types/github/github';
 import moment from 'moment';
 
 export default GithubMixin.extend({
@@ -59,7 +73,7 @@ export default GithubMixin.extend({
   },
   async created () {
     const basicInfo: RepoBasicInfo | null = this.url2info(this.trash.title_link);
-    if(basicInfo === null) { return; }
+    if (basicInfo === null) { return; }
     const repo: RepositoryInfo | null = await this.getRepoInfo(basicInfo.owner, basicInfo.reponame);
     this.repo = repo;
   },
@@ -67,6 +81,22 @@ export default GithubMixin.extend({
   methods: {
     date2str (date: Date) {
       return moment(date).format('YYYY.MM.DD HH:mm');
+    },
+  },
+
+  computed: {
+    languages () {
+      if (this.repo === null) { return [] as LanguageOccupation[]; }
+      // @ts-ignore
+      return this.repo.languages.filter((lang: LanguageOccupation) => { return lang.ratio >= 0.1; });
+    },
+
+    langOccupationString () {
+      const langs: LanguageOccupation[] = this.languages;
+      return langs.map((l) => {
+        const ratio = Math.ceil(l.ratio * 100);
+        return `${l.lang} (${ratio}%)`;
+      }).join(', ');
     },
   },
 });
