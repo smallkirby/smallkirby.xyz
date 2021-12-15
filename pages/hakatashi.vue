@@ -16,19 +16,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { trashes } from '@/data/trash/trash';
-import HakatashiBadge from '~/components/hakatashi/HakatashiBadge.vue';
-import HakatashiTotalGithub from '~/components/hakatashi/HakatashiTotalGithub.vue';
-import HakatashiTodaysGithub from '~/components/hakatashi/HakatashiTodaysGithub.vue';
 
 export default Vue.extend({
   name: 'Hakatashi',
-  components: { HakatashiBadge, HakatashiTotalGithub, HakatashiTodaysGithub },
   data () {
     return {
       titleMsg: '$ dig hakatashi',
       flagTitleMsg: false,
-      myTrashes: trashes,
     };
   },
   methods: {
