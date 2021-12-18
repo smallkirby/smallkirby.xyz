@@ -61,10 +61,10 @@ export default Vue.extend({
   },
 
   async created () {
-    const octokit = new Octokit();
-    const result = await octokit.request('GET /repos/{owner}/{repo}/actions/runs', { owner: 'hakatashi', repo: 'hakatashi', branch: 'master', per_page: 2 });
-    // @ts-ignore
-    this.runs = result.data.workflow_runs;
+    //const octokit = new Octokit();
+    //const result = await octokit.request('GET /repos/{owner}/{repo}/actions/runs', { owner: 'hakatashi', repo: 'hakatashi', branch: 'master', per_page: 2 });
+    //// @ts-ignore
+    //this.runs = result.data.workflow_runs;
   },
 });
 </script>
