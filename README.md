@@ -21,11 +21,3 @@ git checkout --force origin/master
 npm install
 npm run build
 ```
-
-
-# LICENSE
-
-Most of code and assets are distributed under [MIT License](./LICENSE).
-Below assets are created by others and might be distributed under other licenses.
-
-- [hakatashi icon](./static/img/hakatashi.png): by [@hakatashi](https://github.com/hakatashi/icon). [MIT LICENSE](https://opensource.org/licenses/mit-license.php).

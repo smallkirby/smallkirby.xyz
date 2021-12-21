@@ -20,11 +20,6 @@ module.exports = {
           DEFAULT: '#fbebc2',
           dark: '#cbcba2',
         },
-        skblue: {
-          light: '#84A87F',
-          DEFAULT: '#84A87F',
-          dark: '#84A87F',
-        },
       },
     },
   },
