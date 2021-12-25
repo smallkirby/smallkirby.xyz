@@ -325,12 +325,16 @@ export const likes: Like[] = [
           'https://www.youtube.com/c/%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%A6%E6%9D%BE%E5%B0%BE%E3%81%A7%E3%81%99hajimemashite',
       },
       {
-        name: '美術2の人',
-        link: 'https://www.youtube.com/channel/UCt6xxd2go9WccbL5bkLVriA',
+        name: 'マオメエアニメ',
+        link: 'https://www.youtube.com/channel/UCZNDlsZU0StifdExCdRaRFg',
       },
       {
         name: 'ももと天空',
         link: 'https://www.youtube.com/c/MomoTen',
+      },
+      {
+        name: 'もちまる日記',
+        link: 'https://www.youtube.com/c/%E3%82%82%E3%81%A1%E3%81%BE%E3%82%8B%E6%97%A5%E8%A8%98',
       },
     ],
   },
