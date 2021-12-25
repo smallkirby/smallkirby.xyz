@@ -303,13 +303,12 @@ export const likes: Like[] = [
         description: 'covered by KudouChitose,2019',
       },
       {
-        name: '雲の遥か',
-        link: 'https://youtu.be/suri4Y9XgPY',
-        description: '熊谷育美,2011',
+        name: 'Youtube Playlist',
+        link: 'https://nirugiri.smallkirby.xyz',
       },
       {
-        name: 'nirugiri.smallkirby.xyz',
-        link: 'https://nirugiri.smallkirby.xyz',
+        name: 'Spotify Playlist',
+        link: 'https://open.spotify.com/playlist/1A7FOrNgUwzY4JdmcPJXWQ?si=1e8855c9c9b3495e',
       },
     ],
   },
