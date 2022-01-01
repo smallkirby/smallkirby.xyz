@@ -25,6 +25,15 @@ export const trashes: Trash[] = [
     `,
   },
   {
+    title: 'rapt2',
+    title_link: 'https://github.com/smallkirby/rapt2',
+    image_path: '/img/trashes/rapt2.png',
+    description: stripIndent`
+      rapt2 is a kawaii toy implementation of apt: Debian Package Manager.
+      rapt2 is really simplified and easy to understand compared to original one.
+    `,
+  },
+  {
     title: 'kernelpwn',
     title_link: 'https://github.com/smallkirby/kernelpwn',
     image_path: '/img/trashes/kernelpwn.png',
