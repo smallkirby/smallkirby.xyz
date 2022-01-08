@@ -1,15 +1,14 @@
-<script lang="ts">
-import { Line, mixins } from 'vue-chartjs';
-const { reactiveProp } = mixins;
+<template>
+  <layout-wrapper>
+    <div>
+      Unavailable now...
+    </div>
+  </layout-wrapper>
+</template>
 
+<script lang="ts">
 export default {
   name: 'LayoutLineChar',
-  mixins: [Line, reactiveProp],
-  props: ['options'],
-  mounted () {
-    // @ts-ignore
-    this.renderChart(this.data, this.options);
-  },
 };
 </script>
 

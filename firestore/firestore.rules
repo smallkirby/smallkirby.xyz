@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+    match /sotsuron/{uid} {
+      function signedIn() {
+        return request.auth.uid != null
+      }
+
+      function validData(data) {
+        return data.keys().hasAll(['id', 'done_pages', 'text', 'timestamp'])
+        && data.keys().hasOnly(['id', 'done_pages', 'text', 'timestamp'])
+        && data.id is string
+        && data.done_pages is int
+        && data.text is string
+        && data.timestamp is int
+        ;
+      }
+
+      allow read: if true;
+      allow create: if signedIn()
+                    && validData(request.resource.data)
+                    ;
+      allow update: if signedIn()
+                    && validData(request.resource.data)
+                    ;
+      allow delete: if false;
+    }
+  }
+
+}

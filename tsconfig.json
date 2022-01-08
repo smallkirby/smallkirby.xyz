@@ -33,5 +33,7 @@
     ".nuxt",
     "dist",
     "wasm",
+    "functions",
+    "firestore",
   ],
 }
