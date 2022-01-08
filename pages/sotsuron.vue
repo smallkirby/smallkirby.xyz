@@ -18,11 +18,19 @@
         <p>Please ping me if the progress seems really poor!!</p>
       </div>
 
-      <div v-if="!loading" class="mt-5">
-        <layout-sotsuron-chart
-          :sotsurons="sotsurons"
-        />
-      </div>
+      <client-only>
+        <div v-if="loading" class="mt-5 mb-2">
+          <vue-loading type="spin" />
+          <p class="text-center">
+            loading information...
+          </p>
+        </div>
+        <div v-else class="mt-5">
+          <layout-sotsuron-chart
+            :sotsurons="sotsurons"
+          />
+        </div>
+      </client-only>
     </div>
   </layout-wrapper>
 </template>
@@ -39,7 +47,7 @@ export default FirebaseMixin.extend({
         '$ watch -n $((60 * 60)) ./fetch_sotsuron_status.py',
       flagTitleMsg: false,
       sotsurons: [] as SotsuronTweet[],
-      loading: true,
+      loading: false,
     };
   },
   methods: {
@@ -50,12 +58,17 @@ export default FirebaseMixin.extend({
 
   async created () {
     if (process.client) {
+      this.loading = true;
       const sotsurons: SotsuronTweet[] = await this.getSotsuronTweets();
-      this.sotsurons = sotsurons;
+      this.$data.sotsurons = sotsurons;
     } else {
-      this.sotsurons = [];
+      this.$data.sotsurons = [];
     }
-    this.loading = false;
+    if (this.$data.sotsurons === undefined || this.$data.sotsurons.length === 0) {
+      this.$data.loading = true;
+    } else {
+      this.$data.loading = false;
+    }
   },
 });
 </script>
