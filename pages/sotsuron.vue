@@ -25,8 +25,13 @@
         </p>
       </div>
       <div v-else class="mt-5">
+        <div>
+          <input id="fitXaxis" type="checkbox" @click="redrawChart">
+          <label for="fitXaxis">Fit x-axis scale</label>
+        </div>
         <layout-sotsuron-chart
           :sotsurons="sotsurons"
+          ref="sotsuron_chart"
         />
       </div>
     </div>
@@ -46,11 +51,17 @@ export default FirebaseMixin.extend({
       flagTitleMsg: false,
       sotsurons: [] as SotsuronTweet[],
       loading: false,
+      fitXaxis: false,
     };
   },
   methods: {
     finTitleMsg (): void {
       this.flagTitleMsg = true;
+    },
+
+    redrawChart (): void {
+      this.$set(this, 'fitXaxis', !this.fitXaxis);
+      this.$refs.sotsuron_chart.redrawChart(this.fitXaxis);
     },
   },
 

@@ -43,6 +43,7 @@ const x_scale = {
     display: true,
     ...defaultFont,
   },
+  max: moment('2022-02-09T23:59:00').format(),
 };
 const y_scale = {
   ticks: {
@@ -152,8 +153,17 @@ export default Vue.extend({
       });
     },
 
-    redrawChart () {
+    maxX (fixXaxis: boolean) {
+      if (fixXaxis) {
+        return undefined;
+      } else {
+        return moment('2022-02-09T23:59:00').format();
+      }
+    },
+
+    redrawChart (fitXaxis: boolean) {
       this.$data.chart.destroy();
+      this.$data.options.scales.x.max = this.maxX(fitXaxis);
       this.renderChart();
     },
   },
