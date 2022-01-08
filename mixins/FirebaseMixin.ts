@@ -24,8 +24,14 @@ if (process.env.NODE_ENV) {
 export const FirebaseMixin = Vue.extend({
   methods: {
     async getSotsuronTweets (): Promise<SotsuronTweet[]> {
-      const result = await firebase.functions().httpsCallable('getSotsurons')({});
-      return result.data;
+      const result = firebase.functions().httpsCallable('getSotsurons')({})
+        .then((res) => {
+          return res.data;
+        }).catch((e) => {
+          console.error('Failed to fetch sotsuron status:');
+          console.error(e);
+        });
+      return await result;
     },
   },
 });
