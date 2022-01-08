@@ -115,6 +115,7 @@ export default Vue.extend({
         },
         scales,
         maintainAspectRatio: false,
+        responsive: true,
       },
     };
   },

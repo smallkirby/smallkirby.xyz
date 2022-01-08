@@ -12,25 +12,23 @@
       </div>
     </div>
 
-    <div class="md:mx-5 md:mt-5">
+    <div class="mx-5 mt-5">
       <div>
         <p>This page collects sotsuron progress status from smallkirby's secret account of Twitter(<a href="https://twitter.com/smallkirby_">@smallkirby_</a>).</p>
         <p>Please ping me if the progress seems really poor!!</p>
       </div>
 
-      <client-only>
-        <div v-if="loading" class="mt-5 mb-2">
-          <vue-loading type="spin" />
-          <p class="text-center">
-            loading information...
-          </p>
-        </div>
-        <div v-else class="mt-5">
-          <layout-sotsuron-chart
-            :sotsurons="sotsurons"
-          />
-        </div>
-      </client-only>
+      <div v-if="loading" class="mt-5 mb-2">
+        <vue-loading type="spin" />
+        <p class="text-center">
+          loading information...
+        </p>
+      </div>
+      <div v-else class="mt-5">
+        <layout-sotsuron-chart
+          :sotsurons="sotsurons"
+        />
+      </div>
     </div>
   </layout-wrapper>
 </template>
