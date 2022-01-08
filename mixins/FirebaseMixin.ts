@@ -17,7 +17,7 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV !== 'production') {
   firebase.functions().useEmulator('localhost', 5001);
 }
 
