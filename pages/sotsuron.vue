@@ -49,8 +49,12 @@ export default FirebaseMixin.extend({
   },
 
   async created () {
-    const sotsurons: SotsuronTweet[] = await this.getSotsuronTweets();
-    this.sotsurons = sotsurons;
+    if (process.client) {
+      const sotsurons: SotsuronTweet[] = await this.getSotsuronTweets();
+      this.sotsurons = sotsurons;
+    } else {
+      this.sotsurons = [];
+    }
     this.loading = false;
   },
 });
