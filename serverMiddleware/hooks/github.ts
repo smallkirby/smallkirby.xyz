@@ -16,7 +16,7 @@ app.use('/github', express.raw({ type: 'application/json' }));
 const commands = [
   ['git', 'fetch', '--all'],
   ['git', 'checkout', '--force'],
-  ['npm', 'ci'],
+  ['npm', 'install'],
   ['npm', 'run', 'build'],
 ];
 
