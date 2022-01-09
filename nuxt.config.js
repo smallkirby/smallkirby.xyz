@@ -40,17 +40,17 @@ export default {
       },
       {
         hid: 'og:title',
-        property: 'og:site_name',
+        property: 'og:title',
         content: 'smallkirby.xyz',
       },
       {
         hid: 'og:description',
-        property: 'og:site_name',
+        property: 'og:description',
         content: 'Make Nirugiri Greater...',
       },
       {
         hid: 'og:image',
-        property: 'og:site_name',
+        property: 'og:description',
         content: 'https://smallkirby.xyz/image/simple-transparent.png',
       },
     ],
