@@ -120,6 +120,6 @@ exports.getSotsurons = functions.https.onCall(async (_data, _context) => {
   return sotsurons;
 });
 
-exports.scheduledSotsuronUpdate = functions.pubsub.schedule('every hour').onRun(async () => {
+exports.scheduledSotsuronUpdate = functions.pubsub.schedule('every 1 hours').onRun(async () => {
   await updateSotsuronTweets();
 });
