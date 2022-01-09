@@ -15,16 +15,38 @@ app.use('/github', express.raw({ type: 'application/json' }));
 
 const commands = [
   ['git', 'fetch', '--all'],
-  ['git', 'checkout', '--force', 'origin/master'],
+  ['git', 'checkout', '--force'],
   ['npm', 'install'],
   ['npm', 'run', 'build'],
 ];
 
-const updateDeploy = async () => {
+const updateCurrentHead = async () => {
+  let current_head = '';
+  const git = spawn('git', ['show', '--pretty=format:"%h"', '--no-patch']);
+  git.stdout.on('data', (data) => {
+    current_head = data.toString();
+  });
+  await new Promise<void>(resolve => git.on('close', () => resolve()));
+  return current_head;
+};
+
+const doDeployPrepare = async (target: string) => {
   for (const [command, ...args] of commands) {
     console.log(command, args);
+    if (args.includes('checkout')) {
+      args.push(target);
+    }
     const proc = spawn(command, args, { cwd: process.cwd() });
     const muxed = new PassThrough();
+
+    const observer = new Promise<number>(resolve => proc.on('close', (code) => {
+      if (code !== 0) {
+        console.error(`Error(code: ${code}) in '${command} ${args}`);
+        resolve(code as number);
+      } else {
+        resolve(code);
+      }
+    }));
 
     proc.stdout.on('data', chunk => muxed.write(chunk));
     proc.stderr.on('data', chunk => muxed.write(chunk));
@@ -43,6 +65,30 @@ const updateDeploy = async () => {
     });
 
     console.log(output.toString());
+
+    const exit_code = await observer;
+    if (exit_code !== 0) {
+      return exit_code;
+    }
+  }
+  return 0;
+};
+
+const updateDeploy = async () => {
+  // check current HEAD
+  const current_head = await updateCurrentHead();
+
+  // execute deploy commands
+  const exit_code = await doDeployPrepare('origin/master');
+  if (exit_code !== 0) {
+    console.error('Rolling back to previous HEAD...');
+    if (await doDeployPrepare(current_head) !== 0) {
+      // double fault
+      console.error('もうむりぽ..........');
+    } else {
+      console.warn(`Success rolling back to ${current_head}`);
+    }
+    return;
   }
 
   // restart
