@@ -24,25 +24,42 @@
           loading information...
         </p>
       </div>
-      <div v-else class="mt-5">
-        <div>
-          <input id="fitXaxis" type="checkbox" @click="redrawChart">
-          <label for="fitXaxis">Fit x-axis scale</label>
+      <!-- Sotsuron Chart -->
+      <div v-else>
+        <div class="mt-5">
+          <div>
+            <input id="fitXaxis" type="checkbox" @click="redrawChart">
+            <label for="fitXaxis">Fit x-axis scale</label>
+          </div>
+          <sotsuron-chart
+            ref="sotsuron_chart"
+            :sotsurons="sotsurons"
+          />
         </div>
-        <sotsuron-chart
-          ref="sotsuron_chart"
-          :sotsurons="sotsurons"
-        />
+
+        <!-- Sotsuron Timeline -->
+        <div class="md:w-1/2 mx-auto mt-8 flex flex-col justify-center mb-3">
+          <div class="content-center mx-auto my-2">
+            <p class="font-bold text-4xl">
+              Timeline
+            </p>
+          </div>
+          <div v-for="(tweet, ix) in sotsurons" :key="ix">
+            <sotsuron-twitter-badge :tweet="tweet" />
+          </div>
+        </div>
       </div>
     </div>
   </layout-wrapper>
 </template>
 
 <script lang="ts">
+import SotsuronTwitterBadge from '~/components/SotsuronTwitterBadge.vue';
 import { FirebaseMixin } from '~/mixins/FirebaseMixin';
 import { SotsuronTweet } from '~/typings/sotsuron';
 
 export default FirebaseMixin.extend({
+  components: { SotsuronTwitterBadge },
   name: 'sotsuron',
   data () {
     return {
