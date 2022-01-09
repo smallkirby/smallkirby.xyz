@@ -27,7 +27,7 @@ const updateCurrentHead = async () => {
     current_head = data.toString();
   });
   await new Promise<void>(resolve => git.on('close', () => resolve()));
-  return current_head;
+  return current_head.slice(1, current_head.length - 1); // trim double quotes
 };
 
 const doDeployPrepare = async (target: string) => {
