@@ -89,7 +89,10 @@ export default FirebaseMixin.extend({
     if (process.client) {
       this.loading = true;
       const sotsurons: SotsuronTweet[] = await this.getSotsuronTweets();
-      this.$data.sotsurons = sotsurons;
+      const sotsurons_sorted = sotsurons.sort((a, b) => {
+        return b.timestamp - a.timestamp;
+      });
+      this.$data.sotsurons = sotsurons_sorted;
     } else {
       this.$data.sotsurons = [];
     }
