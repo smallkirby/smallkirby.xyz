@@ -61,7 +61,10 @@ export default FirebaseMixin.extend({
 
     redrawChart (): void {
       this.$set(this, 'fitXaxis', !this.fitXaxis);
-      this.$refs.sotsuron_chart.redrawChart(this.fitXaxis);
+      const chart = this.$refs.sotsuron_chart;
+      if (chart === undefined) { return; }
+      // ts-ignore
+      (chart as any).redrawChart(this.fitXaxis);
     },
   },
 
