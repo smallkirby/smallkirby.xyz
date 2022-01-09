@@ -32,10 +32,10 @@ const updateCurrentHead = async () => {
 
 const doDeployPrepare = async (target: string) => {
   for (const [command, ...args] of commands) {
-    console.log(command, args);
     if (args.includes('checkout')) {
       args.push(target);
     }
+    console.log(command, args);
     const proc = spawn(command, args, { cwd: process.cwd() });
     const muxed = new PassThrough();
 
