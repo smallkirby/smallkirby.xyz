@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { FirebaseMixin } from '~/mixins/FirebaseMixin';
-import { SotsuronTweet } from '~/types/sotsuron';
+import { SotsuronTweet } from '~/typings/sotsuron';
 
 export default FirebaseMixin.extend({
   name: 'sotsuron',

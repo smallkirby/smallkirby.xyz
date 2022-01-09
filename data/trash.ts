@@ -1,5 +1,5 @@
-import { Trash } from '@/types/trash/trash';
 import { stripIndent } from 'common-tags';
+import { Trash } from '~/typings/trash';
 
 export const trashes: Trash[] = [
   {

@@ -1,10 +1,10 @@
-export interface Ent {
+export type Ent = {
   name: string;
   link?: string;
   description?: string | null;
-};
+}
 
-export interface Dislike {
+export type Like = {
   title: string;
   ents: Ent[];
-};
+}

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/functions';
-import { SotsuronTweet } from '~/types/sotsuron';
+import { SotsuronTweet } from '~/typings/sotsuron';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDGPvC1rphuk62qR__JSz-nV4cA3kEDDNY',

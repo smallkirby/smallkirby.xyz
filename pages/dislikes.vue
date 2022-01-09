@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { dislikes } from '@/data/dislikes/dislikes';
+import { dislikes } from '~/data/dislikes';
 
 export default Vue.extend({
   name: 'Dislikes',

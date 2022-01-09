@@ -9,7 +9,7 @@ import Vue from 'vue';
 import Chart, { ChartItem } from 'chart.js/auto';
 import moment from 'moment';
 import 'chartjs-adapter-moment';
-import { SotsuronTweet } from '~/types/sotsuron';
+import { SotsuronTweet } from '~/typings/sotsuron';
 
 const pointColor = 'rgb(255, 0, 0)';
 const defaultColor = 'rgb(251, 235, 194)';

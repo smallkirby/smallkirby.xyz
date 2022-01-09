@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Octokit } from 'octokit';
-import { LanguageOccupation, RepoBasicInfo, RepositoryInfo } from '~/types/github/github';
+import { LanguageOccupation, RepoBasicInfo, RepositoryInfo } from '~/typings/github';
 
 const langs2occupation = (data: any) => {
   let totalLines = 0;

@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { trashes } from '@/data/trash/trash';
+import { trashes } from '~/data/trash';
 
 export default Vue.extend({
   name: 'Trash',

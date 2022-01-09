@@ -65,8 +65,8 @@
 
 <script lang="ts">
 import { GithubMixin } from '@/mixins/GithubMixin';
-import { RepositoryInfo, RepoBasicInfo, LanguageOccupation } from '@/types/github/github';
 import moment from 'moment';
+import { RepositoryInfo, RepoBasicInfo, LanguageOccupation } from '~/typings/github';
 
 export default GithubMixin.extend({
   name: 'LayoutTrash',

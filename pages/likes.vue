@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { likes } from '@/data/likes/likes';
+import { likes } from '~/data/likes';
 
 export default Vue.extend({
   name: 'About',
