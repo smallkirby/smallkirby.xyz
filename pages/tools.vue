@@ -3,7 +3,7 @@
     <layout-header title="tools" />
     <div>
       <div class="main-window">
-        <layout-print-char-by
+        <print-char-by
           :reqmsg="titleMsg"
           :interval="50"
           :finwait="50"

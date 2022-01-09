@@ -3,7 +3,7 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'LayoutPrintLineByCode',
@@ -20,35 +20,35 @@ export default Vue.extend({
   data () {
     return {
       msg: '',
-    }
+    };
   },
   async mounted () {
-    await this.printLineBy('msg', this.reqmsg, this.interval)
-    this.$emit('finish-print-line-by-code')
+    await this.printLineBy('msg', this.reqmsg, this.interval);
+    this.$emit('finish-print-line-by-code');
   },
   methods: {
     printLineBy (dataName: string, msg: string, interval = 100): Promise<void> {
       if (msg[0] === '\n') {
-        msg = msg.slice(1)
+        msg = msg.slice(1);
       }
       if (msg[msg.length - 1] === '\n') {
-        msg = msg.slice(0, msg.length - 1)
+        msg = msg.slice(0, msg.length - 1);
       }
       return new Promise((resolve, reject) => {
-        const lines = msg.split('\n')
+        const lines = msg.split('\n');
         const subPrintLineBy = (curix: number) => {
           if (curix >= lines.length) {
-            resolve()
-            return
+            resolve();
+            return;
           }
-          this.$set(this.$data, dataName, this.$data[dataName] + lines[curix] + '\n')
-          setTimeout(() => subPrintLineBy(curix + 1), interval)
-        }
-        subPrintLineBy(0)
-      })
+          this.$set(this.$data, dataName, this.$data[dataName] + lines[curix] + '\n');
+          setTimeout(() => subPrintLineBy(curix + 1), interval);
+        };
+        subPrintLineBy(0);
+      });
     },
   },
-})
+});
 </script>
 
 <style scoped>

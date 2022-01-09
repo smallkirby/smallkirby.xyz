@@ -30,17 +30,6 @@
 <script lang="ts">
 import Vue from 'vue';
 
-interface Ent {
-  name: string;
-  link: string | null;
-  description: string | null;
-}
-
-interface Like {
-  title: string;
-  ents: Ent[];
-}
-
 export default Vue.extend({
   name: 'LayoutLike',
   props: {

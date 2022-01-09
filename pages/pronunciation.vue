@@ -1,9 +1,9 @@
 <template>
   <layout-wrapper>
-    <layout-header title="pronountiation" />
+    <layout-header title="pronuntiation" />
     <div>
       <div class="main-window">
-        <layout-print-char-by
+        <print-char-by
           :reqmsg="titleMsg"
           :interval="50"
           :finwait="50"
@@ -12,7 +12,7 @@
       </div>
       <div>
         <div v-for="(v, index) in myvocabs" :key="index">
-          <layout-pronountiation :vocab="v" />
+          <pronunciation-paragraph :vocab="v" />
         </div>
       </div>
     </div>
@@ -30,12 +30,12 @@ interface Ent {
   strict: boolean;
 }
 
-interface Pronountiation {
+interface Pronunciation {
   genre: string;
   ents: Ent[];
 }
 
-const vocabs: Pronountiation[] = [
+const vocabs: Pronunciation[] = [
   {
     genre: 'Softwares / Services',
     ents: [
@@ -99,7 +99,7 @@ const vocabs: Pronountiation[] = [
 ];
 
 export default Vue.extend({
-  name: 'Pronountiation',
+  name: 'Pronuntiation',
   data () {
     return {
       titleMsg:

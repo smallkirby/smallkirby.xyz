@@ -3,10 +3,10 @@
     <layout-header title="Trash" />
     <div>
       <div class="main-window">
-        <layout-print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
+        <print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
         <div v-if="flagTitleMsg" class="center-normal">
           <div v-for="(trash, index) in myTrashes" :key="index">
-            <layout-trash :trash="trash" />
+            <trash-panel :trash="trash" />
           </div>
         </div>
       </div>

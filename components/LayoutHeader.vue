@@ -10,7 +10,7 @@
       <p>1:{{ title }}*</p>
     </div>
     <div id="wrapper-theme-switcher" class="invisible md:visible">
-      <layout-theme-switcher />
+      <theme-switcher />
       <p>Dark-theme</p>
     </div>
     <div id="time-status" class="invisible md:visible">

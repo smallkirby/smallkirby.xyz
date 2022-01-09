@@ -5,10 +5,10 @@
     <div>
       <div class="main-window">
         <div class="title">
-          <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
+          <print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
         </div>
         <div class="main-sentences">
-          <layout-print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
+          <print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
           <div v-if="flagDumpMsg2">
             <p>[   32.303200]  ? <a href="/">index</a></p>
             <p>[   32.303201]  ? <a href="/about">about</a></p>
@@ -16,7 +16,7 @@
             <p>[   32.303201]  ? <a href="/likes">likes</a></p>
             <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>
           </div>
-          <layout-print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
+          <print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
         </div>
       </div>
     </div>
@@ -24,14 +24,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { stripIndent } from 'common-tags'
+import Vue from 'vue';
+import { stripIndent } from 'common-tags';
 
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
   [   32.299676] CPU: 3 PID: 97 Comm: exploit Tainted: G           O      6.7.2 #3
   [   32.299681] Name: smallkirby.xyz
-  [   32.299682] Status: Not Found 
+  [   32.299682] Status: Not Found
   [   32.299896] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu3.9 11/09/2032
   [   32.300307] RIP: 0010:0xDEADBEEFCAFEBABE
   [   32.300528] Code: Bad RIP value.
@@ -51,7 +51,7 @@ const _dumpMsg1: string = stripIndent`
   [   32.303021]  ? ksys_read+0x3e/0xb0
   [   32.303103]  ? do_syscall_64+0x42/0x120
   [   32.303195]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
-`
+`;
 const _dumpMsg2 = stripIndent`
   [   32.303371] Modules linked in: dockerd(O)
   [   32.304008] ---[ end trace 9699fdcf83e9fabe ]---
@@ -69,7 +69,7 @@ const _dumpMsg2 = stripIndent`
   [   32.306287] Kernel panic - not syncing: Fatal exception
   [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)
   [   32.306918] Rebooting in 1 seconds..
-`
+`;
 
 export default Vue.extend({
   name: 'Error',
@@ -82,20 +82,20 @@ export default Vue.extend({
       flagDumpMsg1: false,
       flagDumpMsg2: false,
       cpuno: 0,
-    }
+    };
   },
   created () {
-    this.cpuno = Math.floor(Math.random() * 5)
+    this.cpuno = Math.floor(Math.random() * 5);
   },
   methods: {
     hoge (): void {
-      this.flagDumpMsg1 = true
+      this.flagDumpMsg1 = true;
     },
     hoge2 (): void {
-      this.flagDumpMsg2 = true
+      this.flagDumpMsg2 = true;
     },
   },
-})
+});
 </script>
 
 <style>

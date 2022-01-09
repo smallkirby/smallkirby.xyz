@@ -3,7 +3,7 @@
     <layout-header title="sotsuron" />
     <div>
       <div class="main-window">
-        <layout-print-char-by
+        <print-char-by
           :reqmsg="titleMsg"
           :interval="50"
           :finwait="50"
@@ -29,9 +29,9 @@
           <input id="fitXaxis" type="checkbox" @click="redrawChart">
           <label for="fitXaxis">Fit x-axis scale</label>
         </div>
-        <layout-sotsuron-chart
-          :sotsurons="sotsurons"
+        <sotsuron-chart
           ref="sotsuron_chart"
+          :sotsurons="sotsurons"
         />
       </div>
     </div>

@@ -1,10 +1,10 @@
 <template>
   <div id="kernel-panic-sentences">
     <div class="title">
-      <layout-print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
+      <print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
     </div>
     <div class="main-sentences">
-      <layout-print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
+      <print-line-by v-if="flagDumpMsg1" ref="refDumpMsg1" :reqmsg="dumpMsg1" interval="50" @finish-print-line-by="hoge2" />
       <div v-if="flagDumpMsg2">
         <p>[   32.303200]  ? <a href="/">index</a></p>
         <p>[   32.303201]  ? <a href="/about">about</a></p>
@@ -12,7 +12,7 @@
         <p>[   32.303201]  ? <a href="/likes">likes</a></p>
         <p>[   32.303202]  ? <a href="https://github.com/smallkirby" target="_blank">github</a></p>
       </div>
-      <layout-print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
+      <print-line-by v-if="flagDumpMsg2" ref="refDumpMsg2" :reqmsg="dumpMsg2" />
     </div>
   </div>
 </template>

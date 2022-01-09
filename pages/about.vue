@@ -3,7 +3,7 @@
     <layout-header title="about" />
     <div>
       <div class="main-window">
-        <layout-print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
+        <print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
         <div v-if="flagTitleMsg" class="center-normal">
           <img id="kirby-pict" src="/img/simple-transparent.png" width="300" height="300">
           <p>student of University of Tokyo</p>

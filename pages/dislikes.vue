@@ -3,7 +3,7 @@
     <layout-header title="dislikes" />
     <div>
       <div class="main-window">
-        <layout-print-char-by
+        <print-char-by
           :reqmsg="titleMsg"
           :interval="50"
           :finwait="50"
@@ -12,7 +12,7 @@
       </div>
       <div>
         <div v-for="(l, index) in dislikes" :key="index">
-          <layout-like :like="l" />
+          <like-paragraph :like="l" />
         </div>
       </div>
     </div>

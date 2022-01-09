@@ -38,18 +38,6 @@
 <script lang="ts">
 import Vue from 'vue';
 
-interface Ent {
-  name: string;
-  pronountiation: string;
-  description?: string | null;
-  strict: boolean,
-}
-
-interface Pronountiation {
-  genre: string;
-  ents: Ent[];
-}
-
 export default Vue.extend({
   name: 'LayoutPronountiation',
   props: {

@@ -4,12 +4,12 @@
     <div>
       <div class="main-window">
         <div v-for="(h, index) in history" :key="index">
-          <layout-shell-line
+          <shell-line
             v-if="h.is_imm"
             :imm_command="h.command"
             @shell-line-submitted="processCommand"
           />
-          <layout-shell-line v-else @shell-line-submitted="processCommand" />
+          <shell-line v-else @shell-line-submitted="processCommand" />
           <div v-for="(result, pindex) in h.result" :key="pindex">
             <div v-if="result.link">
               <p><a :href="result.link">{{ result.ent }}</a></p>
@@ -20,8 +20,8 @@
           </div>
         </div>
         <!--
-        <layout-kernel-panic v-if="flagPanicing" />
--->
+        <kernel-panic v-if="flagPanicing" />
+        -->
       </div>
     </div>
   </layout-wrapper>
