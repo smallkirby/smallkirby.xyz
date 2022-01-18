@@ -12,7 +12,7 @@ export interface SotsuronTweet {
   timestamp: number,
 }
 
-const sotsuronTweetPattern = /\(([0-9]+)\/30\)$/;
+const sotsuronTweetPattern = /\(([0-9]+)\/30\)/;
 
 const getSotsuronText = (tweet: TweetV2) => {
   const tweet_str = tweet.text;
