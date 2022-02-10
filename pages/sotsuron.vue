@@ -19,14 +19,8 @@
         <p>NOTE: Data collection is stopped at 2022.02.09, and now it is static.</p>
       </div>
 
-      <div v-if="loading" class="mt-5 mb-2">
-        <vue-loading type="spin" />
-        <p class="text-center">
-          loading information...
-        </p>
-      </div>
       <!-- Sotsuron Chart -->
-      <div v-else>
+      <div>
         <div class="mt-5">
           <sotsuron-chart
             ref="sotsuron_chart"
@@ -64,7 +58,6 @@ export default FirebaseMixin.extend({
         '$ watch -n $((60 * 60)) ./fetch_sotsuron_status.py',
       flagTitleMsg: false,
       sotsurons: [] as SotsuronTweet[],
-      loading: false,
       fitXaxis: false,
     };
   },
@@ -84,7 +77,6 @@ export default FirebaseMixin.extend({
 
   async created () {
     if (process.client) {
-      this.loading = true;
       const sotsurons: SotsuronTweet[] = await this.getSotsuronTweets();
       const sotsurons_sorted = sotsurons.sort((a, b) => {
         return b.timestamp - a.timestamp;
@@ -92,11 +84,6 @@ export default FirebaseMixin.extend({
       this.$data.sotsurons = sotsurons_sorted;
     } else {
       this.$data.sotsurons = [];
-    }
-    if (this.$data.sotsurons === undefined || this.$data.sotsurons.length === 0) {
-      this.$data.loading = true;
-    } else {
-      this.$data.loading = false;
     }
   },
 });
