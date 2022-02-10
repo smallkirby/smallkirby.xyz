@@ -2,6 +2,7 @@ import Vue from 'vue';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/functions';
 import { SotsuronTweet } from '~/typings/sotsuron';
+import { sotsuronTweets } from '~/data/sotsuron';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDGPvC1rphuk62qR__JSz-nV4cA3kEDDNY',
@@ -23,15 +24,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export const FirebaseMixin = Vue.extend({
   methods: {
-    async getSotsuronTweets (): Promise<SotsuronTweet[]> {
-      const result = firebase.functions().httpsCallable('getSotsurons')({})
-        .then((res) => {
-          return res.data;
-        }).catch((e) => {
-          console.error('Failed to fetch sotsuron status:');
-          console.error(e);
-        });
-      return await result;
+    // fetch sotsuron tweets list.
+    // the data is now static.
+    getSotsuronTweets (): Promise<SotsuronTweet[]> {
+      return Promise.resolve(sotsuronTweets).then((v: SotsuronTweet[]) => v);
     },
   },
 });
