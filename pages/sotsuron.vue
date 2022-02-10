@@ -28,10 +28,6 @@
       <!-- Sotsuron Chart -->
       <div v-else>
         <div class="mt-5">
-          <div>
-            <input id="fitXaxis" type="checkbox" @click="redrawChart">
-            <label for="fitXaxis">Fit x-axis scale</label>
-          </div>
           <sotsuron-chart
             ref="sotsuron_chart"
             :sotsurons="sotsurons"
