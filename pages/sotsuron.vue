@@ -16,6 +16,7 @@
       <div>
         <p>This page collects sotsuron progress status from smallkirby's secret account of Twitter(<a href="https://twitter.com/smallkirby_">@smallkirby_</a>).</p>
         <p>Please ping me if the progress seems really poor!!</p>
+        <p>NOTE: Data collection is stopped at 2022.02.09, and now it is static.</p>
       </div>
 
       <div v-if="loading" class="mt-5 mb-2">
@@ -27,10 +28,6 @@
       <!-- Sotsuron Chart -->
       <div v-else>
         <div class="mt-5">
-          <div>
-            <input id="fitXaxis" type="checkbox" @click="redrawChart">
-            <label for="fitXaxis">Fit x-axis scale</label>
-          </div>
           <sotsuron-chart
             ref="sotsuron_chart"
             :sotsurons="sotsurons"
