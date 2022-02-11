@@ -67,6 +67,16 @@ html {
   top: 0em;
 }
 
+@media only screen and (max-width: 699px) {
+  #tmux-pane {
+    max-width: 0px;
+  }
+
+  #body-wrapper {
+    padding-left: 0px;
+  }
+}
+
 body {
   font-family: "Ubuntu Mono", monospace;
   background-color: #32302f;
