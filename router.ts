@@ -59,6 +59,15 @@ const routes = [
     name: 'trash',
     component: Trash,
   },
+  {
+    path: '/help',
+    name: 'help',
+    component: Help,
+  },
+  {
+    path: '*',
+    component: Help,
+  },
 ];
 
 const router = new VueRouter({

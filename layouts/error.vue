@@ -3,7 +3,7 @@
     <layout-header title="notfound" />
 
     <div>
-      <div class="main-window">
+      <div class="main-window ml-0">
         <div class="title">
           <print-char-by :reqmsg="titleMsg" :interval="150" :finwait="500" @finish-print-char-by="hoge" />
         </div>
