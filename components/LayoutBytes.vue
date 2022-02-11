@@ -1,5 +1,5 @@
 <template>
-  <layout-wraper>
+  <layout-wrapper>
     <div class="mx-2 md:mx-4 mb-2">
       <h2 class="text-xl font-bold">
         Byte and Hex
@@ -17,7 +17,7 @@
       </div>
       <input v-model="hexstring" class="bg-skblack-dark" @keyup.enter="convert2bytes">
     </div>
-  </layout-wraper>
+  </layout-wrapper>
 </template>
 
 <script lang="ts">

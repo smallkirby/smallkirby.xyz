@@ -33,7 +33,7 @@ interface Entry {
 export const TmuxMixin = Vue.extend({
   data () {
     return {
-      history: [] as Command[],
+      history: [],
     };
   },
 

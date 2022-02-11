@@ -65,4 +65,13 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach');
+  console.log(from.name);
+  console.log(next);
+  if (from.name !== null) {
+    this.$router.app.$emit('hogehoge');
+  }
+});
+
 export default router;
