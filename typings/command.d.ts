@@ -1,9 +1,9 @@
-export interface CommandResultPrint {
+export type CommandResultPrint = {
   ent: string,
   link?: string,
-}
+};
 
-export interface CommandResultRedirect {
+export type CommandResultRedirect = {
   path: string,
 }
 

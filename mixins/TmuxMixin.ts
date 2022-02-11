@@ -22,7 +22,7 @@ const execShmug = (_args: string[]): CommandResultCore[] => {
 const execLs = (_args: string[]): CommandResultCore[] => {
   return files.map((e: LsEntry) => {
     return {
-      ent: `r--r-xrwx  skb skb ${e.pagename}`,
+      ent: `rwxr-xr--  skb skb ${e.pagename}`,
       link: e.routename,
     };
   });
@@ -72,17 +72,19 @@ export const TmuxMixin = Vue.extend({
       if (!this.flagPanicing) {
         this.history.push({ command: '', result: [], is_imm: false });
       }
+
+      for (const result_ent of result) {
+        if ('path' in result_ent) {
+          this.$router.push(result_ent.path);
+          break;
+        }
+      }
     },
 
-    execCommand (command: string) {
+    execCommand (command: string): CommandResultCore[] {
       const parts: string[] = command.split(' ').map(s => s.trim());
       const cmd = parts[0];
       const args = parts.slice(1);
-
-      if (commandsBlacklist.includes(cmd)) {
-        this.flagPanicing = true;
-        return;
-      }
 
       if (cmd === 'shmug') {
         return execShmug(args);
@@ -92,6 +94,10 @@ export const TmuxMixin = Vue.extend({
         return execCd(args);
       } else if (cmd === 'cat') {
         return execCat(args);
+      } else {
+        return [{
+          ent: `Command ${cmd} not found.`,
+        }];
       }
     },
   },
