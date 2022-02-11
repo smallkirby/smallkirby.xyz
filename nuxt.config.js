@@ -53,6 +53,11 @@ export default {
         property: 'og:description',
         content: 'https://smallkirby.xyz/image/simple-transparent.png',
       },
+      {
+        hid: 't-type',
+        name: 'twitter: card',
+        content: 'summary_large_image',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
