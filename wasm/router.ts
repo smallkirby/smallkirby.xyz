@@ -63,14 +63,9 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes,
-});
+  
+  created () {
 
-router.beforeEach((to, from, next) => {
-  console.log('beforeEach');
-  console.log(from.name);
-  console.log(next);
-  if (from.name !== null) {
-    this.$router.app.$emit('hogehoge');
   }
 });
 

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import { CommandResultCore, CommandResult } from '~/typings/command';
-import { files } from '~/data/ls';
 import { LsEntry } from '~/typings/ls';
 
 const commandsBlacklist = [
@@ -19,8 +18,8 @@ const execShmug = (_args: string[]): CommandResultCore[] => {
   }];
 };
 
-const execLs = (_args: string[]): CommandResultCore[] => {
-  return files.map((e: LsEntry) => {
+const execLs = (_args: string[], routeList: LsEntry[]): CommandResultCore[] => {
+  return routeList.map((e: LsEntry) => {
     return {
       ent: `rwxr-xr--  skb skb ${e.pagename}`,
       link: e.routename,
@@ -28,14 +27,14 @@ const execLs = (_args: string[]): CommandResultCore[] => {
   });
 };
 
-const execCat = (args: string[]): CommandResultCore[] => {
+const execCat = (args: string[], routeList: LsEntry[]): CommandResultCore[] => {
   if (args.length !== 1) {
     return [{
       ent: 'usage: cat <file>',
     }];
   }
 
-  const candidate = files.filter(e => e.pagename === args[0]);
+  const candidate = routeList.filter(e => e.pagename === args[0]);
   if (candidate.length >= 1) {
     return [{
       path: candidate[0].routename,
@@ -58,7 +57,17 @@ export const TmuxMixin = Vue.extend({
     return {
       history: [] as CommandResult[],
       flagPanicing: false,
+      routeList: [] as LsEntry[],
     };
+  },
+
+  created () {
+    this.$router.options.routes?.forEach((route) => {
+      this.routeList.push({
+        pagename: route.name ? route.name : 'unknown',
+        routename: route.path,
+      });
+    });
   },
 
   methods: {
@@ -89,11 +98,11 @@ export const TmuxMixin = Vue.extend({
       if (cmd === 'shmug') {
         return execShmug(args);
       } else if (cmd === 'ls') {
-        return execLs(args);
+        return execLs(args, this.routeList);
       } else if (cmd === 'cd') {
         return execCd(args);
       } else if (cmd === 'cat') {
-        return execCat(args);
+        return execCat(args, this.routeList);
       } else {
         return [{
           ent: `Command ${cmd} not found.`,
