@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="dislikes" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -25,6 +24,7 @@ import { dislikes } from '~/data/dislikes';
 
 export default Vue.extend({
   name: 'Dislikes',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:

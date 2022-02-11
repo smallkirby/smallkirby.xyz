@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="likes" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -24,7 +23,8 @@ import Vue from 'vue';
 import { likes } from '~/data/likes';
 
 export default Vue.extend({
-  name: 'About',
+  name: 'Likes',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:

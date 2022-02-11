@@ -47,6 +47,34 @@ html {
 /* custom */
 #body-wrapper {
   padding-bottom: 4.0em;
+  padding-left: 2em;
+
+  width: 100%;
+}
+
+#tmux-pane {
+  max-height: calc(100vh - 2em);
+  height: calc(100vh - 2em);
+  width: 24rem;
+  padding-bottom: 1.0em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  resize: horizontal;
+
+  position: sticky;
+  top: 0em;
+}
+
+@media only screen and (max-width: 699px) {
+  #tmux-pane {
+    max-width: 0px;
+  }
+
+  #body-wrapper {
+    padding-left: 0px;
+  }
 }
 
 body {
@@ -58,6 +86,7 @@ body {
 div.main-window {
   padding-top: 1.2em;
   padding-left: 0.3em;
+  flex-grow: 1;
 }
 
 a {

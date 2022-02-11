@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="tetris" />
     <div>
       <div class="main-window">
         <div id="tetris">
@@ -21,6 +20,7 @@ let board: any;
 
 export default Vue.extend({
   name: 'Tetris',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ bash tetris.sh',

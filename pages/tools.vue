@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="tools" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -22,6 +21,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Tools',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:

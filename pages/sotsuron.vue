@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="sotsuron" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -20,7 +19,7 @@
       </div>
 
       <!-- Sotsuron Chart -->
-      <div>
+      <div v-if="loaded">
         <div class="mt-5">
           <sotsuron-chart
             ref="sotsuron_chart"
@@ -52,6 +51,7 @@ import { SotsuronTweet } from '~/typings/sotsuron';
 export default FirebaseMixin.extend({
   components: { SotsuronTwitterBadge },
   name: 'sotsuron',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:
@@ -59,6 +59,7 @@ export default FirebaseMixin.extend({
       flagTitleMsg: false,
       sotsurons: [] as SotsuronTweet[],
       fitXaxis: false,
+      loaded: false,
     };
   },
   methods: {
@@ -85,6 +86,7 @@ export default FirebaseMixin.extend({
     } else {
       this.$data.sotsurons = [];
     }
+    this.loaded = true;
   },
 });
 </script>

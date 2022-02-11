@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="pronuntiation" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -100,6 +99,7 @@ const vocabs: Pronunciation[] = [
 
 export default Vue.extend({
   name: 'Pronuntiation',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:

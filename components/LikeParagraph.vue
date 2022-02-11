@@ -1,5 +1,5 @@
 <template>
-  <layout-wraper>
+  <layout-wrapper>
     <div class="mx-2 md:mx-4 mb-2">
       <div>
         <p class="font-bold text-xl mt-2">
@@ -24,7 +24,7 @@
         </ul>
       </div>
     </div>
-  </layout-wraper>
+  </layout-wrapper>
 </template>
 
 <script lang="ts">

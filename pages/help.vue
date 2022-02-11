@@ -4,8 +4,20 @@
       <div class="main-window">
         <print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
         <div v-if="flagTitleMsg" class="center-normal">
-          <div v-for="(trash, index) in myTrashes" :key="index">
-            <trash-panel :trash="trash" />
+          <div class="pb-20">
+            <h1 class="text-2xl">
+              Welcome to smallkirby's homepage.
+            </h1>
+          </div>
+
+          <div>
+            <p>
+              If you are using a PC (not smartphones),
+              <b class="text-skred">you can use Shell-like interface to browse this site.</b>
+            </p>
+            <p>
+              Try typing <b>'cat about'</b> in the left pane.
+            </p>
           </div>
         </div>
       </div>
@@ -15,16 +27,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { trashes } from '~/data/trash';
 
 export default Vue.extend({
-  name: 'Trash',
+  name: 'Help',
   layout: 'tmux',
   data () {
     return {
-      titleMsg: '$ ls ~/.local/share/Trash/*',
+      titleMsg: '$ ./smallkirby.xyz --help',
       flagTitleMsg: false,
-      myTrashes: trashes,
     };
   },
   methods: {

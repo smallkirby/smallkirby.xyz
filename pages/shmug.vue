@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="mug" />
     <div>
       <div class="main-window">
         <div id="shmug">
@@ -16,6 +15,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Shmug',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ cat ./about.txt',
