@@ -9,6 +9,7 @@ import Shmug from '@/pages/shmug.vue';
 import Sotsuron from '@/pages/sotsuron.vue';
 import Tools from '@/pages/tools.vue';
 import Trash from '@/pages/trash.vue';
+import Help from '@/pages/help.vue';
 
 Vue.use(VueRouter);
 
@@ -63,10 +64,6 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes,
-  
-  created () {
-
-  }
 });
 
 export default router;

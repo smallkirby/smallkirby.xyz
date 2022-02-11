@@ -20,6 +20,7 @@ let board: any;
 
 export default Vue.extend({
   name: 'Tetris',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ bash tetris.sh',
