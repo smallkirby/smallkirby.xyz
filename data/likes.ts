@@ -41,6 +41,11 @@ export const likes: Like[] = [
         description: 'GC,2003',
       },
       {
+        name: 'Bravely Default 2',
+        link: 'https://www.jp.square-enix.com/bd2/',
+        description: 'switch,2021',
+      },
+      {
         name: 'Civilization 6',
         link: 'https://civilization.com/ja-JP/',
         description: 'switch,2018. [Australia]',
