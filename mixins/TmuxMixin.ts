@@ -30,7 +30,6 @@ interface Entry {
   modified: string;
 }
 
-
 export const TmuxMixin = Vue.extend({
   data () {
     return {
