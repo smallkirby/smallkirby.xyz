@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="sotsuron" />
     <div>
       <div class="main-window">
         <print-char-by
@@ -52,6 +51,7 @@ import { SotsuronTweet } from '~/typings/sotsuron';
 export default FirebaseMixin.extend({
   components: { SotsuronTwitterBadge },
   name: 'sotsuron',
+  layout: 'tmux',
   data () {
     return {
       titleMsg:

@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="nirugiri" />
     <div>
       <div class="main-window">
         <div id="nirugiri">
@@ -24,6 +23,7 @@ import { range } from 'lodash';
 
 export default Vue.extend({
   name: 'Nirugiri',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ cat ./about.txt',

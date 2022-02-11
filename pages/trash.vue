@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="Trash" />
     <div>
       <div class="main-window">
         <print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
@@ -20,6 +19,7 @@ import { trashes } from '~/data/trash';
 
 export default Vue.extend({
   name: 'Trash',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ ls ~/.local/share/Trash/*',

@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="sleeping" />
     <div>
       <div class="main-window">
         <div id="sleeping-header">

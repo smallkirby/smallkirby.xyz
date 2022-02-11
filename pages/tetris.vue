@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="tetris" />
     <div>
       <div class="main-window">
         <div id="tetris">

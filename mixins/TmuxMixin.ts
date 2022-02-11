@@ -1,36 +1,6 @@
-<template>
-  <layout-wrapper>
-    <layout-header title="bash" />
-    <div>
-      <div class="main-window">
-        <div v-for="(h, index) in history" :key="index">
-          <shell-line
-            v-if="h.is_imm"
-            :imm_command="h.command"
-            @shell-line-submitted="processCommand"
-          />
-          <shell-line v-else @shell-line-submitted="processCommand" />
-          <div v-for="(result, pindex) in h.result" :key="pindex">
-            <div v-if="result.link">
-              <p><a :href="result.link">{{ result.ent }}</a></p>
-            </div>
-            <div v-else>
-              <p>{{ result.ent }}</p>
-            </div>
-          </div>
-        </div>
-        <!--
-        <kernel-panic v-if="flagPanicing" />
-        -->
-      </div>
-    </div>
-  </layout-wrapper>
-</template>
-
-<script lang="ts">
 import Vue from 'vue';
 import axios from 'axios';
-// @ts-ignore
+import { Command, CommandType } from '~/typings/command';
 
 const commandsBlacklist = [
   'rm',
@@ -60,21 +30,16 @@ interface Entry {
   modified: string;
 }
 
-export default Vue.extend({
-  name: 'Shell',
-  layout: 'tmux',
+
+export const TmuxMixin = Vue.extend({
   data () {
     return {
-      titleMsg: '$ /bin/bash',
-      history: [] as CommandResult[],
-      flagPanicing: false,
+      history: [] as Command[],
     };
   },
-  mounted () {
-    this.history.push({ command: 'ls', result: [], is_imm: true });
-  },
+
   methods: {
-    async processCommand (command: string) {
+    async processCommand(command: string) {
       const result = await this.execCommand(command);
       this.$set(this.history, this.history.length - 1, {
         command,
@@ -85,7 +50,7 @@ export default Vue.extend({
         this.history.push({ command: '', result: [], is_imm: false });
       }
     },
-    async execCommand (command: string) {
+    async execCommand(command: string) {
       const cmds = command.split(' ');
       if (commandsBlacklist.includes(cmds[0])) {
         // this.$router.push('/index')
@@ -129,14 +94,3 @@ export default Vue.extend({
     },
   },
 });
-</script>
-
-<style>
-div.center-normal {
-  text-align: center;
-}
-
-img#kirby-pict {
-  margin: 0 auto;
-}
-</style>

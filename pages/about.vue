@@ -1,6 +1,5 @@
 <template>
   <layout-wrapper>
-    <layout-header title="about" />
     <div>
       <div class="main-window">
         <print-char-by :reqmsg="titleMsg" :interval="100" :finwait="50" @finish-print-char-by="finTitleMsg" />
@@ -25,6 +24,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'About',
+  layout: 'tmux',
   data () {
     return {
       titleMsg: '$ cat ./about.txt',
