@@ -29,7 +29,7 @@
 import { TmuxMixin } from '~/mixins/TmuxMixin';
 
 export default TmuxMixin.extend({
-  name: 'Tmux',
+  name: 'TmuxPane',
   data () {
     return {
     };

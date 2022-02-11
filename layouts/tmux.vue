@@ -3,7 +3,7 @@
     <layout-header :title="title" />
     <div class="w-full h-full flex flex-row">
       <div id="tmux-pane" class="border-r-1 border-white ">
-        <tmux />
+        <tmux-pane />
       </div>
       <div id="body-wrapper">
         <router-view />

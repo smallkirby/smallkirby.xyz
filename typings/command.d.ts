@@ -1,6 +1,16 @@
-export type CommandType = 'print' | 'redirect' | 'invalid';
+export interface CommandResultPrint {
+  ent: string,
+  link?: string,
+}
 
-export type Command = {
-  name: string,
-  type: CommandType,
-};
+export interface CommandResultRedirect {
+  path: string,
+}
+
+export type CommandResultCore = CommandResultPrint | CommandResultRedirect;
+
+export interface CommandResult {
+  command: string;
+  result: CommandResultCore[],
+  is_imm: boolean;
+}

@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import axios from 'axios';
-import { Command, CommandType } from '~/typings/command';
+import { CommandResultCore, CommandResult } from '~/typings/command';
+import { files } from '~/data/ls';
+import { LsEntry } from '~/typings/ls';
 
 const commandsBlacklist = [
   'rm',
@@ -12,34 +13,57 @@ const commandsBlacklist = [
   'exploit',
 ];
 
-interface CommandResult {
-  command: string;
-  result: {
-    ent: string,
-    link?: string,
-  }[];
-  is_imm: boolean;
-}
+const execShmug = (_args: string[]): CommandResultCore[] => {
+  return [{
+    ent: 'c|_]',
+  }];
+};
 
-interface Entry {
-  pagename: string;
-  perms: string;
-  url: string;
-  user: string;
-  group: string;
-  modified: string;
-}
+const execLs = (_args: string[]): CommandResultCore[] => {
+  return files.map((e: LsEntry) => {
+    return {
+      ent: `r--r-xrwx  skb skb ${e.pagename}`,
+      link: e.routename,
+    };
+  });
+};
+
+const execCat = (args: string[]): CommandResultCore[] => {
+  if (args.length !== 1) {
+    return [{
+      ent: 'usage: cat <file>',
+    }];
+  }
+
+  const candidate = files.filter(e => e.pagename === args[0]);
+  if (candidate.length >= 1) {
+    return [{
+      path: candidate[0].routename,
+    }];
+  } else {
+    return [{
+      ent: `ls: cannot access ${args[0]} : No such file or directory.`,
+    }];
+  }
+};
+
+const execCd = (_args: string[]): CommandResultCore[] => {
+  return [{
+    ent: 'Bloom where God has planted you...',
+  }];
+};
 
 export const TmuxMixin = Vue.extend({
   data () {
     return {
-      history: [],
+      history: [] as CommandResult[],
+      flagPanicing: false,
     };
   },
 
   methods: {
-    async processCommand(command: string) {
-      const result = await this.execCommand(command);
+    processCommand (command: string) {
+      const result = this.execCommand(command);
       this.$set(this.history, this.history.length - 1, {
         command,
         result,
@@ -49,46 +73,25 @@ export const TmuxMixin = Vue.extend({
         this.history.push({ command: '', result: [], is_imm: false });
       }
     },
-    async execCommand(command: string) {
-      const cmds = command.split(' ');
-      if (commandsBlacklist.includes(cmds[0])) {
-        // this.$router.push('/index')
+
+    execCommand (command: string) {
+      const parts: string[] = command.split(' ').map(s => s.trim());
+      const cmd = parts[0];
+      const args = parts.slice(1);
+
+      if (commandsBlacklist.includes(cmd)) {
         this.flagPanicing = true;
         return;
       }
-      if (cmds[0] === 'shmug') {
-        return [{ ent: 'c|_|' }];
-      } else if (cmds[0] === 'ls') {
-        const { data } = await axios.get('/ls.json');
-        const entries = data as Entry[];
-        return entries.map(
-          (e) => {
-            return {
-              ent: `${e.perms} ${e.user} ${e.group} ${e.pagename}`,
-              link: e.pagename,
-            };
-          },
-        );
-      } else if (cmds[0] === 'cd') {
-        return [{ ent: 'Bloom where God has planted you...' }];
-      } else if (cmds[0] === 'cat') {
-        if (cmds.length !== 2) {
-          return [{ ent: 'usage: cat <file>' }];
-        }
-        const { data } = await axios.get('/ls.json');
-        const entries = data as Entry[];
-        const candidate = entries.filter(e => e.pagename === cmds[1]);
-        if (candidate.length >= 1) {
-          window.open(
-            this.$router.resolve('/' + candidate[0].pagename).href,
-            '_blank',
-          );
-          return [{ ent: '' }];
-        } else {
-          return [{ ent: `ls: cannot access '${cmds[1]}': No such file or directory` }];
-        }
-      } else {
-        return [{ ent: `${cmds[0]}: command not found` }];
+
+      if (cmd === 'shmug') {
+        return execShmug(args);
+      } else if (cmd === 'ls') {
+        return execLs(args);
+      } else if (cmd === 'cd') {
+        return execCd(args);
+      } else if (cmd === 'cat') {
+        return execCat(args);
       }
     },
   },
