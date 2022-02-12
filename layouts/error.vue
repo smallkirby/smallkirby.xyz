@@ -26,7 +26,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { stripIndent } from 'common-tags';
-
 const _dumpMsg1: string = stripIndent`
   [   32.299320] general protection fault: 0000 [#1]
   [   32.299676] CPU: 3 PID: 97 Comm: exploit Tainted: G           O      6.7.2 #3
@@ -70,7 +69,6 @@ const _dumpMsg2 = stripIndent`
   [   32.306503] Kernel Offset: 0x14000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0)
   [   32.306918] Rebooting in 1 seconds..
 `;
-
 export default Vue.extend({
   name: 'Error',
   data () {

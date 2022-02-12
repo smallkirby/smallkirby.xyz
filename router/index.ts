@@ -66,7 +66,7 @@ const routes = [
   },
   {
     path: '*',
-    component: Help,
+    redirect: '/help',
   },
 ];
 
