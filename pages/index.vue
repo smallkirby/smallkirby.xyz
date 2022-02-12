@@ -1,7 +1,7 @@
 <template>
   <layout-wrapper>
     <div>
-      redirecting...
+      <tmux-pane />
     </div>
   </layout-wrapper>
 </template>
@@ -13,8 +13,10 @@ export default Vue.extend({
   name: 'Index',
   layout: 'tmux',
 
-  created () {
-    this.$router.replace('/help');
+  mounted () {
+    if (window.innerWidth >= 700) {
+      this.$router.replace('/help');
+    }
   },
 });
 </script>
