@@ -308,6 +308,11 @@ export const likes: Like[] = [
         description: 'covered by KudouChitose,2019',
       },
       {
+        name: '空想電車',
+        link: 'https://youtu.be/cXE79nsZEzk',
+        description: 'vivid undress,2018',
+      },
+      {
         name: 'Youtube Playlist',
         link: 'https://nirugiri.smallkirby.xyz',
       },
