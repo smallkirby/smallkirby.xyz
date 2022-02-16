@@ -117,7 +117,6 @@ export default {
         watchDirectories: [
           path.resolve(__dirname, 'wasm/tetris'),
         ],
-        args: '--log-level info',
         outDir: 'pkg',
         outName: 'index',
       }),
