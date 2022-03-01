@@ -313,6 +313,11 @@ export const likes: Like[] = [
         description: 'vivid undress,2018',
       },
       {
+        name: 'さよなら人類',
+        link: 'https://youtu.be/cXE79nsZEzk',
+        description: 'たま,1990 (cover by edda,2018)',
+      },
+      {
         name: 'Youtube Playlist',
         link: 'https://nirugiri.smallkirby.xyz',
       },
