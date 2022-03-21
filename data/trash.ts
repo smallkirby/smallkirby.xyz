@@ -44,6 +44,16 @@ export const trashes: Trash[] = [
     `,
   },
   {
+    title: 'Markdow.erb',
+    title_link: 'https://github.com/smallkirby/Markdown.erb',
+    image_path: 'https://github.com/smallkirby/Markdown.erb/raw/master/img/demo.gif',
+    description: stripIndent`
+      VSCode extension to write Markdown with ERB easily. It enable you to use variables in Markdown.
+      It has a simple pre-processor, which adds some features to pure Markdown, such as Reference expansion in the similar way with foot-note syntax.
+      It transpiles ERB code while you're typing and gives you error diagnostic.
+    `,
+  },
+  {
     title: 'lysithea',
     title_link: 'https://github.com/smallkirby/lysithea',
     image_path: '/img/trashes/lysithea.png',
