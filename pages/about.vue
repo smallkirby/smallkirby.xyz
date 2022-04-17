@@ -7,7 +7,7 @@
           <img id="kirby-pict" src="/img/simple-transparent.png" width="300" height="300">
           <p>student of University of Tokyo</p>
           <p>major in electronics and photonics (undergraduate)</p>
-          <p>major in <em>undefined</em> (graduate)</p>
+          <p>major in OS, virtualization, security (graduate)</p>
           <p>interested in <em>undefined</em></p>
           <br>
           <p>blog: <a href="https://smallkirby.hatenablog.com">newbie dive into binary</a></p>
