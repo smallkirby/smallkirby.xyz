@@ -33,4 +33,15 @@ export default Vue.extend({
 
 <style lang='scss'>
 @import '~/static/css/default.scss';
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+::-webkit-scrollbar-track {
+  background: #282828;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbcba2;
+  border-radius: 0.375rem;
+}
 </style>
