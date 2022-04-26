@@ -14,7 +14,7 @@ export const dislikes: Dislike[] = [
       },
       {
         name: 'train',
-        description: 'crowded train in Tokyo. I prefer to walking.',
+        description: 'crowded train in Tokyo. I prefer walking.',
       },
       {
         name: 'keyboard of MacBook',
