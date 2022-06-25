@@ -353,4 +353,13 @@ export const likes: Like[] = [
       },
     ],
   },
+  {
+    title: 'Web',
+    ents: [
+      {
+        name: 'React',
+        link: 'https://reactjs.org/',
+      },
+    ],
+  },
 ];
