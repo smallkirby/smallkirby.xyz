@@ -1,3 +1,5 @@
+# [GO TO smallkirby.xyz.jsx](https://github.com/smallkirby/smallkirby.xyz.jsx)
+
 # smallkirby.xyz
 
 Make Nirugiri Greater.
